@@ -2,7 +2,8 @@ import React from "react"
 import { graphql, useStaticQuery } from "gatsby"
 
 import { footer } from "./footer.module.scss"
-const Footer = () => {
+
+const Footer: React.FC = () => {
   const {
     site: {
       siteMetadata: { author },

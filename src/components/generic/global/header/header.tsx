@@ -1,5 +1,6 @@
 import React from "react"
 import { Link, graphql, useStaticQuery } from "gatsby"
+
 import {
   navItem,
   headerStyle,
@@ -8,7 +9,7 @@ import {
   activeNavItem,
 } from "./header.module.scss"
 
-const Header = () => {
+const Header: React.FC = () => {
   const {
     site: {
       siteMetadata: { title: mainTitle },

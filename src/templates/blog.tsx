@@ -4,8 +4,10 @@ import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 
 import Layout from "../components/generic/layout"
 
+import { GetPostPerPageQuery } from "../../graphql-types"
+
 export const query = graphql`
-  query($slug: String!) {
+  query getPostPerPage($slug: String!) {
     contentfulBlogPost(slug: { eq: $slug }) {
       title
       publishedDate
@@ -17,7 +19,11 @@ export const query = graphql`
   }
 `
 
-const Blog = ({
+interface Props {
+  data: GetPostPerPageQuery
+}
+
+const Blog: React.FC<Props> = ({
   data: {
     contentfulBlogPost: { title, publishedDate, body, slug },
   },
@@ -32,11 +38,11 @@ const Blog = ({
     },
   }
   return (
-    <Layout title={slug}>
+    <>
       <h1>{title}</h1>
       <p>{publishedDate}</p>
       {documentToReactComponents(body.json, options)}
-    </Layout>
+    </>
   )
 }
 

@@ -11,9 +11,24 @@ module.exports = {
     author: "Ali Kadhim",
   },
   plugins: [
-    `gatsby-plugin-sass`,
+    `gatsby-plugin-scss-typescript`,
     `gatsby-plugin-sharp`,
     `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-graphql-codegen`,
+    {
+      resolve: `gatsby-plugin-layout`,
+      options: {
+        component: `${__dirname}/src/components/generic/global/layout/layout.tsx`,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-typescript`,
+      options: {
+        isTSX: true, // defaults to false
+        jsxPragma: `jsx`, // defaults to "React"
+        allExtensions: true, // defaults to false
+      },
+    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {

@@ -2,7 +2,11 @@ import React from "react"
 import { Helmet } from "react-helmet"
 import { graphql, useStaticQuery } from "gatsby"
 
-const Head = ({ title }) => {
+interface Props {
+  title: string
+}
+
+const Head: React.FC<Props> = ({ title }: Props) => {
   const { site } = useStaticQuery(graphql`
     query {
       site {

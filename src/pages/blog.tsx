@@ -1,11 +1,12 @@
 import React from "react"
 import { graphql, useStaticQuery, Link } from "gatsby"
 
-import Layout from "../components/generic/layout"
 import { posts } from "./blog.module.scss"
-const BlogPage = () => {
-  const { allContentfulBlogPost } = useStaticQuery(graphql`
-    query {
+import { GetAllBlogsQuery } from "../../graphql-types"
+
+const BlogPage: React.FC = () => {
+  const { allContentfulBlogPost } = useStaticQuery<GetAllBlogsQuery>(graphql`
+    query getAllBlogs {
       allContentfulBlogPost(sort: { fields: publishedDate, order: DESC }) {
         edges {
           node {
@@ -20,7 +21,7 @@ const BlogPage = () => {
   `)
 
   return (
-    <Layout title="Blog">
+    <>
       <h1>Blog</h1>
       <ol className={posts}>
         {allContentfulBlogPost.edges.map(post => (
@@ -32,7 +33,7 @@ const BlogPage = () => {
           </li>
         ))}
       </ol>
-    </Layout>
+    </>
   )
 }
 

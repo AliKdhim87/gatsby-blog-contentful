@@ -16,22 +16,29 @@
   "dependencies": {
     "@contentful/rich-text-react-renderer": "^14.1.1",
     "gatsby": "^2.24.85",
+    "gatsby-plugin-graphql-codegen": "^2.7.1",
+    "gatsby-plugin-layout": "^1.3.13",
     "gatsby-plugin-react-helmet": "^3.3.14",
+    "gatsby-plugin-react-i18next": "0.0.27",
     "gatsby-plugin-sass": "^2.3.22",
     "gatsby-plugin-sharp": "^2.6.43",
+    "gatsby-plugin-typescript": "^2.5.0",
     "gatsby-remark-images": "^3.3.40",
     "gatsby-remark-relative-images": "^2.0.2",
     "gatsby-source-contentful": "^3.0.6",
     "gatsby-source-filesystem": "^2.3.37",
     "gatsby-transformer-remark": "^2.8.47",
-    "node-sass": "^4.14.1",
+    "i18next": "^19.8.3",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
-    "react-helmet": "^6.1.0"
+    "react-helmet": "^6.1.0",
+    "react-i18next": "^11.7.3"
   },
   "devDependencies": {
     "cross-env": "^7.0.2",
     "env-cmd": "^10.1.0",
+    "gatsby-plugin-scss-typescript": "^4.0.13",
+    "node-sass": "^4.14.1",
     "prettier": "2.1.2"
   },
   "repository": {
