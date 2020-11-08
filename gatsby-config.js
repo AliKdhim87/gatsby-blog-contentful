@@ -3,6 +3,7 @@
  *
  * See: https://www.gatsbyjs.com/docs/gatsby-config/
  */
+const path = require("path")
 
 module.exports = {
   /* Your site config here */
@@ -15,6 +16,8 @@ module.exports = {
     `gatsby-plugin-sharp`,
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-graphql-codegen`,
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sharp`,
     {
       resolve: `gatsby-plugin-layout`,
       options: {
@@ -41,21 +44,6 @@ module.exports = {
       options: {
         spaceId: process.env.CONTENTFUL_SPACE_ID,
         accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
-      },
-    },
-    {
-      resolve: `gatsby-transformer-remark`,
-      options: {
-        plugins: [
-          `gatsby-remark-relative-images`,
-          {
-            resolve: `gatsby-remark-images`,
-            options: {
-              maxWidth: 750,
-              linkImagesToOriginal: false,
-            },
-          },
-        ],
       },
     },
   ],

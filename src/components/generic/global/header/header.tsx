@@ -1,6 +1,8 @@
 import React from "react"
 import { Link, graphql, useStaticQuery } from "gatsby"
 
+import HeaderBackground from "./headerBackground"
+
 import {
   navItem,
   headerStyle,
@@ -27,11 +29,6 @@ const Header: React.FC = () => {
 
   return (
     <header className={headerStyle}>
-      <h1>
-        <Link className={title} to="/">
-          {mainTitle}
-        </Link>
-      </h1>
       <nav>
         <ul className={navLinks}>
           <li>
@@ -68,6 +65,13 @@ const Header: React.FC = () => {
           </li>
         </ul>
       </nav>
+      <HeaderBackground>
+        <h1>
+          <Link className={title} to="/">
+            {mainTitle}
+          </Link>
+        </h1>
+      </HeaderBackground>
     </header>
   )
 }
