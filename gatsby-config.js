@@ -1,27 +1,34 @@
-/**
- * Configure your Gatsby site with this file.
- *
- * See: https://www.gatsbyjs.com/docs/gatsby-config/
- */
+const { createProxyMiddleware } = require("http-proxy-middleware") //v1.x.x
 const path = require("path")
 
 module.exports = {
   /* Your site config here */
   siteMetadata: {
-    title: "Full-stack Bootcamp!",
+    title: "Ali Amouri Kadhim",
     author: "Ali Kadhim",
+  },
+  developMiddleware: app => {
+    app.use(
+      "/.netlify/functions/",
+      createProxyMiddleware({
+        target: "http://localhost:9000",
+        pathRewrite: {
+          "/.netlify/functions/": "",
+        },
+      })
+    )
   },
   plugins: [
     `gatsby-plugin-scss-typescript`,
+    `gatsby-plugin-styled-components`,
     `gatsby-plugin-sharp`,
-    `gatsby-plugin-react-helmet`,
-    `gatsby-plugin-graphql-codegen`,
     `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
+    `gatsby-plugin-less`,
+    `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-plugin-layout`,
       options: {
-        component: `${__dirname}/src/components/generic/global/layout/layout.tsx`,
+        component: `${__dirname}/src/components/global/layout.tsx`,
       },
     },
     {

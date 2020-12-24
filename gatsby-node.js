@@ -1,18 +1,5 @@
 const path = require("path")
 
-module.exports.onCreateNode = ({ node, actions }) => {
-  const { createNodeField } = actions
-
-  if (node.internal.type === "MarkdownRemark") {
-    const slug = path.basename(node.fileAbsolutePath, ".md")
-    createNodeField({
-      node,
-      name: "slug",
-      value: slug,
-    })
-  }
-}
-
 module.exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
 
@@ -40,5 +27,18 @@ module.exports.createPages = async ({ graphql, actions }) => {
         slug: node.slug,
       },
     })
+  })
+}
+
+exports.onCreateWebpackConfig = ({ stage, actions }) => {
+  actions.setWebpackConfig({
+    resolve: {
+      modules: [path.resolve(__dirname, "src"), "node_modules"],
+    },
+    // this line of code because of sendGrid email package
+    // https://github.com/gatsbyjs/gatsby/issues/564
+    node: {
+      fs: "empty",
+    },
   })
 }

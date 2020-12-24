@@ -1,11 +1,14 @@
-import React from "react"
+import React, { useContext } from "react"
 import { graphql, useStaticQuery, Link } from "gatsby"
+import { ThemeContext } from "styled-components"
+import Img from "gatsby-image"
 
-import { posts } from "./blog.module.scss"
-import { GetAllBlogsQuery } from "../../graphql-types"
+import { Container, Divider, Grid, Header, Segment } from "semantic-ui-react"
 
 const BlogPage: React.FC = () => {
-  const { allContentfulBlogPost } = useStaticQuery<GetAllBlogsQuery>(graphql`
+  const { colors } = useContext(ThemeContext)
+
+  const { allContentfulBlogPost } = useStaticQuery(graphql`
     query getAllBlogs {
       allContentfulBlogPost(sort: { fields: publishedDate, order: DESC }) {
         edges {
@@ -14,6 +17,12 @@ const BlogPage: React.FC = () => {
             slug
             publishedDate(formatString: "MMMM Do, YYYY")
             contentful_id
+            image {
+              title
+              fluid(maxHeight: 700) {
+                ...GatsbyContentfulFluid
+              }
+            }
           }
         }
       }
@@ -21,19 +30,44 @@ const BlogPage: React.FC = () => {
   `)
 
   return (
-    <>
-      <h1>Blog</h1>
-      <ol className={posts}>
-        {allContentfulBlogPost.edges.map(post => (
-          <li key={post.node.slug}>
-            <Link to={post.node.slug}>
-              <h2>{post.node.title}</h2>
-              <p>{post.node.publishedDate}</p>
-            </Link>
-          </li>
-        ))}
-      </ol>
-    </>
+    <Container>
+      <Segment basic size="massive" style={{ background: colors.background }}>
+        <Header as="h1" size="large" textAlign="center" inverted>
+          Blog
+        </Header>
+      </Segment>
+
+      <Grid doubling stretched style={{ paddingBottom: "2rem" }}>
+        <Grid.Row centered>
+          {allContentfulBlogPost.edges.map((post: any) => (
+            <Grid.Column
+              key={post.node.slug}
+              mobile={16}
+              computer={4}
+              tablet={6}
+              textAlign="center"
+              as={Link}
+              to={post.node.slug}
+            >
+              <Segment inverted>
+                <Header as="h2" size="medium" inverted>
+                  {post.node.title}
+                </Header>
+                <Divider />
+                <Header as="p" size="tiny" color="grey">
+                  {post.node.publishedDate}
+                </Header>
+                <Img
+                  fluid={post.node.image.fluid}
+                  alt={post.node.image.title}
+                  style={{ height: "300px" }}
+                />
+              </Segment>
+            </Grid.Column>
+          ))}
+        </Grid.Row>
+      </Grid>
+    </Container>
   )
 }
 

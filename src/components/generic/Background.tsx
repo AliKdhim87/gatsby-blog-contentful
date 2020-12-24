@@ -2,8 +2,6 @@ import React from "react"
 import { graphql, useStaticQuery } from "gatsby"
 import BackgroundImage from "gatsby-background-image"
 
-import { background } from "./header.module.scss"
-
 const HeaderBackground: React.FC = ({ children }) => {
   const { placeholderImage } = useStaticQuery(graphql`
     query headerBackgroundQuery {
@@ -22,10 +20,7 @@ const HeaderBackground: React.FC = ({ children }) => {
   }
 
   return (
-    <BackgroundImage
-      className={background}
-      fluid={placeholderImage.childImageSharp.fluid}
-    >
+    <BackgroundImage fluid={placeholderImage.childImageSharp.fluid}>
       {children}
     </BackgroundImage>
   )
