@@ -5,7 +5,7 @@ import BackgroundImage from "gatsby-background-image"
 const HeaderBackground: React.FC = ({ children }) => {
   const { placeholderImage } = useStaticQuery(graphql`
     query headerBackgroundQuery {
-      placeholderImage: file(relativeDirectory: { eq: "images" }) {
+      placeholderImage: file(relativePath: { eq: "images/contact.jpg" }) {
         childImageSharp {
           fluid(maxWidth: 900) {
             ...GatsbyImageSharpFluid

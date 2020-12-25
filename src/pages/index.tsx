@@ -1,9 +1,11 @@
 import React, { useContext } from "react"
 import styled, { ThemeContext } from "styled-components"
 import Typist from "react-typist"
-
+import { graphql, useStaticQuery } from "gatsby"
+import Img from "gatsby-image"
 import Particles from "react-particles-js"
-import { Container, Header, Image } from "semantic-ui-react"
+
+import { Container, Header, Icon } from "semantic-ui-react"
 
 const HomeContainer = styled.div`
   position: absolute;
@@ -20,8 +22,31 @@ const NameTitle = styled.span`
   color: ${({ theme }) => theme.colors.blue};
 `
 
+const SocialMediaHolder = styled.div`
+  display: flex;
+  justify-content: center;
+`
+
+const StyledIcon = styled(Icon)`
+  transition: 0.3s;
+  &.inverted.icon:hover {
+    color: ${({ theme }) => theme.colors.blue};
+  }
+`
+
 const IndexPage: React.FC = () => {
   const { colors } = useContext(ThemeContext)
+
+  const { contentfulAsset } = useStaticQuery(graphql`
+    query GetMyPhoto {
+      contentfulAsset(title: { eq: "Home photo" }) {
+        title
+        fixed(width: 200) {
+          ...GatsbyContentfulFixed
+        }
+      }
+    }
+  `)
 
   return (
     <>
@@ -88,13 +113,10 @@ const IndexPage: React.FC = () => {
 
       <>
         <HomeContainer>
-          <Container>
-            <Image
-              src="https://unsplash.it/250"
-              bordered
-              centered
-              circular
-              size="small"
+          <Container text>
+            <Img
+              fixed={contentfulAsset.fixed}
+              style={{ borderRadius: "50%", display: "block", margin: "auto" }}
             />
             <Header
               as="h1"
@@ -112,10 +134,31 @@ const IndexPage: React.FC = () => {
               style={{ color: colors.white }}
               size="small"
             >
-              I am a frontend web developer. I can provide clean code and pixel
-              perfect design. I also make website more & more interactive with
-              web animations.
+              I am a full-stack web developer. I can provide clean code and
+              pixel perfect design. I also make website more & more interactive
+              with web animations.
             </Header>
+            <SocialMediaHolder>
+              <a
+                href="https://www.linkedin.com/in/ali-amouri-kadhim-082b75189/"
+                target="_blank"
+              >
+                <StyledIcon
+                  name="linkedin"
+                  size="huge"
+                  inverted
+                  aria-label="linkedin"
+                />
+              </a>
+              <a href="https://github.com/AliKdhim87" target="_blank">
+                <StyledIcon
+                  name="github square"
+                  size="huge"
+                  inverted
+                  aria-label="github"
+                />
+              </a>
+            </SocialMediaHolder>
           </Container>
         </HomeContainer>
       </>

@@ -2,15 +2,9 @@ import React, { useState } from "react"
 import { useLocation } from "@reach/router"
 import { graphql, useStaticQuery } from "gatsby"
 import Link from "gatsby-link"
+import Img from "gatsby-image"
 
-import {
-  Menu,
-  Container,
-  Header,
-  Icon,
-  MenuItem,
-  Sidebar,
-} from "semantic-ui-react"
+import { Menu, Container, Icon, MenuItem, Sidebar } from "semantic-ui-react"
 
 import { useCurrentWidth } from "hooks/useWidth"
 
@@ -20,20 +14,18 @@ const HeaderComponent: React.FC = () => {
   const [mobileMode, setMobileMode] = useState<boolean>(false)
 
   const activeLink = (path: string) => path === pathname
-  const {
-    site: {
-      siteMetadata: { title: mainTitle },
-    },
-  } = useStaticQuery(graphql`
-    query {
-      site {
-        siteMetadata {
-          title
-          author
+  const { logo } = useStaticQuery(graphql`
+    query GetLogo {
+      logo: file(relativePath: { eq: "images/coding.png" }) {
+        childImageSharp {
+          fixed(width: 50) {
+            ...GatsbyImageSharpFixed
+          }
         }
       }
     }
   `)
+  console.log(logo.childImageSharp.fixed)
 
   const navLinks = (
     <>
@@ -87,9 +79,7 @@ const HeaderComponent: React.FC = () => {
         style={{ marginBottom: "0" }}
       >
         <Menu.Item>
-          <Header as="span" inverted>
-            {mainTitle}
-          </Header>
+          <Img fixed={logo.childImageSharp.fixed} />
         </Menu.Item>
         <Container text>
           {width <= 767 ? (

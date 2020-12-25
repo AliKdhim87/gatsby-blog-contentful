@@ -26,6 +26,18 @@ module.exports = {
     `gatsby-plugin-less`,
     `gatsby-plugin-react-helmet`,
     {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `Blog post website`,
+        short_name: `Blog post`,
+        start_url: `/`,
+        background_color: `#f7f0eb`,
+        theme_color: `#a2466c`,
+        display: `standalone`,
+        icon: `src/images/coding.png`,
+      },
+    },
+    {
       resolve: `gatsby-plugin-layout`,
       options: {
         component: `${__dirname}/src/components/global/layout.tsx`,
