@@ -111,7 +111,7 @@ const Contact: React.FC = () => {
                   inverted
                 >
                   <Form.Field>
-                    <label>Email</label>
+                    <label htmlFor="Email">Email</label>
                     <input
                       name="email"
                       ref={register}
@@ -122,7 +122,7 @@ const Contact: React.FC = () => {
                   </Form.Field>
 
                   <Form.Field>
-                    <label> Subject</label>
+                    <label htmlFor="Subject"> Subject</label>
                     <input
                       name="subject"
                       placeholder="Write your subject here..."
@@ -132,7 +132,7 @@ const Contact: React.FC = () => {
                     />
                   </Form.Field>
                   <Form.Field>
-                    <label>Message</label>
+                    <label htmlFor="Message">Message</label>
                     <textarea
                       name="message"
                       placeholder="Write your email here..."

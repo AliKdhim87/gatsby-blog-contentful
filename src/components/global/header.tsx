@@ -18,15 +18,14 @@ const HeaderComponent: React.FC = () => {
     query GetLogo {
       logo: file(relativePath: { eq: "images/coding.png" }) {
         childImageSharp {
-          fixed(width: 50) {
+          fixed(width: 40) {
             ...GatsbyImageSharpFixed
           }
         }
       }
     }
   `)
-  console.log(logo.childImageSharp.fixed)
-
+  // Todo Fix the navbar issue when refreshing
   const navLinks = (
     <>
       <Menu.Item
