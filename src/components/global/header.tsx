@@ -1,17 +1,29 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { useLocation } from "@reach/router"
 import { graphql, useStaticQuery } from "gatsby"
 import Link from "gatsby-link"
 import Img from "gatsby-image"
+import styled from "styled-components"
 
-import { Menu, Container, Icon, MenuItem, Sidebar } from "semantic-ui-react"
+import { Menu, Icon, Sidebar, Visibility } from "semantic-ui-react"
 
-import { useCurrentWidth } from "hooks/useWidth"
+const NavLinksContainer = styled(Menu.Item)`
+  @media (max-width: 767px) {
+    visibility: hidden;
+    content-visibility: hidden;
+  }
+`
+const MenuHamburgerButtonContainer = styled(Menu.Item)`
+  @media (min-width: 768px) {
+    visibility: hidden;
+    content-visibility: hidden;
+  }
+`
 
 const HeaderComponent: React.FC = () => {
-  const width = useCurrentWidth()
   const { pathname } = useLocation()
   const [mobileMode, setMobileMode] = useState<boolean>(false)
+  const [width, setWidth] = useState<number>(0)
 
   const activeLink = (path: string) => path === pathname
   const { logo } = useStaticQuery(graphql`
@@ -25,7 +37,13 @@ const HeaderComponent: React.FC = () => {
       }
     }
   `)
-  // Todo Fix the navbar issue when refreshing
+
+  useEffect(() => {
+    if (width >= 768) {
+      setMobileMode(false)
+    }
+  }, [width])
+
   const navLinks = (
     <>
       <Menu.Item
@@ -68,7 +86,10 @@ const HeaderComponent: React.FC = () => {
   )
 
   return (
-    <>
+    <Visibility
+      onUpdate={(_, data) => setWidth(data.calculations.width)}
+      fireOnMount
+    >
       <Menu
         inverted
         secondary
@@ -80,24 +101,18 @@ const HeaderComponent: React.FC = () => {
         <Menu.Item>
           <Img fixed={logo.childImageSharp.fixed} />
         </Menu.Item>
-        <Container text>
-          {width <= 767 ? (
-            <MenuItem
-              style={{ padding: "1.8rem 1rem", marginRight: "0" }}
-              position="right"
-              visible={width <= 767 ? "visible" : "hidden"}
-              onClick={() => setMobileMode(!mobileMode)}
-            >
-              <Icon
-                name={mobileMode ? "close" : "bars"}
-                inverted
-                size="large"
-              />
-            </MenuItem>
-          ) : (
-            <MenuItem position="right">{navLinks}</MenuItem>
-          )}
-        </Container>
+
+        <NavLinksContainer position="right">{navLinks}</NavLinksContainer>
+        <MenuHamburgerButtonContainer
+          onClick={() => setMobileMode(!mobileMode)}
+        >
+          <Icon
+            name={mobileMode ? "close" : "bars"}
+            inverted
+            size="large"
+            aria-label="menu button"
+          />
+        </MenuHamburgerButtonContainer>
       </Menu>
       <Sidebar
         as={Menu}
@@ -107,11 +122,11 @@ const HeaderComponent: React.FC = () => {
         onHide={() => setMobileMode(false)}
         vertical
         visible={mobileMode}
-        width="wide"
+        width="thin"
       >
         {navLinks}
       </Sidebar>
-    </>
+    </Visibility>
   )
 }
 

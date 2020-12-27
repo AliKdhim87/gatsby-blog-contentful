@@ -1,6 +1,5 @@
 import React from "react"
 import { createGlobalStyle, ThemeProvider } from "styled-components"
-import "semantic-ui-css/semantic.min.css"
 
 import Footer from "./footer"
 import Header from "./header"

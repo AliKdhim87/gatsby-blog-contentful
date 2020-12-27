@@ -5,6 +5,11 @@ import styled from "styled-components"
 
 import { Container, Grid, Header } from "semantic-ui-react"
 
+const AboutMeDescription = styled.p`
+  line-height: 1.8;
+  color: ${({ theme }) => theme.colors.white};
+`
+
 const About: React.FC = () => {
   const { contentfulAsset } = useStaticQuery(graphql`
     query {
@@ -17,10 +22,7 @@ const About: React.FC = () => {
     }
   `)
 
-  const AboutMeDescription = styled.p`
-    line-height: 1.8;
-    color: ${({ theme }) => theme.colors.white};
-  `
+  // Todo get the text of this page from contentful api
 
   return (
     <>

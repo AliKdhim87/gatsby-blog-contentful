@@ -1,0 +1,54 @@
+{
+  "timestamp": 1609084501643,
+  "hash": "76b76c2de687e38d91d0d03663fb4d03",
+  "assets": {
+    "/blog/contentful/": {
+      "/static/icons-0ab54153eeeca0ce03978cc463b257f7.woff2": true,
+      "https://fonts.gstatic.com/s/lato/v17/S6u9w4BMUTPHh6UVSwiPGQ3q5d0.woff2": true
+    },
+    "/blog/new/": {
+      "https://fonts.gstatic.com/s/lato/v17/S6u9w4BMUTPHh6UVSwiPGQ3q5d0.woff2": true,
+      "/static/icons-0ab54153eeeca0ce03978cc463b257f7.woff2": true
+    },
+    "/blog/gatsby/": {
+      "https://fonts.gstatic.com/s/lato/v17/S6u9w4BMUTPHh6UVSwiPGQ3q5d0.woff2": true,
+      "/static/icons-0ab54153eeeca0ce03978cc463b257f7.woff2": true
+    },
+    "/blog/hooks/": {
+      "https://fonts.gstatic.com/s/lato/v17/S6u9w4BMUTPHh6UVSwiPGQ3q5d0.woff2": true,
+      "/static/icons-0ab54153eeeca0ce03978cc463b257f7.woff2": true
+    },
+    "/dev-404-page/": {
+      "https://fonts.gstatic.com/s/lato/v17/S6u9w4BMUTPHh6UVSwiPGQ3q5d0.woff2": true,
+      "/static/icons-0ab54153eeeca0ce03978cc463b257f7.woff2": true
+    },
+    "/404/": {
+      "https://fonts.gstatic.com/s/lato/v17/S6u9w4BMUTPHh6UVSwiPGQ3q5d0.woff2": true,
+      "/static/icons-0ab54153eeeca0ce03978cc463b257f7.woff2": true
+    },
+    "/about/": {
+      "https://fonts.gstatic.com/s/lato/v17/S6u9w4BMUTPHh6UVSwiPGQ3q5d0.woff2": true,
+      "/static/icons-0ab54153eeeca0ce03978cc463b257f7.woff2": true
+    },
+    "/blog/": {
+      "https://fonts.gstatic.com/s/lato/v17/S6u9w4BMUTPHh6UVSwiPGQ3q5d0.woff2": true,
+      "/static/icons-0ab54153eeeca0ce03978cc463b257f7.woff2": true
+    },
+    "/contact/": {
+      "https://fonts.gstatic.com/s/lato/v17/S6u9w4BMUTPHh6UVSwiPGQ3q5d0.woff2": true,
+      "/static/icons-0ab54153eeeca0ce03978cc463b257f7.woff2": true,
+      "https://fonts.gstatic.com/s/lato/v17/S6uyw4BMUTPHjx4wXiWtFCc.woff2": true
+    },
+    "/": {
+      "https://fonts.gstatic.com/s/lato/v17/S6uyw4BMUTPHjx4wXiWtFCc.woff2": true,
+      "https://fonts.gstatic.com/s/lato/v17/S6u9w4BMUTPHh6UVSwiPGQ3q5d0.woff2": true,
+      "/static/icons-0ab54153eeeca0ce03978cc463b257f7.woff2": true,
+      "/static/brand-icons-e8c322de9658cbeb8a774b6624167c2c.woff2": true
+    },
+    "/404.html": {
+      "https://fonts.gstatic.com/s/lato/v17/S6uyw4BMUTPHjx4wXiWtFCc.woff2": true,
+      "https://fonts.gstatic.com/s/lato/v17/S6u9w4BMUTPHh6UVSwiPGQ3q5d0.woff2": true,
+      "/static/icons-0ab54153eeeca0ce03978cc463b257f7.woff2": true
+    }
+  }
+}

@@ -19,6 +19,7 @@ module.exports = {
     )
   },
   plugins: [
+    `gatsby-plugin-preload-fonts`,
     `gatsby-plugin-scss-typescript`,
     `gatsby-plugin-styled-components`,
     `gatsby-plugin-sharp`,
