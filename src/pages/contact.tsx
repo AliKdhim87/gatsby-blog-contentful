@@ -18,15 +18,6 @@ import {
   Icon,
 } from "semantic-ui-react"
 
-import Background from "components/generic/Background"
-
-const FormHolder = styled.div`
-  height: calc(100vh - 62px - 70.25px);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-`
-
 const contactFormSchema = yup.object().shape({
   email: yup.string().required().email(),
   subject: yup.string().required().trim().min(2).max(244),
@@ -90,81 +81,79 @@ const Contact: React.FC = () => {
   }
 
   return (
-    <Background>
+    <>
       <SemanticToastContainer position="top-center" />
 
-      <Grid centered>
+      <Grid centered container style={{ marginTop: "5rem" }}>
         <Grid.Row>
-          <Grid.Column computer={6} tablet={12} mobile={16}>
-            <FormHolder>
-              <Segment inverted color="black">
-                <Header icon textAlign="center" inverted>
-                  Get in touch
-                  <Icon name="mail" />
-                </Header>
-                <Form
-                  onSubmit={handleSubmit(onEmailFormSubmit)}
-                  error={!!errors}
-                  loading={false}
-                  as="form"
-                  size="large"
-                  inverted
-                >
-                  <Form.Field>
-                    <label htmlFor="Email">Email</label>
-                    <input
-                      name="email"
-                      ref={register}
-                      placeholder="Write your email here..."
-                      autoComplete="off"
-                      style={{ background: "none", color: colors.white }}
-                    />
-                  </Form.Field>
+          <Grid.Column computer={8} tablet={12} mobile={16}>
+            <Segment inverted color="black">
+              <Header icon textAlign="center" inverted>
+                Get in touch
+                <Icon name="mail" />
+              </Header>
+              <Form
+                onSubmit={handleSubmit(onEmailFormSubmit)}
+                error={!!errors}
+                loading={false}
+                as="form"
+                size="large"
+                inverted
+              >
+                <Form.Field>
+                  <label htmlFor="Email">Email</label>
+                  <input
+                    name="email"
+                    ref={register}
+                    placeholder="Write your email here..."
+                    autoComplete="off"
+                    style={{ background: "none", color: colors.white }}
+                  />
+                </Form.Field>
 
-                  <Form.Field>
-                    <label htmlFor="Subject"> Subject</label>
-                    <input
-                      name="subject"
-                      placeholder="Write your subject here..."
-                      ref={register}
-                      autoComplete="off"
-                      style={{ background: "none", color: colors.white }}
-                    />
-                  </Form.Field>
-                  <Form.Field>
-                    <label htmlFor="Message">Message</label>
-                    <textarea
-                      name="message"
-                      placeholder="Write your email here..."
-                      ref={register}
-                      rows={4}
-                      style={{
-                        background: "none",
-                        color: colors.white,
-                        border: "1px solid rgba(255,255,255,.1)",
-                      }}
-                    />
-                  </Form.Field>
-                  <Button animated="vertical" color="blue" fluid type="submit">
-                    <Icon name="send" size="large" aria-label="send" />
-                    Send
-                  </Button>
-                  {Object.values(errors).length > 0 && (
-                    <Message error={Object.values(errors).length > 0}>
-                      <Message.List>
-                        <Message.Item>{errors.email?.message}</Message.Item>
-                        <Message.Item>{errors.subject?.message}</Message.Item>
-                        <Message.Item>{errors.message?.message}</Message.Item>
-                      </Message.List>
-                    </Message>
-                  )}
-                </Form>
-              </Segment>
-            </FormHolder>
+                <Form.Field>
+                  <label htmlFor="Subject"> Subject</label>
+                  <input
+                    name="subject"
+                    placeholder="Write your subject here..."
+                    ref={register}
+                    autoComplete="off"
+                    style={{ background: "none", color: colors.white }}
+                  />
+                </Form.Field>
+                <Form.Field>
+                  <label htmlFor="Message">Message</label>
+                  <textarea
+                    name="message"
+                    placeholder="Write your email here..."
+                    ref={register}
+                    rows={4}
+                    style={{
+                      background: "none",
+                      color: colors.white,
+                      border: "1px solid rgba(255,255,255,.1)",
+                    }}
+                  />
+                </Form.Field>
+                <Button animated="vertical" color="blue" fluid type="submit">
+                  <Icon name="send" size="large" aria-label="send" />
+                  Send
+                </Button>
+                {Object.values(errors).length > 0 && (
+                  <Message error={Object.values(errors).length > 0}>
+                    <Message.List>
+                      <Message.Item>{errors.email?.message}</Message.Item>
+                      <Message.Item>{errors.subject?.message}</Message.Item>
+                      <Message.Item>{errors.message?.message}</Message.Item>
+                    </Message.List>
+                  </Message>
+                )}
+              </Form>
+            </Segment>
           </Grid.Column>
         </Grid.Row>
       </Grid>
-    </Background>
+    </>
   )
 }
 

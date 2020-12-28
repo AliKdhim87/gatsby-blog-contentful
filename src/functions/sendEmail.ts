@@ -6,7 +6,7 @@ if (SENDGRID_API_KEY) {
   sgMail.setApiKey(SENDGRID_API_KEY)
 }
 
-exports.handler = async (event, _context, callback) => {
+exports.handler = async (event, _context) => {
   const payload = JSON.parse(event.body)
   const { email, subject } = payload
 

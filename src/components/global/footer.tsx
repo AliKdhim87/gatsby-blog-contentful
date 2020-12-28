@@ -5,10 +5,8 @@ import { graphql, useStaticQuery } from "gatsby"
 import { Header } from "semantic-ui-react"
 
 const StyledFooter = styled.footer`
-  position: absolute;
-  bottom: auto;
   width: 100%;
-  height: 65px;
+  min-height: 50px;
   background: ${({ theme }) => theme.colors.blue};
   display: flex;
   align-items: center;

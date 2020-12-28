@@ -1,5 +1,5 @@
 import React from "react"
-import { createGlobalStyle, ThemeProvider } from "styled-components"
+import styled, { createGlobalStyle, ThemeProvider } from "styled-components"
 
 import Footer from "./footer"
 import Header from "./header"
@@ -12,18 +12,20 @@ interface Props {
   children: any
 }
 const GlobalStyle = createGlobalStyle`
-  body {
-   position: relative;
-  }
+html{
+  overflow-x: hidden;
+}
   main {
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    min-height: calc(100vh - 68px - 65px);
+    flex:1;
     background: ${({ theme }) => theme.colors.background};
     color: ${({ theme }) => theme.colors.white};
-
   }
+`
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 `
 
 const Layout: React.FC<Props> = ({ children }: Props) => {
@@ -45,11 +47,13 @@ const Layout: React.FC<Props> = ({ children }: Props) => {
 
   return (
     <ThemeProvider theme={theme}>
-      <GlobalStyle />
-      <Head title={getTitle()} />
-      <Header />
-      <main>{children}</main>
-      <Footer />
+      <Wrapper>
+        <GlobalStyle />
+        <Head title={getTitle()} />
+        <Header />
+        <main>{children}</main>
+        <Footer />
+      </Wrapper>
     </ThemeProvider>
   )
 }
