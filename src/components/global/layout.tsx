@@ -13,13 +13,13 @@ interface Props {
 }
 const GlobalStyle = createGlobalStyle`
   body {
-   position: relative
+   position: relative;
   }
   main {
     display: flex;
     flex-direction: column;
     position: relative;
-    min-height: calc(100vh - 65px - 70.28px);
+    min-height: calc(100vh - 68px - 65px);
     background: ${({ theme }) => theme.colors.background};
     color: ${({ theme }) => theme.colors.white};
 

@@ -5,7 +5,7 @@
   "version": "0.1.0",
   "license": "0BSD",
   "scripts": {
-    "develop": "env-cmd -f .env.development gatsby develop",
+    "develop": "env-cmd -f .env.development gatsby develop  --host=0.0.0.0",
     "start": "env-cmd -f .env.development run-p start:**",
     "start:app": "npm run develop",
     "start:lambda": "netlify-lambda serve src/functions",
