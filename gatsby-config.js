@@ -7,7 +7,7 @@ module.exports = {
     title: "Ali Amouri Kadhim",
     author: "Ali Kadhim",
     siteUrl: "https://ali-kadhim.netlify.app/",
-    defaultImage: "/src/images/ali.jpeg",
+    defaultImage: "/images/ali.jpeg",
   },
   developMiddleware: app => {
     app.use(
@@ -84,8 +84,7 @@ module.exports = {
            }
          }
        }`,
-        resolveSiteUrl: ({ site, allSitePage }) => {
-          //Alternatively, you may also pass in an environment variable (or any location) at the beginning of your `gatsby-config.js`.
+        resolveSiteUrl: ({ site }) => {
           return site.siteMetadata.siteUrl
         },
         serialize: ({ site, allSitePage }) =>

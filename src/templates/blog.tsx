@@ -8,6 +8,8 @@ import Img from "gatsby-image"
 
 import { Container } from "semantic-ui-react"
 
+import SEO from "components/global/SEO"
+
 export const query = graphql`
   query getPostPerPage($slug: String!) {
     contentfulBlogPost(slug: { eq: $slug }) {
@@ -33,7 +35,7 @@ interface Props {
 
 const Blog: React.FC<Props> = ({
   data: {
-    contentfulBlogPost: { title, publishedDate, body, image },
+    contentfulBlogPost: { title, publishedDate, body, image, slug },
   },
 }) => {
   const options = {
@@ -69,12 +71,19 @@ const Blog: React.FC<Props> = ({
   }
 
   return (
-    <Container>
-      <h1>{title}</h1>
-      <p>{publishedDate}</p>
-      <Img fluid={image.fluid} alt={image.title} style={{ height: "500px" }} />
-      {documentToReactComponents(body.json, options)}
-    </Container>
+    <>
+      <SEO title={slug} />
+      <Container>
+        <h1>{title}</h1>
+        <p>{publishedDate}</p>
+        <Img
+          fluid={image.fluid}
+          alt={image.title}
+          style={{ height: "500px" }}
+        />
+        {documentToReactComponents(body.json, options)}
+      </Container>
+    </>
   )
 }
 

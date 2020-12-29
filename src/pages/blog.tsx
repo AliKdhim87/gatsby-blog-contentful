@@ -5,6 +5,8 @@ import Img from "gatsby-image"
 
 import { Container, Divider, Grid, Header, Segment } from "semantic-ui-react"
 
+import SEO from "components/global/SEO"
+
 const BlogPage: React.FC = () => {
   const { colors } = useContext(ThemeContext)
 
@@ -30,44 +32,47 @@ const BlogPage: React.FC = () => {
   `)
 
   return (
-    <Container>
-      <Segment basic size="massive" style={{ background: colors.background }}>
-        <Header as="h1" size="large" textAlign="center" inverted>
-          Blog
-        </Header>
-      </Segment>
+    <>
+      <SEO title="Blog" />
+      <Container>
+        <Segment basic size="massive" style={{ background: colors.background }}>
+          <Header as="h1" size="large" textAlign="center" inverted>
+            Blog
+          </Header>
+        </Segment>
 
-      <Grid doubling stretched style={{ paddingBottom: "2rem" }}>
-        <Grid.Row centered>
-          {allContentfulBlogPost.edges.map((post: any) => (
-            <Grid.Column
-              key={post.node.slug}
-              mobile={16}
-              computer={4}
-              tablet={6}
-              textAlign="center"
-              as={Link}
-              to={post.node.slug}
-            >
-              <Segment inverted>
-                <Header as="h2" size="medium" inverted>
-                  {post.node.title}
-                </Header>
-                <Divider />
-                <Header as="p" size="tiny" color="grey">
-                  {post.node.publishedDate}
-                </Header>
-                <Img
-                  fluid={post.node.image.fluid}
-                  alt={post.node.image.title}
-                  style={{ height: "300px" }}
-                />
-              </Segment>
-            </Grid.Column>
-          ))}
-        </Grid.Row>
-      </Grid>
-    </Container>
+        <Grid doubling stretched style={{ paddingBottom: "2rem" }}>
+          <Grid.Row centered>
+            {allContentfulBlogPost.edges.map((post: any) => (
+              <Grid.Column
+                key={post.node.slug}
+                mobile={16}
+                computer={4}
+                tablet={6}
+                textAlign="center"
+                as={Link}
+                to={post.node.slug}
+              >
+                <Segment inverted>
+                  <Header as="h2" size="medium" inverted>
+                    {post.node.title}
+                  </Header>
+                  <Divider />
+                  <Header as="p" size="tiny" color="grey">
+                    {post.node.publishedDate}
+                  </Header>
+                  <Img
+                    fluid={post.node.image.fluid}
+                    alt={post.node.image.title}
+                    style={{ height: "300px" }}
+                  />
+                </Segment>
+              </Grid.Column>
+            ))}
+          </Grid.Row>
+        </Grid>
+      </Container>
+    </>
   )
 }
 

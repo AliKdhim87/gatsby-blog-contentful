@@ -5,6 +5,8 @@ import styled from "styled-components"
 
 import { Container, Grid, Header } from "semantic-ui-react"
 
+import SEO from "components/global/SEO"
+
 const AboutMeDescription = styled.p`
   line-height: 1.8;
   color: ${({ theme }) => theme.colors.white};
@@ -26,6 +28,7 @@ const About: React.FC = () => {
 
   return (
     <>
+      <SEO title="About" />
       <Header
         dividing
         textAlign="center"

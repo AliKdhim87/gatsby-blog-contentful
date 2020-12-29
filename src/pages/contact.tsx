@@ -3,7 +3,6 @@ import sgMail from "@sendgrid/mail"
 import { useForm } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
-import styled from "styled-components"
 import { ThemeContext } from "styled-components"
 import { SemanticToastContainer, toast } from "react-semantic-toasts"
 import "react-semantic-toasts/styles/react-semantic-alert.css"
@@ -17,6 +16,8 @@ import {
   Header,
   Icon,
 } from "semantic-ui-react"
+
+import SEO from "components/global/SEO"
 
 const contactFormSchema = yup.object().shape({
   email: yup.string().required().email(),
@@ -82,6 +83,7 @@ const Contact: React.FC = () => {
 
   return (
     <>
+      <SEO title="Contact" />
       <SemanticToastContainer position="top-center" />
 
       <Grid centered container style={{ marginTop: "5rem" }}>

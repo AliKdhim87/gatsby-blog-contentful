@@ -6,6 +6,8 @@ import Img from "gatsby-image"
 
 import { Container, Header, Icon } from "semantic-ui-react"
 
+import SEO from "components/global/SEO"
+
 const HomeContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -47,7 +49,9 @@ const IndexPage: React.FC = () => {
   `)
 
   return (
-    <div style={{ position: "relative" }}>
+    <>
+      <SEO title="Home" />
+
       <HomeContainer>
         <Container text>
           <Img
@@ -97,7 +101,7 @@ const IndexPage: React.FC = () => {
           </SocialMediaHolder>
         </Container>
       </HomeContainer>
-    </div>
+    </>
   )
 }
 export default IndexPage
