@@ -38,7 +38,7 @@ const MenuHamburgerButtonContainer = styled(Menu.Item)`
 `
 const NavLink = styled(Link)`
   color: ${({ theme }) => theme.colors.white};
-  padding: 5px;
+  padding: 2px;
   position: relative;
   transition: 250ms ease-in;
   &:hover {
@@ -49,7 +49,7 @@ const NavLink = styled(Link)`
     position: absolute;
     width: 100%;
     right: 0;
-    bottom: -5px;
+    bottom: -4px;
     height: 3px;
     background: ${({ theme }) => theme.colors.background};
     transition: transform 250ms ease-in;

@@ -30,10 +30,12 @@ const Head: React.FC<Props> = ({
       }
     }
   `)
+
   const metaImage = `${site.siteMetadata.siteUrl}${site.siteMetadata.defaultImage}`
   const metaDescription = description || site.siteMetadata.description
   const currentUrl = `${site.siteMetadata.siteUrl}${pathname}`
   const metaAuthor = site.siteMetadata.author
+
   return (
     <Helmet
       title={`${title} | ${site.siteMetadata.title}`}
