@@ -7,7 +7,7 @@ module.exports = {
     title: "Ali Amouri Kadhim",
     author: "Ali Kadhim",
     siteUrl: "https://ali-kadhim.netlify.app/",
-    defaultImage: "images/ali.jpeg",
+    defaultImage: "/src/images/ali.jpeg",
   },
   developMiddleware: app => {
     app.use(
