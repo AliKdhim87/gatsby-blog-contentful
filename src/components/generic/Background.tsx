@@ -1,29 +1,29 @@
 import React from "react"
-import { graphql, useStaticQuery } from "gatsby"
-import BackgroundImage from "gatsby-background-image"
+import BackgroundImage, { IFluidObject } from "gatsby-background-image"
+import styled from "styled-components"
+interface Props {
+  fluid: IFluidObject | IFluidObject[]
+}
 
-const HeaderBackground: React.FC = ({ children }) => {
-  const { placeholderImage } = useStaticQuery(graphql`
-    query headerBackgroundQuery {
-      placeholderImage: file(relativePath: { eq: "images/contact.jpg" }) {
-        childImageSharp {
-          fluid(maxWidth: 900) {
-            ...GatsbyImageSharpFluid
-          }
-        }
-      }
-    }
-  `)
+const StyledBackgroundSection = styled(BackgroundImage)`
+  width: 100%;
+  background-position: center;
+  background-repeat: repeat-y;
+  background-size: cover;
+  width: 100%;
+  min-height: calc(100vh - 68.26px - 50px);
+`
 
-  if (!placeholderImage?.childImageSharp?.fluid) {
+const Background: React.FC<Props> = ({ children, fluid }) => {
+  if (!fluid) {
     return <>Picture not found</>
   }
 
   return (
-    <BackgroundImage fluid={placeholderImage.childImageSharp.fluid}>
+    <StyledBackgroundSection fluid={fluid} backgroundColor={`#040e18`}>
       {children}
-    </BackgroundImage>
+    </StyledBackgroundSection>
   )
 }
 
-export default HeaderBackground
+export default Background

@@ -6,7 +6,7 @@ import SyntaxHighlighter from "react-syntax-highlighter"
 import { obsidian } from "react-syntax-highlighter/dist/esm/styles/hljs"
 import Img from "gatsby-image"
 
-import { Container } from "semantic-ui-react"
+import { Container, Header } from "semantic-ui-react"
 
 import SEO from "components/global/SEO"
 
@@ -14,7 +14,7 @@ export const query = graphql`
   query getPostPerPage($slug: String!) {
     contentfulBlogPost(slug: { eq: $slug }) {
       title
-      publishedDate
+      publishedDate(formatString: "MMMM Do, YYYY")
       slug
       image {
         title
@@ -48,7 +48,7 @@ const Blog: React.FC<Props> = ({
           node.content.length === 1 &&
           node.content[0].marks.find((x: { type: string }) => x.type === "code")
         ) {
-          return <div>{children}</div>
+          return <>{children}</>
         }
         return <p>{children}</p>
       },
@@ -74,8 +74,12 @@ const Blog: React.FC<Props> = ({
     <>
       <SEO title={slug} />
       <Container>
-        <h1>{title}</h1>
-        <p>{publishedDate}</p>
+        <Header as="h1" size="huge" textAlign="center" inverted>
+          {title}
+        </Header>
+        <Header as="h2" textAlign="center" size="small" inverted>
+          {publishedDate}
+        </Header>
         <Img
           fluid={image.fluid}
           alt={image.title}

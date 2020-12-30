@@ -4,8 +4,8 @@ const path = require("path")
 module.exports = {
   /* Your site config here */
   siteMetadata: {
-    title: "Ali Amouri Kadhim",
-    author: "Ali Kadhim",
+    title: "Ali Dev",
+    author: "Ali Amouri Kadhim",
     siteUrl: "https://ali-kadhim.netlify.app/",
     defaultImage: "/images/ali.jpeg",
   },

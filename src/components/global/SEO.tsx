@@ -114,7 +114,7 @@ const Head: React.FC<Props> = ({
           email: "mailto:alikadhim87nl@gmail.com",
           image: metaImage,
           jobTitle: "Full-stack web developer",
-          name: site.siteMetadata.title,
+          name: site.siteMetadata.author,
           telephone: "+31642544830",
           url: site.siteMetadata.siteUrl,
         })}

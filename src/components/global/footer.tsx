@@ -22,7 +22,6 @@ const Footer: React.FC = () => {
     query {
       site {
         siteMetadata {
-          title
           author
         }
       }
