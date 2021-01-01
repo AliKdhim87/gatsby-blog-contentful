@@ -9,7 +9,7 @@
     "start": "env-cmd -f .env.development run-p start:**",
     "start:app": "npm run develop",
     "start:lambda": "netlify-lambda serve src/functions",
-    "build": "env-cmd -f .env.development gatsby build && netlify-lambda build src/functions",
+    "build": "gatsby build && netlify-lambda build src/functions",
     "build:app": "gatsby build",
     "build:lambda": "netlify-lambda build src/functions",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
