@@ -86,6 +86,7 @@ const Contact: React.FC = () => {
   return (
     <Container text>
       <SemanticToastContainer position="top-center" />
+
       <Grid centered style={{ margin: "2.5rem 0" }}>
         <Grid.Row>
           <Grid.Column computer={12} tablet={12} mobile={16}>

@@ -1,48 +1,26 @@
 import React, { useState, useEffect } from "react"
 import { useLocation } from "@reach/router"
-import { graphql, useStaticQuery } from "gatsby"
 import Link from "gatsby-link"
-import Img from "gatsby-image"
 import styled from "styled-components"
 
-import { Menu, Icon, Sidebar, Visibility, Container } from "semantic-ui-react"
+import {
+  Icon,
+  Sidebar,
+  Visibility,
+  Container,
+  Segment,
+  Grid,
+  Header,
+} from "semantic-ui-react"
 
-const NavLinksContainerComputer = styled.ul`
-  display: flex;
-  justify-content: space-around;
-  width: 50%;
-  align-items: center;
-  margin-left: auto;
-  @media (max-width: 767px) {
-    visibility: hidden;
-    content-visibility: hidden;
-  }
-`
-const NavLinksContainerMobile = styled.ul`
-  display: flex;
-  justify-content: space-around;
-  width: 100%;
-  align-items: center;
-  flex-direction: column;
-  height: 40%;
-  @media (min-width: 768px) {
-    visibility: hidden;
-    content-visibility: hidden;
-  }
-`
-const MenuHamburgerButtonContainer = styled(Menu.Item)`
-  @media (min-width: 768px) {
-    visibility: hidden;
-    content-visibility: hidden;
-  }
-`
 const NavLink = styled(Link)`
   color: ${({ theme }) => theme.colors.white};
+  margin-right: 1.5rem;
   padding: 2px;
   position: relative;
   transition: 250ms ease-in;
   &:hover {
-    color: ${({ theme }) => theme.colors.background} !important;
+    color: ${({ theme }) => theme.colors.aliceBlue} !important;
   }
   &::after {
     content: "";
@@ -50,8 +28,8 @@ const NavLink = styled(Link)`
     width: 100%;
     right: 0;
     bottom: -4px;
-    height: 3px;
-    background: ${({ theme }) => theme.colors.background};
+    height: 4px;
+    background: ${({ theme }) => theme.colors.aliceBlue};
     transition: transform 250ms ease-in;
     transform: scaleX(0);
     transform-origin: left;
@@ -62,8 +40,11 @@ const NavLink = styled(Link)`
   }
   &.active {
     position: relative;
-    color: ${({ theme }) => theme.colors.background};
-    border-bottom: 5px solid;
+    color: ${({ theme }) => theme.colors.aliceBlue};
+    border-bottom: 4px solid;
+  }
+  @media (max-width: ${({ theme }) => theme.breakpoint.mobile}) {
+    margin-top: 2.5rem;
   }
 `
 
@@ -73,18 +54,6 @@ const HeaderComponent: React.FC = () => {
   const [width, setWidth] = useState<number>(0)
 
   const activeLink = (path: string) => path === pathname
-
-  const { logo } = useStaticQuery(graphql`
-    query GetLogo {
-      logo: file(relativePath: { eq: "images/coding.png" }) {
-        childImageSharp {
-          fixed(width: 40) {
-            ...GatsbyImageSharpFixed
-          }
-        }
-      }
-    }
-  `)
 
   useEffect(() => {
     if (width >= 768) {
@@ -131,35 +100,49 @@ const HeaderComponent: React.FC = () => {
       fireOnMount
       as="header"
     >
-      <Menu
-        inverted
-        secondary
-        color="blue"
-        size="massive"
-        as="nav"
-        style={{ marginBottom: "0" }}
-      >
+      <Segment inverted color="black" size="large" as="nav" attached padded>
         <Container>
-          <Menu.Item>
-            <Img fixed={logo.childImageSharp.fixed} />
-          </Menu.Item>
+          <Grid>
+            <Grid.Row>
+              <Grid.Column computer={4} mobile={8} tablet={6}>
+                <Icon name="code" size="large" />
+                <Header as="span" inverted>
+                  Ali-Dev
+                </Header>
+              </Grid.Column>
 
-          <NavLinksContainerComputer> {navLinks}</NavLinksContainerComputer>
-          <MenuHamburgerButtonContainer
-            onClick={() => setMobileMode(!mobileMode)}
-          >
-            <Icon
-              name={mobileMode ? "close" : "bars"}
-              inverted
-              size="large"
-              aria-label="menu button"
-            />
-          </MenuHamburgerButtonContainer>
+              <Grid.Column
+                only="computer tablet"
+                width={10}
+                verticalAlign="middle"
+              >
+                <Header textAlign="right" as="ul">
+                  {navLinks}
+                </Header>
+              </Grid.Column>
+              <Grid.Column
+                width={8}
+                verticalAlign="middle"
+                only="mobile"
+                onClick={() => setMobileMode(!mobileMode)}
+              >
+                <Header size="tiny" textAlign="right">
+                  <Icon
+                    link
+                    name={mobileMode ? "close" : "bars"}
+                    inverted
+                    size="small"
+                    aria-label="menu button"
+                  />
+                </Header>
+              </Grid.Column>
+            </Grid.Row>
+          </Grid>
         </Container>
-      </Menu>
+      </Segment>
       <Sidebar
-        as={Menu}
-        color="blue"
+        as={Segment}
+        color="black"
         animation="push"
         inverted
         onHide={() => setMobileMode(false)}
@@ -167,7 +150,9 @@ const HeaderComponent: React.FC = () => {
         visible={mobileMode}
         width="thin"
       >
-        <NavLinksContainerMobile>{navLinks}</NavLinksContainerMobile>
+        <Grid textAlign="center" stackable>
+          {navLinks}
+        </Grid>
       </Sidebar>
     </Visibility>
   )

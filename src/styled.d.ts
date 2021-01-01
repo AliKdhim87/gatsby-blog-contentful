@@ -9,6 +9,9 @@ declare module "styled-components" {
       blue: string
       black: string
       white: string
+      grey: string
+      glaucous: string
+      aliceBlue: string
       error: {
         light: string
         main: string
@@ -29,6 +32,9 @@ declare module "styled-components" {
         main: string
         dark: string
       }
+    }
+    breakpoint: {
+      mobile: string
     }
   }
 }

@@ -1,48 +1,45 @@
 import React from "react"
-import { graphql, Link, useStaticQuery } from "gatsby"
+import { Link } from "gatsby"
 import styled from "styled-components"
+import { Button, Header, Icon, Segment } from "semantic-ui-react"
 
 import SEO from "components/global/SEO"
-import Background from "components/generic/Background"
-import { Button, Header } from "semantic-ui-react"
 
-const StyledInnerWrapper = styled.div`
-  position: absolute;
-  right: 0;
-  left: 0;
-  bottom: 0;
-  top: 20%;
+const NotFoundPageContainer = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
 `
+const NotFoundTitle = styled.h1`
+  font-size: 6rem;
+  color: ${({ theme }) => theme.colors.grey};
+`
 
 const NotFound: React.FC = () => {
-  const { placeholderImage } = useStaticQuery(graphql`
-    query headerBackgroundQuery {
-      placeholderImage: file(relativePath: { eq: "images/49339.jpg" }) {
-        childImageSharp {
-          fluid(quality: 90, maxWidth: 1920) {
-            ...GatsbyImageSharpFluid_withWebp
-          }
-        }
-      }
-    }
-  `)
-
   return (
-    <Background fluid={placeholderImage.childImageSharp.fluid}>
+    <>
       <SEO title="Not found" />
-      <StyledInnerWrapper>
-        <Button as={Link} to="/">
+
+      <NotFoundPageContainer>
+        <Segment placeholder padded basic>
+          <Icon
+            name="exclamation triangle"
+            size="massive"
+            color="blue"
+            aria-label="page is not found"
+          />
+          <NotFoundTitle>404</NotFoundTitle>
+        </Segment>
+        <Header as="h2" color="grey">
+          Sorry, This page is not found.
+        </Header>
+
+        <Button as={Link} to="/" color="blue" active size="large">
           Head home
         </Button>
-        <Header as="a" href="http://www.freepik.com" inverted size="tiny">
-          Designed by macrovector / Freepik
-        </Header>
-      </StyledInnerWrapper>
-    </Background>
+      </NotFoundPageContainer>
+    </>
   )
 }
 

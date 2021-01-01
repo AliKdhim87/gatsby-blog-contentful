@@ -4,6 +4,8 @@ import Img from "gatsby-image"
 
 import { Container, Divider, Grid, Header, Segment } from "semantic-ui-react"
 
+import MainTitle from "components/generic/MainTitle"
+
 const BlogPage: React.FC = () => {
   const { allContentfulBlogPost } = useStaticQuery(graphql`
     query getAllBlogs {
@@ -28,20 +30,17 @@ const BlogPage: React.FC = () => {
 
   return (
     <>
+      <Segment basic size="massive">
+        <MainTitle borderBottomWidth="80px" text="Recently blogs" />
+      </Segment>
       <Container>
-        <Segment basic size="massive">
-          <Header as="h1" size="large" textAlign="center" inverted>
-            Recently blogs
-          </Header>
-        </Segment>
-
         <Grid doubling stretched style={{ paddingBottom: "2rem" }}>
           <Grid.Row centered>
             {allContentfulBlogPost.edges.map((post: any) => (
               <Grid.Column
                 key={post.node.slug}
                 mobile={16}
-                computer={4}
+                computer={5}
                 tablet={8}
                 textAlign="center"
                 as={Link}
@@ -52,9 +51,9 @@ const BlogPage: React.FC = () => {
                     {post.node.title}
                   </Header>
                   <Divider />
-                  <Header as="p" size="tiny" color="grey">
+                  <Segment as="p" size="large" inverted basic>
                     {post.node.publishedDate}
-                  </Header>
+                  </Segment>
                   <Img
                     fluid={post.node.image.fluid}
                     alt={post.node.image.title}

@@ -33,6 +33,12 @@ module.exports.createPages = async ({ graphql, actions }) => {
 exports.onCreateWebpackConfig = ({ stage, actions }) => {
   actions.setWebpackConfig({
     resolve: {
+      alias: {
+        "../../theme.config$": path.join(
+          __dirname,
+          "src/semantic-ui/theme.config"
+        ),
+      },
       modules: [path.resolve(__dirname, "src"), "node_modules"],
     },
     // this line of code because of sendGrid email package
