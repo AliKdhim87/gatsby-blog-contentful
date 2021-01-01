@@ -6,9 +6,10 @@ import SyntaxHighlighter from "react-syntax-highlighter"
 import { obsidian } from "react-syntax-highlighter/dist/esm/styles/hljs"
 import Img from "gatsby-image"
 
-import { Container, Header } from "semantic-ui-react"
+import { Container, Divider, Segment } from "semantic-ui-react"
 
 import SEO from "components/global/SEO"
+import MainTitle from "components/generic/MainTitle"
 
 export const query = graphql`
   query getPostPerPage($slug: String!) {
@@ -74,18 +75,21 @@ const Blog: React.FC<Props> = ({
     <>
       <SEO title={slug} />
       <Container>
-        <Header as="h1" size="huge" textAlign="center" inverted>
-          {title}
-        </Header>
-        <Header as="h2" textAlign="center" size="small" inverted>
-          {publishedDate}
-        </Header>
-        <Img
-          fluid={image.fluid}
-          alt={image.title}
-          style={{ height: "500px" }}
-        />
-        {documentToReactComponents(body.json, options)}
+        <Segment basic padded size="massive">
+          <MainTitle text={title} borderBottomWidth="80px" />
+        </Segment>
+        <Segment secondary basic padded>
+          <Img
+            fluid={image.fluid}
+            alt={image.title}
+            style={{ height: "500px" }}
+          />
+          <Segment as="p" size="large" basic secondary textAlign="center">
+            {publishedDate}
+          </Segment>
+          <Divider />
+          {documentToReactComponents(body.json, options)}
+        </Segment>
       </Container>
     </>
   )

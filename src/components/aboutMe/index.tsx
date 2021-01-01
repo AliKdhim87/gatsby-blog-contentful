@@ -1,14 +1,10 @@
 import React from "react"
 import { graphql, useStaticQuery } from "gatsby"
 import Img from "gatsby-image"
-import styled from "styled-components"
 
-import { Container, Grid, Header } from "semantic-ui-react"
+import { Container, Grid, List, Segment } from "semantic-ui-react"
 
-const AboutMeDescription = styled.p`
-  line-height: 1.8;
-  color: ${({ theme }) => theme.colors.white};
-`
+import MainTitle from "components/generic/MainTitle"
 
 const AboutMeComponent: React.FC = () => {
   const {
@@ -45,73 +41,41 @@ const AboutMeComponent: React.FC = () => {
 
   return (
     <>
-      <Header
-        dividing
-        textAlign="center"
-        as="h1"
-        size="huge"
-        inverted
-        style={{ padding: "2rem 0" }}
-      >
-        About me
-      </Header>
-      <Container fluid>
-        <Grid doubling container>
-          <Grid.Column computer={6} mobile={16}>
-            <Img fluid={contentfulAsset.fluid} alt={contentfulAsset.title} />
-          </Grid.Column>
-          <Grid.Column computer={10} mobile={16}>
-            <Header>
-              <Header.Content>
-                <Header
-                  textAlign="center"
-                  as="h2"
-                  size="large"
-                  dividing
-                  inverted
-                  style={{ padding: "2rem 0" }}
-                >
-                  I'm {author}
-                </Header>
-                <AboutMeDescription>{aboutMe}</AboutMeDescription>
-              </Header.Content>
-            </Header>
-          </Grid.Column>
-        </Grid>
-
-        <Grid container centered celled>
-          <Grid.Column widescreen="16">
-            <Header as="h3" size="huge" textAlign="center" inverted>
-              Skills
-            </Header>
-          </Grid.Column>
-          <Grid.Row>
-            <Grid.Column computer={5} tablet={16} mobile={16}>
-              {skills1 &&
-                skills1.map((skill: string, index: number) => (
-                  <Header inverted key={index}>
-                    {skill}
-                  </Header>
-                ))}
+      <Container style={{ marginBottom: "2rem" }}>
+        <Segment basic padded size="massive">
+          <MainTitle text="About me" borderBottomWidth="60px" />
+        </Segment>
+        <Segment secondary padded basic>
+          <Grid>
+            <Grid.Column computer={6} mobile={16}>
+              <Img fluid={contentfulAsset.fluid} alt={contentfulAsset.title} />
             </Grid.Column>
-            <Grid.Column computer={5} tablet={16} mobile={16}>
-              {skills2 &&
-                skills2.map((skill: string, index: number) => (
-                  <Header inverted key={index}>
-                    {skill}
-                  </Header>
-                ))}
+            <Grid.Column computer={10} mobile={16}>
+              <Segment as="h2" basic size="massive" textAlign="center">
+                I'm {author}
+              </Segment>
+              <Segment as="p" basic size="large">
+                {aboutMe}
+              </Segment>
             </Grid.Column>
-            <Grid.Column computer={5} tablet={16} mobile={16}>
-              {skills3 &&
-                skills3.map((skill: string, index: number) => (
-                  <Header inverted key={index}>
-                    {skill}
-                  </Header>
-                ))}
-            </Grid.Column>
-          </Grid.Row>
-        </Grid>
+          </Grid>
+          <Segment basic padded>
+            <MainTitle text="Skills" borderBottomWidth="40px" />
+          </Segment>
+          <Grid container centered celled>
+            <Grid.Row>
+              <Grid.Column computer={5} tablet={16} mobile={16}>
+                <List bulleted divided items={skills1} size="huge" relaxed />
+              </Grid.Column>
+              <Grid.Column computer={5} tablet={16} mobile={16}>
+                <List bulleted divided items={skills2} size="huge" relaxed />
+              </Grid.Column>
+              <Grid.Column computer={5} tablet={16} mobile={16}>
+                <List bulleted divided items={skills3} size="huge" relaxed />
+              </Grid.Column>
+            </Grid.Row>
+          </Grid>
+        </Segment>
       </Container>
     </>
   )

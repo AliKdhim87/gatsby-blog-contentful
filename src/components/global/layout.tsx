@@ -5,6 +5,7 @@ import Footer from "./footer"
 import Header from "./header"
 
 import { theme } from "theme"
+import { Container } from "semantic-ui-react"
 
 interface Props {
   title: string
@@ -16,8 +17,9 @@ html{
 }
   main {
     flex:1;
-    background: ${({ theme }) => theme.colors.background};
     color: ${({ theme }) => theme.colors.white};
+    position: relative;
+    background:${({ theme }) => theme.colors.background};
   }
 `
 
@@ -33,7 +35,7 @@ const Layout: React.FC<Props> = ({ children }: Props) => {
       <Wrapper>
         <GlobalStyle />
         <Header />
-        <main>{children}</main>
+        <Container as="main">{children}</Container>
         <Footer />
       </Wrapper>
     </ThemeProvider>

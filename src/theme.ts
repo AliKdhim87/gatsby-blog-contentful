@@ -3,10 +3,13 @@ import { DefaultTheme } from "styled-components"
 export const theme: DefaultTheme = {
   justifyContent: "",
   colors: {
-    background: "#02365d",
+    background: "#F3F4F5",
     blue: "#0E6EB8",
+    grey: '#2c2c2c',
     black: "#000",
-    white: "#fff",
+    white: "#FCFCFC",
+    aliceBlue:'#CEDEF3',
+    glaucous: '#6483AA',
     error: {
       light: "#e57373",
       main: "#f44336",
@@ -28,4 +31,7 @@ export const theme: DefaultTheme = {
       dark: "#388e3c",
     },
   },
+  breakpoint: {
+    mobile:  '767px '
+  }
 }
