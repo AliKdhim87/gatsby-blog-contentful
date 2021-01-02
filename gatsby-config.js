@@ -7,7 +7,7 @@ module.exports = {
     title: "Ali Dev",
     author: "Ali Amouri Kadhim",
     siteUrl: "https://ali-kadhim.netlify.app/",
-    defaultImage: "/images/ali.jpeg",
+    defaultImage: "/images/pinterest_profile.png",
   },
   developMiddleware: app => {
     app.use(
@@ -37,7 +37,7 @@ module.exports = {
         background_color: `#f7f0eb`,
         theme_color: `#a2466c`,
         display: `standalone`,
-        icon: `src/images/coding.png`,
+        icon: `src/images/favicon.png`,
       },
     },
     {
