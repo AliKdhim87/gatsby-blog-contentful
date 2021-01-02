@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 import { useLocation } from "@reach/router"
 import Link from "gatsby-link"
 import styled from "styled-components"
+import Img from "gatsby-image"
 
 import {
   Icon,
@@ -12,6 +13,7 @@ import {
   Grid,
   Header,
 } from "semantic-ui-react"
+import { graphql, useStaticQuery } from "gatsby"
 
 const NavLink = styled(Link)`
   color: ${({ theme }) => theme.colors.white};
@@ -49,6 +51,18 @@ const NavLink = styled(Link)`
 `
 
 const HeaderComponent: React.FC = () => {
+  const { logo } = useStaticQuery(graphql`
+    query GetLogo {
+      logo: file(relativePath: { eq: "images/logo.png" }) {
+        childImageSharp {
+          fixed(width: 75) {
+            ...GatsbyImageSharpFixed
+          }
+        }
+      }
+    }
+  `)
+
   const { pathname } = useLocation()
   const [mobileMode, setMobileMode] = useState<boolean>(false)
   const [width, setWidth] = useState<number>(0)
@@ -100,15 +114,12 @@ const HeaderComponent: React.FC = () => {
       fireOnMount
       as="header"
     >
-      <Segment inverted color="black" size="large" as="nav" attached padded>
+      <Segment inverted color="black" size="large" as="nav" attached>
         <Container>
           <Grid>
-            <Grid.Row>
+            <Grid.Row style={{ padding: "0" }}>
               <Grid.Column computer={4} mobile={8} tablet={6}>
-                <Icon name="code" size="large" />
-                <Header as="span" inverted>
-                  Ali-Dev
-                </Header>
+                <Img fixed={logo.childImageSharp.fixed} />
               </Grid.Column>
 
               <Grid.Column
