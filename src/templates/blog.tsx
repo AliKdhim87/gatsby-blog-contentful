@@ -5,6 +5,7 @@ import { MARKS, BLOCKS } from "@contentful/rich-text-types"
 import SyntaxHighlighter from "react-syntax-highlighter"
 import { obsidian } from "react-syntax-highlighter/dist/esm/styles/hljs"
 import Img from "gatsby-image"
+import { useTheme } from "styled-components"
 
 import { Container, Divider, Segment } from "semantic-ui-react"
 
@@ -39,6 +40,7 @@ const Blog: React.FC<Props> = ({
     contentfulBlogPost: { title, publishedDate, body, image, slug },
   },
 }) => {
+  const { colors } = useTheme()
   const options = {
     renderNode: {
       [BLOCKS.PARAGRAPH]: (
@@ -51,7 +53,13 @@ const Blog: React.FC<Props> = ({
         ) {
           return <>{children}</>
         }
-        return <p>{children}</p>
+        return (
+          <p
+            style={{ lineHeight: "2", color: colors.grey, fontSize: "1.1rem" }}
+          >
+            {children}
+          </p>
+        )
       },
     },
     renderMark: {
@@ -63,6 +71,7 @@ const Blog: React.FC<Props> = ({
             style={obsidian}
             showLineNumbers
             startingLineNumber={0}
+            wrapLines
           >
             {text}
           </SyntaxHighlighter>
