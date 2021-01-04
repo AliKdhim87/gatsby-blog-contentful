@@ -1,9 +1,8 @@
-import React, { useContext } from "react"
+import React from "react"
 import sgMail from "@sendgrid/mail"
 import { useForm } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
-import { ThemeContext } from "styled-components"
 import { SemanticToastContainer, toast } from "react-semantic-toasts"
 import "react-semantic-toasts/styles/react-semantic-alert.css"
 
@@ -33,8 +32,6 @@ interface ContactFormTypes {
 }
 
 const Contact: React.FC = () => {
-  const { colors } = useContext(ThemeContext)
-
   if (process.env.SENDGRID_API_KEY) {
     sgMail.setApiKey(process.env.SENDGRID_API_KEY)
   }
@@ -131,13 +128,9 @@ const Contact: React.FC = () => {
                   <label htmlFor="Message">Message</label>
                   <textarea
                     name="message"
-                    placeholder="Write your email here..."
+                    placeholder="Write your message here..."
                     ref={register}
                     rows={4}
-                    style={{
-                      background: "none",
-                      color: colors.white,
-                    }}
                   />
                   {Boolean(errors.message) && (
                     <Message error>{errors.message?.message}</Message>
