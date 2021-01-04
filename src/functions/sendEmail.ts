@@ -7,10 +7,7 @@ if (SENDGRID_API_KEY) {
 }
 
 exports.handler = async (event, _context) => {
-  console.log(event.body)
-
-  if (!event.body) return
-
+  
   const payload = JSON.parse(event.body)
 
   const { email, subject } = payload
