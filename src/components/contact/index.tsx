@@ -69,6 +69,8 @@ const Contact: React.FC = () => {
         time: 5000,
       })
     } catch (e) {
+      console.log(e)
+
       toast({
         type: "error",
         icon: "exclamation triangle",
