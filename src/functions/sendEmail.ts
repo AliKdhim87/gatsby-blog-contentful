@@ -6,11 +6,10 @@ if (SENDGRID_API_KEY) {
   sgMail.setApiKey(SENDGRID_API_KEY)
 }
 
-exports.handler = async (event, context, callback) => {
-
+exports.handler = async (event, _context) => {
   const payload = JSON.parse(event.body)
-
   const { email, subject } = payload
+
   const body = Object.keys(payload)
     .map(k => {
       return `${k}: ${payload[k]}`
@@ -18,10 +17,10 @@ exports.handler = async (event, context, callback) => {
     .join("<br><br>")
 
   const msg = {
-    html: body,
     to: SENDGRID_TO_EMAIL,
     from: email,
     subject: subject ? subject : "Contact Form Submission",
+    html: body,
   }
 
   try {
@@ -31,7 +30,6 @@ exports.handler = async (event, context, callback) => {
       body: "Message sent",
     }
   } catch (e) {
-    console.error(e.message)
     return {
       statusCode: e.code,
       body: e.message,
