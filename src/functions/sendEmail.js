@@ -2,9 +2,7 @@ import sgMail from "@sendgrid/mail"
 
 const { SENDGRID_API_KEY, SENDGRID_TO_EMAIL } = process.env
 
-if (SENDGRID_API_KEY) {
-  sgMail.setApiKey(SENDGRID_API_KEY)
-}
+sgMail.setApiKey(SENDGRID_API_KEY)
 
 exports.handler = async (event, _context) => {
   const payload = JSON.parse(event.body)
