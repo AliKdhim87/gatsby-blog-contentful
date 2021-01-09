@@ -5,6 +5,11 @@ import * as yup from "yup"
 import { SemanticToastContainer, toast } from "react-semantic-toasts"
 import "react-semantic-toasts/styles/react-semantic-alert.css"
 import emailjs from "emailjs-com"
+import dotenv from "dotenv"
+
+dotenv.config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
 
 import {
   Button,
@@ -37,8 +42,6 @@ const Contact: React.FC = () => {
   })
 
   const onEmailFormSubmit = async (_data: ContactFormTypes, event: any) => {
-    console.log(event.target)
-
     try {
       await emailjs.sendForm(
         process.env.EMAIL_SERVICE as string,
