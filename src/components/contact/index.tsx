@@ -1,10 +1,10 @@
 import React from "react"
-import sgMail from "@sendgrid/mail"
 import { useForm } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
 import { SemanticToastContainer, toast } from "react-semantic-toasts"
 import "react-semantic-toasts/styles/react-semantic-alert.css"
+import emailjs from "emailjs-com"
 
 import {
   Button,
@@ -32,33 +32,20 @@ interface ContactFormTypes {
 }
 
 const Contact: React.FC = () => {
-  if (process.env.SENDGRID_API_KEY) {
-    sgMail.setApiKey(process.env.SENDGRID_API_KEY)
-  }
-
   const { register, handleSubmit, errors, reset } = useForm({
     resolver: yupResolver(contactFormSchema),
   })
 
-  const onEmailFormSubmit = async (data: ContactFormTypes) => {
+  const onEmailFormSubmit = async (_data: ContactFormTypes, event: any) => {
+    console.log(event.target)
+
     try {
-      const response = await fetch(config.apiSendEmailUrl, {
-        method: "POST",
-        body: JSON.stringify(data),
-      })
-
-      if (!response.ok) {
-        toast({
-          type: "error",
-          icon: "exclamation triangle",
-          title: "Occur error",
-          description: config.errors.generalError,
-          animation: "bounce",
-          time: 5000,
-        })
-        return
-      }
-
+      await emailjs.sendForm(
+        process.env.EMAIL_SERVICE as string,
+        process.env.EMAIL_TEMPLATE_ID as string,
+        event.target,
+        process.env.EMAIL_USER_ID as string
+      )
       reset()
       toast({
         type: "success",
@@ -68,9 +55,7 @@ const Contact: React.FC = () => {
         animation: "bounce",
         time: 5000,
       })
-    } catch (e) {
-      console.log(e)
-
+    } catch (error) {
       toast({
         type: "error",
         icon: "exclamation triangle",

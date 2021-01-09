@@ -5,11 +5,11 @@ export const theme: DefaultTheme = {
   colors: {
     background: "#F3F4F5",
     blue: "#0E6EB8",
-    grey: '#2c2c2c',
+    grey: "#2c2c2c",
     black: "#000",
     white: "#FCFCFC",
-    aliceBlue:'#CEDEF3',
-    glaucous: '#6483AA',
+    aliceBlue: "#CEDEF3",
+    glaucous: "#6483AA",
     error: {
       light: "#e57373",
       main: "#f44336",
@@ -32,6 +32,6 @@ export const theme: DefaultTheme = {
     },
   },
   breakpoint: {
-    mobile:  '767px '
-  }
+    mobile: "767px ",
+  },
 }

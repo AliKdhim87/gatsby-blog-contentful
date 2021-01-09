@@ -1,6 +1,6 @@
-const { createProxyMiddleware } = require("http-proxy-middleware") //v1.x.x
-const path = require("path")
-
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
 module.exports = {
   /* Your site config here */
   siteMetadata: {
@@ -8,17 +8,6 @@ module.exports = {
     author: "Ali Amouri Kadhim",
     siteUrl: "https://ali-kadhim.netlify.app/",
     defaultImage: "/images/pinterest_profile.png",
-  },
-  developMiddleware: app => {
-    app.use(
-      "/.netlify/functions/",
-      createProxyMiddleware({
-        target: "http://localhost:9000",
-        pathRewrite: {
-          "/.netlify/functions/": "",
-        },
-      })
-    )
   },
   plugins: [
     `gatsby-plugin-preload-fonts`,
