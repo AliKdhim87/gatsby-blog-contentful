@@ -44,10 +44,10 @@ const Contact: React.FC = () => {
   const onEmailFormSubmit = async (_data: ContactFormTypes, event: any) => {
     try {
       await emailjs.sendForm(
-        process.env.EMAIL_SERVICE as string,
-        process.env.EMAIL_TEMPLATE_ID as string,
+        process.env.GATSBY_EMAIL_SERVICE as string,
+        process.env.GATSBY_EMAIL_TEMPLATE_ID as string,
         event.target,
-        process.env.EMAIL_USER_ID as string
+        process.env.GATSBY_EMAIL_USER_ID as string
       )
       reset()
       toast({
