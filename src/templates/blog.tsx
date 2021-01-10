@@ -1,16 +1,13 @@
 import React from "react"
 import { graphql } from "gatsby"
-import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
-import { MARKS, BLOCKS } from "@contentful/rich-text-types"
-import SyntaxHighlighter from "react-syntax-highlighter"
-import { obsidian } from "react-syntax-highlighter/dist/esm/styles/hljs"
 import Img from "gatsby-image"
-import { useTheme } from "styled-components"
+import ReactMarkdown from "react-markdown/with-html"
 
 import { Container, Divider, Segment } from "semantic-ui-react"
 
 import SEO from "components/global/SEO"
 import MainTitle from "components/generic/MainTitle"
+import CodeBlock from "components/generic/CodeBlock"
 
 export const query = graphql`
   query getPostPerPage($slug: String!) {
@@ -24,8 +21,8 @@ export const query = graphql`
           ...GatsbyContentfulFluid
         }
       }
-      body {
-        json
+      bodyContent {
+        bodyContent
       }
     }
   }
@@ -37,67 +34,33 @@ interface Props {
 
 const Blog: React.FC<Props> = ({
   data: {
-    contentfulBlogPost: { title, publishedDate, body, image, slug },
+    contentfulBlogPost: {
+      title,
+      publishedDate,
+      image,
+      slug,
+      bodyContent: { bodyContent },
+    },
   },
 }) => {
-  const { colors } = useTheme()
-  const options = {
-    renderNode: {
-      [BLOCKS.PARAGRAPH]: (
-        node: { content: string | any[] },
-        children: {} | null | undefined
-      ) => {
-        if (
-          node.content.length === 1 &&
-          node.content[0].marks.find((x: { type: string }) => x.type === "code")
-        ) {
-          return <>{children}</>
-        }
-        return (
-          <p
-            style={{ lineHeight: "2", color: colors.grey, fontSize: "1.1rem" }}
-          >
-            {children}
-          </p>
-        )
-      },
-    },
-    renderMark: {
-      [MARKS.CODE]: (text: any) => {
-        return (
-          <SyntaxHighlighter
-            key={text}
-            language="javascript"
-            style={obsidian}
-            showLineNumbers
-            startingLineNumber={0}
-            wrapLines
-          >
-            {text}
-          </SyntaxHighlighter>
-        )
-      },
-    },
-  }
-
   return (
     <>
       <SEO title={slug} />
-      <Container>
+      <Container text>
         <Segment basic padded size="massive">
           <MainTitle text={title} borderBottomWidth="80px" />
         </Segment>
         <Segment secondary basic padded>
-          <Img
-            fluid={image.fluid}
-            alt={image.title}
-            style={{ height: "500px" }}
-          />
+          <Img fluid={image.fluid} alt={image.title} />
           <Segment as="p" size="large" basic secondary textAlign="center">
             {publishedDate}
           </Segment>
           <Divider />
-          {documentToReactComponents(body.json, options)}
+          <ReactMarkdown
+            source={bodyContent}
+            renderers={{ code: CodeBlock }}
+            allowDangerousHtml
+          />
         </Segment>
       </Container>
     </>

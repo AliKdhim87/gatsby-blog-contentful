@@ -21,6 +21,19 @@ html{
     position: relative;
     background:${({ theme }) => theme.colors.background};
   }
+  p code {
+    background-color: #e4e6e8;
+    border-radius: 3px;
+    padding: 2px 4px;
+  }
+  p {
+    line-height: 2;
+    color: ${({ theme }) => theme.colors.grey};
+     font-size: 1.1rem;
+  }
+  img {
+    width:100%;
+  }
 `
 
 const Wrapper = styled.div`
