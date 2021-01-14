@@ -10,6 +10,14 @@ module.exports = {
     defaultImage: "/images/pinterest_profile.png",
   },
   plugins: [
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: process.env.TRACKING_ID,
+        anonymize: true,
+        head: true,
+      },
+    },
     `gatsby-plugin-preload-fonts`,
     `gatsby-plugin-scss-typescript`,
     `gatsby-plugin-styled-components`,
