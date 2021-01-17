@@ -24,6 +24,9 @@ export const query = graphql`
       bodyContent {
         bodyContent
       }
+      description {
+        description
+      }
     }
   }
 `
@@ -38,14 +41,14 @@ const Blog: React.FC<Props> = ({
       title,
       publishedDate,
       image,
-      slug,
       bodyContent: { bodyContent },
+      description: { description },
     },
   },
 }) => {
   return (
     <>
-      <SEO title={slug} />
+      <SEO title={title} description={description} />
       <Container text>
         <Segment basic padded size="massive">
           <MainTitle text={title} borderBottomWidth="80px" />

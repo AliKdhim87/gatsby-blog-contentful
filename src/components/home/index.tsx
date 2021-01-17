@@ -29,6 +29,7 @@ const Home: React.FC = () => {
       site {
         siteMetadata {
           author
+          description
         }
       }
     }
@@ -51,9 +52,7 @@ const Home: React.FC = () => {
             </Typist>
           </Header>
           <Header as="p" textAlign="center" size="medium">
-            I am a full-stack web developer. I can provide clean code and pixel
-            perfect design. I also make website more & more interactive with web
-            animations.
+            {site.siteMetadata.description}
           </Header>
           <Segment basic textAlign="center">
             <a

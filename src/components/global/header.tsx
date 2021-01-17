@@ -55,7 +55,7 @@ const HeaderComponent: React.FC = () => {
     query GetLogo {
       logo: file(relativePath: { eq: "images/logo.png" }) {
         childImageSharp {
-          fixed(width: 75) {
+          fixed(width: 100) {
             ...GatsbyImageSharpFixed
           }
         }
@@ -117,8 +117,8 @@ const HeaderComponent: React.FC = () => {
       <Segment inverted color="black" size="large" as="nav" attached>
         <Container>
           <Grid>
-            <Grid.Row style={{ padding: "0" }}>
-              <Grid.Column computer={4} mobile={8} tablet={6}>
+            <Grid.Row>
+              <Grid.Column computer={4} mobile={8} tablet={6} as={Link} to="/">
                 <Img fixed={logo.childImageSharp.fixed} />
               </Grid.Column>
 

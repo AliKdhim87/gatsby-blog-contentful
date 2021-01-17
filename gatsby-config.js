@@ -6,7 +6,8 @@ module.exports = {
   siteMetadata: {
     title: "Ali Dev",
     author: "Ali Amouri Kadhim",
-    siteUrl: "https://ali-kadhim.netlify.app/",
+    description: ` I am a full-stack web developer. I can provide clean code and pixel perfect design. I also make website more & more interactive with web animations.`,
+    siteUrl: "https://ali-dev.com/",
     defaultImage: "/images/pinterest_profile.png",
   },
   plugins: [
