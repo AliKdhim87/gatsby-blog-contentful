@@ -67,6 +67,7 @@ module.exports = {
         accessToken: process.env.GATSBY_CONTENTFUL_ACCESS_TOKEN,
       },
     },
+    `gatsby-transformer-remark`,
     {
       resolve: `gatsby-plugin-sitemap`,
       options: {
@@ -100,6 +101,14 @@ module.exports = {
       resolve: "gatsby-plugin-robots-txt",
       options: {
         policy: [{ userAgent: "*", allow: "/" }],
+      },
+    },
+    {
+      resolve: "gatsby-plugin-react-svg",
+      options: {
+        rule: {
+          include: /svg-icons/,
+        },
       },
     },
   ],

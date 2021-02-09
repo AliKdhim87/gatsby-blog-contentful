@@ -2,8 +2,11 @@
      User Global Variables
 *******************************/
 
-@grey           : #2c2c2c;
 @blue           : #6483AA;
+@orange         : #FFAA50;
+@red            : #FF546D;
+@purple         : #6D86F5;
+
 
 
 

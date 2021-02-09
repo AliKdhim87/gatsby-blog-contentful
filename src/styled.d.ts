@@ -10,6 +10,8 @@ declare module "styled-components" {
       black: string
       white: string
       grey: string
+      red: string
+      orange: string
       glaucous: string
       aliceBlue: string
       error: {

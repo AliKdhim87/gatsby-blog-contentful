@@ -5,9 +5,11 @@ export const theme: DefaultTheme = {
   colors: {
     background: "#F3F4F5",
     blue: "#0E6EB8",
+    red: '#FF546D',
     grey: "#2c2c2c",
     black: "#000",
     white: "#FCFCFC",
+    orange: '#FFAA50',
     aliceBlue: "#CEDEF3",
     glaucous: "#6483AA",
     error: {

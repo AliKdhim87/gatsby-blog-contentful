@@ -24,8 +24,8 @@ const Footer: React.FC = () => {
       size="large"
       textAlign="center"
       inverted
-      color="grey"
       attached
+      style={{ marginTop: "1rem" }}
     >
       <Header as="p" textAlign="center" size="tiny">
         Created by {author} | ©{new Date().getFullYear()}

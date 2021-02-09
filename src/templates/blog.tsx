@@ -3,7 +3,7 @@ import { graphql } from "gatsby"
 import Img from "gatsby-image"
 import ReactMarkdown from "react-markdown/with-html"
 
-import { Container, Divider, Segment } from "semantic-ui-react"
+import { Container, Divider, Header, Segment } from "semantic-ui-react"
 
 import SEO from "components/global/SEO"
 import MainTitle from "components/generic/MainTitle"
@@ -23,9 +23,9 @@ export const query = graphql`
       }
       bodyContent {
         bodyContent
-      }
-      description {
-        description
+        childMarkdownRemark {
+          excerpt
+        }
       }
     }
   }
@@ -37,30 +37,27 @@ interface Props {
 
 const Blog: React.FC<Props> = ({
   data: {
-    contentfulBlogPost: {
-      title,
-      publishedDate,
-      image,
-      bodyContent: { bodyContent },
-      description: { description },
-    },
+    contentfulBlogPost: { title, publishedDate, image, bodyContent },
   },
 }) => {
   return (
     <>
-      <SEO title={title} description={description} />
+      <SEO
+        title={title}
+        description={bodyContent.childMarkdownRemark.excerpt}
+      />
       <Container text>
-        <Segment basic padded size="massive">
+        <Segment basic padded color="black" inverted>
           <MainTitle text={title} borderBottomWidth="80px" />
-        </Segment>
-        <Segment secondary basic padded>
           <Img fluid={image.fluid} alt={image.title} />
-          <Segment as="p" size="large" basic secondary textAlign="center">
-            {publishedDate}
+          <Segment size="large" basic textAlign="center">
+            <Header as="p" size="tiny" inverted>
+              {publishedDate}
+            </Header>
           </Segment>
           <Divider />
           <ReactMarkdown
-            source={bodyContent}
+            source={bodyContent.bodyContent}
             renderers={{ code: CodeBlock }}
             allowDangerousHtml
           />

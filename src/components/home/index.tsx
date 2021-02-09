@@ -4,7 +4,9 @@ import Typist from "react-typist"
 import { graphql, useStaticQuery } from "gatsby"
 import Img from "gatsby-image"
 
-import { Container, Header, Icon, Segment } from "semantic-ui-react"
+import { Container, Header, Segment } from "semantic-ui-react"
+
+import { GithubIcon, LinkedinIcon } from "svg-icons"
 
 const HomeContainer = styled.div`
   display: flex;
@@ -45,13 +47,16 @@ const Home: React.FC = () => {
           />
           <Header as="h1" size="large" textAlign="center">
             <Typist>
-              <Header as="span"> Hi, I'm </Header>
-              <Header as="span" color="blue">
+              <Header as="span" color="orange">
+                {" "}
+                Hi, I'm{" "}
+              </Header>
+              <Header as="span" inverted>
                 {site.siteMetadata.author}
               </Header>
             </Typist>
           </Header>
-          <Header as="p" textAlign="center" size="medium">
+          <Header inverted as="p" textAlign="center" size="small">
             {site.siteMetadata.description}
           </Header>
           <Segment basic textAlign="center">
@@ -59,25 +64,16 @@ const Home: React.FC = () => {
               href="https://www.linkedin.com/in/ali-amouri-kadhim-082b75189/"
               target="_blank"
               rel="noopener"
+              style={{ marginRight: "1rem" }}
             >
-              <Icon
-                color="blue"
-                name="linkedin"
-                size="huge"
-                aria-label="linkedin"
-              />
+              <LinkedinIcon aria-label="linkedin" />
             </a>
             <a
               href="https://github.com/AliKdhim87"
               target="_blank"
               rel="noopener"
             >
-              <Icon
-                color="blue"
-                name="github square"
-                size="huge"
-                aria-label="github"
-              />
+              <GithubIcon aria-label="github" />
             </a>
           </Segment>
         </Container>

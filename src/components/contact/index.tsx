@@ -17,12 +17,12 @@ import {
   Form,
   Message,
   Segment,
-  Header,
   Icon,
   Container,
 } from "semantic-ui-react"
 
 import config from "config"
+import MainTitle from "components/generic/MainTitle"
 
 const contactFormSchema = yup.object().shape({
   email: yup.string().required().email(),
@@ -77,7 +77,7 @@ const Contact: React.FC = () => {
       <Grid centered style={{ margin: "2.5rem 0" }}>
         <Grid.Row>
           <Grid.Column computer={12} tablet={12} mobile={16}>
-            <Segment>
+            <Segment color="black" inverted padded>
               <Form
                 onSubmit={handleSubmit(onEmailFormSubmit)}
                 error={!!errors}
@@ -85,12 +85,16 @@ const Contact: React.FC = () => {
                 as="form"
                 size="large"
               >
-                <Header as="h2" dividing textAlign="center" block>
-                  <Icon name="mail" color="blue" />
-                  Get in touch
-                </Header>
+                <MainTitle text="Get in touch" borderBottomWidth="15%" />
                 <Form.Field>
-                  <label htmlFor="Email">Email</label>
+                  <Segment
+                    style={{ padding: "0" }}
+                    inverted
+                    as="label"
+                    htmlFor="Email"
+                  >
+                    Email
+                  </Segment>
                   <input
                     name="email"
                     ref={register}
@@ -103,7 +107,15 @@ const Contact: React.FC = () => {
                 </Form.Field>
 
                 <Form.Field>
-                  <label htmlFor="Subject"> Subject</label>
+                  <Segment
+                    style={{ padding: "0" }}
+                    inverted
+                    as="label"
+                    htmlFor="Subject"
+                  >
+                    {" "}
+                    Subject
+                  </Segment>
                   <input
                     name="subject"
                     placeholder="Write your subject here..."
@@ -115,7 +127,14 @@ const Contact: React.FC = () => {
                   )}
                 </Form.Field>
                 <Form.Field>
-                  <label htmlFor="Message">Message</label>
+                  <Segment
+                    style={{ padding: "0" }}
+                    inverted
+                    as="label"
+                    htmlFor="Message"
+                  >
+                    Message
+                  </Segment>
                   <textarea
                     name="message"
                     placeholder="Write your message here..."
@@ -128,7 +147,7 @@ const Contact: React.FC = () => {
                 </Form.Field>
                 <Button
                   animated="vertical"
-                  color="blue"
+                  color="red"
                   fluid
                   type="submit"
                   disabled={

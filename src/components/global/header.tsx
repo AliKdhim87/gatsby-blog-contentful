@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react"
 import { useLocation } from "@reach/router"
 import Link from "gatsby-link"
 import styled from "styled-components"
-import Img from "gatsby-image"
 
 import {
   Icon,
@@ -13,7 +12,8 @@ import {
   Grid,
   Header,
 } from "semantic-ui-react"
-import { graphql, useStaticQuery } from "gatsby"
+
+import { Logo } from "svg-icons"
 
 const NavLink = styled(Link)`
   color: ${({ theme }) => theme.colors.white};
@@ -22,7 +22,7 @@ const NavLink = styled(Link)`
   position: relative;
   transition: 250ms ease-in;
   &:hover {
-    color: ${({ theme }) => theme.colors.aliceBlue} !important;
+    color: ${({ theme }) => theme.colors.orange} !important;
   }
   &::after {
     content: "";
@@ -31,7 +31,7 @@ const NavLink = styled(Link)`
     right: 0;
     bottom: -4px;
     height: 4px;
-    background: ${({ theme }) => theme.colors.aliceBlue};
+    background: ${({ theme }) => theme.colors.orange};
     transition: transform 250ms ease-in;
     transform: scaleX(0);
     transform-origin: left;
@@ -42,7 +42,7 @@ const NavLink = styled(Link)`
   }
   &.active {
     position: relative;
-    color: ${({ theme }) => theme.colors.aliceBlue};
+    color: ${({ theme }) => theme.colors.orange};
     border-bottom: 4px solid;
   }
   @media (max-width: ${({ theme }) => theme.breakpoint.mobile}) {
@@ -51,18 +51,6 @@ const NavLink = styled(Link)`
 `
 
 const HeaderComponent: React.FC = () => {
-  const { logo } = useStaticQuery(graphql`
-    query GetLogo {
-      logo: file(relativePath: { eq: "images/logo.png" }) {
-        childImageSharp {
-          fixed(width: 100) {
-            ...GatsbyImageSharpFixed
-          }
-        }
-      }
-    }
-  `)
-
   const { pathname } = useLocation()
   const [mobileMode, setMobileMode] = useState<boolean>(false)
   const [width, setWidth] = useState<number>(0)
@@ -113,15 +101,15 @@ const HeaderComponent: React.FC = () => {
       onUpdate={(_, data) => setWidth(data.calculations.width)}
       fireOnMount
       as="header"
+      style={{ marginBottom: "1rem" }}
     >
       <Segment inverted color="black" size="large" as="nav" attached>
         <Container>
           <Grid>
             <Grid.Row>
               <Grid.Column computer={4} mobile={8} tablet={6} as={Link} to="/">
-                <Img fixed={logo.childImageSharp.fixed} />
+                <Logo />
               </Grid.Column>
-
               <Grid.Column
                 only="computer tablet"
                 width={10}

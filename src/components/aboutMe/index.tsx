@@ -17,9 +17,9 @@ const AboutMeComponent: React.FC = () => {
     },
   } = useStaticQuery(graphql`
     query {
-      contentfulAsset(title: { eq: "Home photo" }) {
+      contentfulAsset(title: { eq: "my-image-about" }) {
         title
-        fluid(maxWidth: 600) {
+        fluid {
           ...GatsbyContentfulFluid
         }
       }
@@ -41,27 +41,27 @@ const AboutMeComponent: React.FC = () => {
 
   return (
     <>
-      <Container style={{ marginBottom: "2rem" }}>
-        <Segment basic padded size="massive">
+      <Container>
+        <Segment padded color="black" inverted>
           <MainTitle text="About me" borderBottomWidth="60px" />
-        </Segment>
-        <Segment secondary padded basic>
           <Grid>
             <Grid.Column computer={6} mobile={16}>
-              <Img fluid={contentfulAsset.fluid} alt={contentfulAsset.title} />
+              <Img
+                fluid={contentfulAsset.fluid}
+                alt={contentfulAsset.title}
+                style={{ height: "500px" }}
+              />
             </Grid.Column>
             <Grid.Column computer={10} mobile={16}>
-              <Segment as="h2" basic size="massive" textAlign="center">
+              <Segment as="h2" basic size="massive" textAlign="center" inverted>
                 I'm {author}
               </Segment>
-              <Segment as="p" basic size="large">
+              <Segment as="p" basic size="large" inverted>
                 {aboutMe}
               </Segment>
             </Grid.Column>
           </Grid>
-          <Segment basic padded>
-            <MainTitle text="Skills" borderBottomWidth="40px" />
-          </Segment>
+          <MainTitle text="Skills" borderBottomWidth="40px" />
           <Grid container centered celled>
             <Grid.Row>
               <Grid.Column computer={5} tablet={16} mobile={16}>
