@@ -2,12 +2,15 @@ import React from "react"
 import { graphql } from "gatsby"
 import Img from "gatsby-image"
 import ReactMarkdown from "react-markdown/with-html"
+import { useTheme } from "styled-components"
 
 import { Container, Divider, Header, Segment } from "semantic-ui-react"
 
 import SEO from "components/global/SEO"
 import MainTitle from "components/generic/MainTitle"
 import CodeBlock from "components/generic/CodeBlock"
+
+import { darkMode } from "utils/darkMode"
 
 export const query = graphql`
   query getPostPerPage($slug: String!) {
@@ -40,6 +43,7 @@ const Blog: React.FC<Props> = ({
     contentfulBlogPost: { title, publishedDate, image, bodyContent },
   },
 }) => {
+  const { mode } = useTheme()
   return (
     <>
       <SEO
@@ -47,8 +51,13 @@ const Blog: React.FC<Props> = ({
         description={bodyContent.childMarkdownRemark.excerpt}
       />
       <Container text>
-        <Segment basic padded color="black" inverted>
-          <MainTitle text={title} borderBottomWidth="80px" />
+        <Segment
+          basic
+          padded
+          color={darkMode(mode) ? "black" : "grey"}
+          inverted
+        >
+          <MainTitle text={title} border="80px" />
           <Img fluid={image.fluid} alt={image.title} />
           <Segment size="large" basic textAlign="center">
             <Header as="p" size="tiny" inverted>

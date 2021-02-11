@@ -6,7 +6,7 @@ import ContactComponent from "components/contact/index"
 const Contact: React.FC = () => {
   return (
     <>
-      <SEO title="Contact" />
+      <SEO title="Contact me page" />
       <ContactComponent />
     </>
   )

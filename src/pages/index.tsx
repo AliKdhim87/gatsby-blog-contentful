@@ -6,7 +6,7 @@ import Home from "components/home/index"
 const IndexPage: React.FC = () => {
   return (
     <>
-      <SEO title="Home" />
+      <SEO title="Home page" />
       <Home />
     </>
   )

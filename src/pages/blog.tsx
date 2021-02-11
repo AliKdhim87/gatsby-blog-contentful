@@ -6,7 +6,7 @@ import Blog from "components/blog/index"
 const BlogPage: React.FC = () => {
   return (
     <>
-      <SEO title="Blog" />
+      <SEO title="Blog page" />
       <Blog />
     </>
   )
