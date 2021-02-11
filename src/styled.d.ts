@@ -3,7 +3,9 @@ import { theme } from "theme"
 
 declare module "styled-components" {
   export interface DefaultTheme {
+    setMode: React.Dispatch<React.SetStateAction<string>>
     justifyContent?: string
+    mode?: string | undefined
     colors: {
       background: string
       blue: string
@@ -12,28 +14,6 @@ declare module "styled-components" {
       grey: string
       red: string
       orange: string
-      glaucous: string
-      aliceBlue: string
-      error: {
-        light: string
-        main: string
-        dark: string
-      }
-      warning: {
-        light: string
-        main: string
-        dark: string
-      }
-      info: {
-        light: string
-        main: string
-        dark: string
-      }
-      success: {
-        light: string
-        main: string
-        dark: string
-      }
     }
     breakpoint: {
       mobile: string

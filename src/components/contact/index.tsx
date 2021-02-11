@@ -6,6 +6,7 @@ import { SemanticToastContainer, toast } from "react-semantic-toasts"
 import "react-semantic-toasts/styles/react-semantic-alert.css"
 import emailjs from "emailjs-com"
 import dotenv from "dotenv"
+import { useTheme } from "styled-components"
 
 dotenv.config({
   path: `.env.${process.env.NODE_ENV}`,
@@ -21,8 +22,11 @@ import {
   Container,
 } from "semantic-ui-react"
 
-import config from "config"
 import MainTitle from "components/generic/MainTitle"
+import Label from "./Label"
+
+import { darkMode } from "utils/darkMode"
+import config from "config"
 
 const contactFormSchema = yup.object().shape({
   email: yup.string().required().email(),
@@ -37,6 +41,7 @@ interface ContactFormTypes {
 }
 
 const Contact: React.FC = () => {
+  const { mode } = useTheme()
   const { register, handleSubmit, errors, reset } = useForm({
     resolver: yupResolver(contactFormSchema),
   })
@@ -77,7 +82,7 @@ const Contact: React.FC = () => {
       <Grid centered style={{ margin: "2.5rem 0" }}>
         <Grid.Row>
           <Grid.Column computer={12} tablet={12} mobile={16}>
-            <Segment color="black" inverted padded>
+            <Segment color={darkMode(mode) ? "black" : "grey"} inverted padded>
               <Form
                 onSubmit={handleSubmit(onEmailFormSubmit)}
                 error={!!errors}
@@ -85,16 +90,9 @@ const Contact: React.FC = () => {
                 as="form"
                 size="large"
               >
-                <MainTitle text="Get in touch" borderBottomWidth="15%" />
+                <MainTitle text="Get in touch" border="15%" />
                 <Form.Field>
-                  <Segment
-                    style={{ padding: "0" }}
-                    inverted
-                    as="label"
-                    htmlFor="Email"
-                  >
-                    Email
-                  </Segment>
+                  <Label text="Email" htmlForm="Email" />
                   <input
                     name="email"
                     ref={register}
@@ -107,15 +105,7 @@ const Contact: React.FC = () => {
                 </Form.Field>
 
                 <Form.Field>
-                  <Segment
-                    style={{ padding: "0" }}
-                    inverted
-                    as="label"
-                    htmlFor="Subject"
-                  >
-                    {" "}
-                    Subject
-                  </Segment>
+                  <Label text="Subject" htmlForm="Subject" />
                   <input
                     name="subject"
                     placeholder="Write your subject here..."
@@ -127,14 +117,7 @@ const Contact: React.FC = () => {
                   )}
                 </Form.Field>
                 <Form.Field>
-                  <Segment
-                    style={{ padding: "0" }}
-                    inverted
-                    as="label"
-                    htmlFor="Message"
-                  >
-                    Message
-                  </Segment>
+                  <Label text="Message" htmlForm="Message" />
                   <textarea
                     name="message"
                     placeholder="Write your message here..."

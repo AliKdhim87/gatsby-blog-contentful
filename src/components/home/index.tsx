@@ -1,12 +1,19 @@
 import React from "react"
-import styled from "styled-components"
+import styled, { useTheme } from "styled-components"
 import Typist from "react-typist"
 import { graphql, useStaticQuery } from "gatsby"
 import Img from "gatsby-image"
 
 import { Container, Header, Segment } from "semantic-ui-react"
 
-import { GithubIcon, LinkedinIcon } from "svg-icons"
+import {
+  GithubIcon,
+  LinkedinIcon,
+  LinkedinIconRed,
+  GithubIconRed,
+} from "svg-icons"
+
+import { darkMode } from "utils/darkMode"
 
 const HomeContainer = styled.div`
   display: flex;
@@ -20,6 +27,7 @@ const HomeContainer = styled.div`
 `
 
 const Home: React.FC = () => {
+  const { mode } = useTheme()
   const { contentfulAsset, site } = useStaticQuery(graphql`
     query {
       contentfulAsset(title: { eq: "Home photo" }) {
@@ -46,9 +54,8 @@ const Home: React.FC = () => {
             style={{ borderRadius: "50%", display: "block", margin: "auto" }}
           />
           <Header as="h1" size="large" textAlign="center">
-            <Typist>
-              <Header as="span" color="orange">
-                {" "}
+            <Typist key={mode}>
+              <Header as="span" color={darkMode(mode) ? "orange" : "red"}>
                 Hi, I'm{" "}
               </Header>
               <Header as="span" inverted>
@@ -66,14 +73,22 @@ const Home: React.FC = () => {
               rel="noopener"
               style={{ marginRight: "1rem" }}
             >
-              <LinkedinIcon aria-label="linkedin" />
+              {darkMode(mode) ? (
+                <LinkedinIcon aria-label="linkedin" />
+              ) : (
+                <LinkedinIconRed aria-label="linkedin" />
+              )}
             </a>
             <a
               href="https://github.com/AliKdhim87"
               target="_blank"
               rel="noopener"
             >
-              <GithubIcon aria-label="github" />
+              {darkMode(mode) ? (
+                <GithubIcon aria-label="github" />
+              ) : (
+                <GithubIconRed aria-label="github" />
+              )}
             </a>
           </Segment>
         </Container>

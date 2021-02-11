@@ -5,7 +5,7 @@ import AboutMeComponent from "components/aboutMe/index"
 
 const About: React.FC = () => (
   <>
-    <SEO title="About" />
+    <SEO title="About me page" />
     <AboutMeComponent />
   </>
 )

@@ -7,8 +7,10 @@ import { Container, Divider, Grid, Header, Segment } from "semantic-ui-react"
 
 import MainTitle from "components/generic/MainTitle"
 
+import { darkMode } from "utils/darkMode"
+
 const BlogPage: React.FC = () => {
-  const { colors } = useTheme()
+  const { colors, mode } = useTheme()
   const { allContentfulBlogPost } = useStaticQuery(graphql`
     query getAllBlogs {
       allContentfulBlogPost(sort: { fields: publishedDate, order: DESC }) {
@@ -33,8 +35,12 @@ const BlogPage: React.FC = () => {
   return (
     <>
       <Container>
-        <Segment size="massive" color="black" inverted>
-          <MainTitle borderBottomWidth="80px" text="Recently blogs" />
+        <Segment
+          size="massive"
+          color={darkMode(mode) ? "black" : "grey"}
+          inverted
+        >
+          <MainTitle border="80px" text="Recently blogs" />
 
           <Grid doubling stretched style={{ paddingBottom: "2rem" }}>
             <Grid.Row centered>
@@ -50,7 +56,13 @@ const BlogPage: React.FC = () => {
                 >
                   <Segment
                     inverted
-                    style={{ border: `1px solid ${colors.red}` }}
+                    color={darkMode(mode) ? "black" : "grey"}
+                    // style={{ border: `1px solid ${colors.red}` }}
+                    style={{
+                      boxShadow: ` 0px 0px 7px 0px ${
+                        darkMode(mode) ? colors.red : "rgba(0,0,0,0.5)"
+                      }`,
+                    }}
                   >
                     <Header as="h2" size="medium" inverted>
                       {post.node.title}

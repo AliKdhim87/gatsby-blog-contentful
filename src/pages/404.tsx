@@ -1,9 +1,12 @@
 import React from "react"
 import { Link } from "gatsby"
-import styled from "styled-components"
-import { Button, Header, Icon, Segment } from "semantic-ui-react"
+import styled, { useTheme } from "styled-components"
+import { Button, Header } from "semantic-ui-react"
 
 import SEO from "components/global/SEO"
+
+import { NotFoundIcon } from "svg-icons"
+import { darkMode } from "utils/darkMode"
 
 const NotFoundPageContainer = styled.div`
   display: flex;
@@ -11,31 +14,22 @@ const NotFoundPageContainer = styled.div`
   flex-direction: column;
   align-items: center;
 `
-const NotFoundTitle = styled.h1`
-  font-size: 6rem;
-  color: ${({ theme }) => theme.colors.grey};
-`
 
 const NotFound: React.FC = () => {
+  const { mode } = useTheme()
   return (
     <>
       <SEO title="Not found" />
 
       <NotFoundPageContainer>
-        <Segment placeholder padded basic>
-          <Icon
-            name="exclamation triangle"
-            size="massive"
-            color="blue"
-            aria-label="page is not found"
-          />
-          <NotFoundTitle>404</NotFoundTitle>
-        </Segment>
-        <Header as="h2" color="grey">
-          Sorry, This page is not found.
+        <NotFoundIcon aria-label="page is not found" />
+        <Header as="h1" size="huge" color={darkMode(mode) ? "grey" : "black"}>
+          OOPS!
         </Header>
-
-        <Button as={Link} to="/" color="blue" active size="large">
+        <Header as="h4" size="medium" color={darkMode(mode) ? "grey" : "black"}>
+          Page not found
+        </Header>
+        <Button as={Link} to="/" color="red" size="large">
           Head home
         </Button>
       </NotFoundPageContainer>

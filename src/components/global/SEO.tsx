@@ -2,7 +2,6 @@ import React from "react"
 import { Helmet } from "react-helmet"
 import { graphql, useStaticQuery } from "gatsby"
 import { useLocation } from "@reach/router"
-
 interface Props {
   title: string
   lang?: string
