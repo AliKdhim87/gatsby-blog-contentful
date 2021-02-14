@@ -78,6 +78,7 @@ const HeaderComponent: React.FC = () => {
       setMobileMode(false)
     }
   }, [width])
+  console.log({ mode })
 
   const navLinks = (
     <>
