@@ -22,7 +22,7 @@ const BlogPage: React.FC = () => {
             contentful_id
             image {
               title
-              fluid(maxHeight: 700) {
+              fluid(maxHeight: 300) {
                 ...GatsbyContentfulFluid
               }
             }
@@ -57,7 +57,6 @@ const BlogPage: React.FC = () => {
                   <Segment
                     inverted
                     color={darkMode(mode) ? "black" : "grey"}
-                    // style={{ border: `1px solid ${colors.red}` }}
                     style={{
                       boxShadow: ` 0px 0px 7px 0px ${
                         darkMode(mode) ? colors.red : "rgba(0,0,0,0.5)"

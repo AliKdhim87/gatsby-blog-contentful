@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react"
 import styled, { createGlobalStyle, ThemeProvider } from "styled-components"
 import storage from "local-storage-fallback"
+import "semantic-ui-less/semantic.less"
 
 import { Container } from "semantic-ui-react"
 
@@ -68,7 +69,7 @@ const Layout: React.FC<Props> = ({ children }: Props) => {
   function getInitialTheme() {
     const savedTheme = storage.getItem("theme")
     if (!savedTheme && mql.matches) return "dark"
-    return savedTheme ? savedTheme : "light"
+    return savedTheme ? savedTheme : "dark"
   }
   useEffect(() => {
     storage.setItem("theme", mode)

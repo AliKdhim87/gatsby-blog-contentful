@@ -93,7 +93,7 @@ const HeaderComponent: React.FC = () => {
         onClick={mobileMode ? () => setMobileMode(false) : undefined}
         activeClassName={activeLink("/blog/") ? "active" : ""}
       >
-        blog
+        Blog
       </NavLink>
       <NavLink
         to="/contact/"
