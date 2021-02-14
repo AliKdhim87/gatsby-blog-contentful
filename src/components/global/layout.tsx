@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
 import styled, { createGlobalStyle, ThemeProvider } from "styled-components"
-import storage from "local-storage-fallback"
-import "semantic-ui-less/semantic.less"
+//import storage from "local-storage-fallback"
 
 import { Container } from "semantic-ui-react"
 
@@ -62,18 +61,7 @@ const Wrapper = styled.div`
 `
 
 const Layout: React.FC<Props> = ({ children }: Props) => {
-  if (typeof window == "undefined") return null
-  const mql = window.matchMedia("(prefers-color-scheme: dark)")
-
-  const [mode, setMode] = useState(getInitialTheme)
-  function getInitialTheme() {
-    const savedTheme = storage.getItem("theme")
-    if (!savedTheme && mql.matches) return "dark"
-    return savedTheme ? savedTheme : "dark"
-  }
-  useEffect(() => {
-    storage.setItem("theme", mode)
-  }, [mode])
+  const [mode, setMode] = useState("dark")
 
   return (
     <ThemeProvider

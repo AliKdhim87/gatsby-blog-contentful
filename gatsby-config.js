@@ -20,14 +20,7 @@ module.exports = {
         head: true,
       },
     },
-    {
-      resolve: "gatsby-plugin-web-font-loader",
-      options: {
-        google: {
-          families: ["Lato", "Arial,Helvetica", "Helvetica Neue", "sans-serif"],
-        },
-      },
-    },
+    `gatsby-plugin-preload-fonts`,
     `gatsby-plugin-scss-typescript`,
     `gatsby-plugin-styled-components`,
     `gatsby-plugin-sharp`,

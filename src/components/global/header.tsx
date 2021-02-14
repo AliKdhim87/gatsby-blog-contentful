@@ -66,7 +66,7 @@ const NavLinksContainer = styled.div`
 `
 
 const HeaderComponent: React.FC = () => {
-  const { setMode, mode } = useTheme()
+  const { mode } = useTheme()
   const { pathname } = useLocation()
   const [mobileMode, setMobileMode] = useState<boolean>(false)
   const [width, setWidth] = useState<number>(0)
@@ -109,14 +109,14 @@ const HeaderComponent: React.FC = () => {
       >
         About
       </NavLink>
-      <Icon
+      {/* <Icon
         style={{ display: "inline-block" }}
         link
         name={darkMode(mode) ? "moon" : "sun"}
         size="large"
         color={darkMode(mode) ? "grey" : "red"}
         onClick={() => setMode(darkMode(mode) ? "light" : "dark")}
-      />
+      /> */}
     </>
   )
 
