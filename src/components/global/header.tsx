@@ -1,42 +1,32 @@
-import React, { useState, useEffect } from "react"
-import { useLocation } from "@reach/router"
-import { Link } from "gatsby"
-import styled, { useTheme } from "styled-components"
+import React, {useState, useEffect} from 'react'
+import {useLocation} from '@reach/router'
+import {Link} from 'gatsby'
+import styled, {useTheme} from 'styled-components'
 
-import {
-  Icon,
-  Sidebar,
-  Visibility,
-  Container,
-  Segment,
-  Grid,
-  Header,
-} from "semantic-ui-react"
+import {Icon, Sidebar, Visibility, Container, Segment, Grid, Header} from 'semantic-ui-react'
 
-import { Logo, LogoLight } from "svg-icons"
+import {Logo, LogoLight} from 'svg-icons'
 
-import { darkMode } from "utils/darkMode"
+import {darkMode} from 'utils/darkMode'
 
 const NavLink = styled(Link)`
-  color: ${({ theme }) =>
-    darkMode(theme.mode) ? theme.colors.grey : theme.colors.black};
+  color: ${({theme}) => (darkMode(theme.mode) ? theme.colors.grey : theme.colors.black)};
   padding: 2px;
   position: relative;
   transition: 250ms ease-in;
   font-size: 18px;
   &:hover {
-    color: ${({ theme }) =>
+    color: ${({theme}) =>
       darkMode(theme.mode) ? theme.colors.orange : theme.colors.red} !important;
   }
   &::after {
-    content: "";
+    content: '';
     position: absolute;
     width: 100%;
     right: 0;
     bottom: -4px;
     height: 4px;
-    background: ${({ theme }) =>
-      darkMode(theme.mode) ? theme.colors.orange : theme.colors.red};
+    background: ${({theme}) => (darkMode(theme.mode) ? theme.colors.orange : theme.colors.red)};
     transition: transform 250ms ease-in;
     transform: scaleX(0);
     transform-origin: left;
@@ -47,10 +37,9 @@ const NavLink = styled(Link)`
   }
   &.active {
     position: relative;
-    color: ${({ theme }) =>
-      darkMode(theme.mode) ? theme.colors.orange : theme.colors.red};
+    color: ${({theme}) => (darkMode(theme.mode) ? theme.colors.orange : theme.colors.red)};
   }
-  @media (max-width: ${({ theme }) => theme.breakpoint.mobile}) {
+  @media (max-width: ${({theme}) => theme.breakpoint.mobile}) {
     margin-bottom: 2.5rem;
   }
 `
@@ -58,7 +47,7 @@ const NavLinksContainer = styled.div`
   display: flex;
   justify-content: space-evenly;
   margin: 0;
-  @media (max-width: ${({ theme }) => theme.breakpoint.mobile}) {
+  @media (max-width: ${({theme}) => theme.breakpoint.mobile}) {
     margin-top: 3rem;
     flex-direction: column;
     align-items: center;
@@ -66,8 +55,8 @@ const NavLinksContainer = styled.div`
 `
 
 const HeaderComponent: React.FC = () => {
-  const { mode } = useTheme()
-  const { pathname } = useLocation()
+  const {mode} = useTheme()
+  const {pathname} = useLocation()
   const [mobileMode, setMobileMode] = useState<boolean>(false)
   const [width, setWidth] = useState<number>(0)
 
@@ -84,28 +73,28 @@ const HeaderComponent: React.FC = () => {
       <NavLink
         to="/"
         onClick={mobileMode ? () => setMobileMode(false) : undefined}
-        activeClassName={activeLink("/") ? "active" : ""}
+        className={activeLink('/') ? 'active' : ''}
       >
         Home
       </NavLink>
       <NavLink
         to="/blog/"
         onClick={mobileMode ? () => setMobileMode(false) : undefined}
-        activeClassName={activeLink("/blog/") ? "active" : ""}
+        className={activeLink('/blog/') ? 'active' : ''}
       >
         Blog
       </NavLink>
       <NavLink
         to="/contact/"
         onClick={mobileMode ? () => setMobileMode(false) : undefined}
-        activeClassName={activeLink("/contact/") ? "active" : ""}
+        className={activeLink('/contact/') ? 'active' : ''}
       >
         Contact
       </NavLink>
       <NavLink
         to="/about/"
         onClick={mobileMode ? () => setMobileMode(false) : undefined}
-        activeClassName={activeLink("/about/") ? "active" : ""}
+        className={activeLink('/about/') ? 'active' : ''}
       >
         About
       </NavLink>
@@ -125,14 +114,9 @@ const HeaderComponent: React.FC = () => {
       onUpdate={(_, data) => setWidth(data.calculations.width)}
       fireOnMount
       as="header"
-      style={{ marginBottom: "1rem" }}
+      style={{marginBottom: '1rem'}}
     >
-      <Segment
-        inverted
-        color={darkMode(mode) ? "black" : "grey"}
-        size="small"
-        as="nav"
-      >
+      <Segment inverted color={darkMode(mode) ? 'black' : 'grey'} size="small" as="nav">
         <Container>
           <Grid>
             <Grid.Row>
@@ -143,12 +127,7 @@ const HeaderComponent: React.FC = () => {
                   <LogoLight aria-label="Ali dev logo" />
                 )}
               </Grid.Column>
-              <Grid.Column
-                floated="right"
-                only="computer tablet"
-                width={10}
-                verticalAlign="middle"
-              >
+              <Grid.Column floated="right" only="computer tablet" width={10} verticalAlign="middle">
                 <NavLinksContainer>{navLinks}</NavLinksContainer>
               </Grid.Column>
               <Grid.Column
@@ -160,7 +139,7 @@ const HeaderComponent: React.FC = () => {
                 <Header size="tiny" textAlign="right">
                   <Icon
                     link
-                    name={mobileMode ? "close" : "bars"}
+                    name={mobileMode ? 'close' : 'bars'}
                     inverted
                     size="small"
                     aria-label="menu button"
@@ -173,7 +152,7 @@ const HeaderComponent: React.FC = () => {
       </Segment>
       <Sidebar
         as={Segment}
-        color={darkMode(mode) ? "black" : "grey"}
+        color={darkMode(mode) ? 'black' : 'grey'}
         animation="push"
         inverted
         onHide={() => setMobileMode(false)}

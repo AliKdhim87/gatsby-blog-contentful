@@ -1,32 +1,24 @@
-import React from "react"
-import { useForm } from "react-hook-form"
-import { yupResolver } from "@hookform/resolvers/yup"
-import * as yup from "yup"
-import { SemanticToastContainer, toast } from "react-semantic-toasts"
-import "react-semantic-toasts/styles/react-semantic-alert.css"
-import emailjs from "emailjs-com"
-import dotenv from "dotenv"
-import { useTheme } from "styled-components"
+import React from 'react'
+import {useForm} from 'react-hook-form'
+import {yupResolver} from '@hookform/resolvers/yup'
+import * as yup from 'yup'
+import {SemanticToastContainer, toast} from 'react-semantic-toasts'
+import 'react-semantic-toasts/styles/react-semantic-alert.css'
+import emailjs from 'emailjs-com'
+import dotenv from 'dotenv'
+import {useTheme} from 'styled-components'
 
 dotenv.config({
   path: `.env.${process.env.NODE_ENV}`,
 })
 
-import {
-  Button,
-  Grid,
-  Form,
-  Message,
-  Segment,
-  Icon,
-  Container,
-} from "semantic-ui-react"
+import {Button, Grid, Form, Message, Segment, Icon, Container} from 'semantic-ui-react'
 
-import MainTitle from "components/generic/MainTitle"
-import Label from "./Label"
+import MainTitle from 'components/generic/MainTitle'
+import Label from './Label'
 
-import { darkMode } from "utils/darkMode"
-import config from "config"
+import {darkMode} from 'utils/darkMode'
+import config from 'config'
 
 const contactFormSchema = yup.object().shape({
   email: yup.string().required().email(),
@@ -41,35 +33,36 @@ interface ContactFormTypes {
 }
 
 const Contact: React.FC = () => {
-  const { mode } = useTheme()
-  const { register, handleSubmit, errors, reset } = useForm({
+  const {mode} = useTheme()
+  const {register, handleSubmit, errors, reset} = useForm({
     resolver: yupResolver(contactFormSchema),
   })
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const onEmailFormSubmit = async (_data: ContactFormTypes, event: any) => {
     try {
       await emailjs.sendForm(
         process.env.GATSBY_EMAIL_SERVICE as string,
         process.env.GATSBY_EMAIL_TEMPLATE_ID as string,
         event.target,
-        process.env.GATSBY_EMAIL_USER_ID as string
+        process.env.GATSBY_EMAIL_USER_ID as string,
       )
       reset()
       toast({
-        type: "success",
-        icon: "envelope",
-        title: "Send email",
+        type: 'success',
+        icon: 'envelope',
+        title: 'Send email',
         description: config.success.sendEmail,
-        animation: "bounce",
+        animation: 'bounce',
         time: 5000,
       })
     } catch (error) {
       toast({
-        type: "error",
-        icon: "exclamation triangle",
-        title: "Occur error",
+        type: 'error',
+        icon: 'exclamation triangle',
+        title: 'Occur error',
         description: config.errors.generalError,
-        animation: "bounce",
+        animation: 'bounce',
         time: 5000,
       })
     }
@@ -79,10 +72,10 @@ const Contact: React.FC = () => {
     <Container text>
       <SemanticToastContainer position="top-center" />
 
-      <Grid centered style={{ margin: "2.5rem 0" }}>
+      <Grid centered style={{margin: '2.5rem 0'}}>
         <Grid.Row>
           <Grid.Column computer={12} tablet={12} mobile={16}>
-            <Segment color={darkMode(mode) ? "black" : "grey"} inverted padded>
+            <Segment color={darkMode(mode) ? 'black' : 'grey'} inverted padded>
               <Form
                 onSubmit={handleSubmit(onEmailFormSubmit)}
                 error={!!errors}
@@ -99,9 +92,7 @@ const Contact: React.FC = () => {
                     placeholder="Write your email here..."
                     autoComplete="off"
                   />
-                  {Boolean(errors.email) && (
-                    <Message error>{errors.email?.message}</Message>
-                  )}
+                  {Boolean(errors.email) && <Message error>{errors.email?.message}</Message>}
                 </Form.Field>
 
                 <Form.Field>
@@ -112,9 +103,7 @@ const Contact: React.FC = () => {
                     ref={register}
                     autoComplete="off"
                   />
-                  {Boolean(errors.subject) && (
-                    <Message error>{errors.subject?.message}</Message>
-                  )}
+                  {Boolean(errors.subject) && <Message error>{errors.subject?.message}</Message>}
                 </Form.Field>
                 <Form.Field>
                   <Label text="Message" htmlForm="Message" />
@@ -124,9 +113,7 @@ const Contact: React.FC = () => {
                     ref={register}
                     rows={4}
                   />
-                  {Boolean(errors.message) && (
-                    <Message error>{errors.message?.message}</Message>
-                  )}
+                  {Boolean(errors.message) && <Message error>{errors.message?.message}</Message>}
                 </Form.Field>
                 <Button
                   animated="vertical"
@@ -134,9 +121,7 @@ const Contact: React.FC = () => {
                   fluid
                   type="submit"
                   disabled={
-                    Boolean(errors.email) &&
-                    Boolean(errors.subject) &&
-                    Boolean(errors.message)
+                    Boolean(errors.email) && Boolean(errors.subject) && Boolean(errors.message)
                   }
                 >
                   <Icon name="send" size="large" aria-label="send" />

@@ -1,14 +1,14 @@
-import React from "react"
-import Particles from "react-particles-js"
-import { useTheme } from "styled-components"
+import React from 'react'
+import Particles from 'react-particles-js'
+import {useTheme} from 'styled-components'
 
-import { darkMode } from "utils/darkMode"
+import {darkMode} from 'utils/darkMode'
 
 const ParticlesBackground: React.FC = () => {
-  const { mode, colors } = useTheme()
+  const {mode, colors} = useTheme()
   return (
     <Particles
-      style={{ position: "absolute", width: "100%", height: "100%" }}
+      style={{position: 'absolute', width: '100%', height: '100%'}}
       params={{
         background: {
           color: darkMode(mode) ? colors.black : colors.white,
@@ -37,19 +37,19 @@ const ParticlesBackground: React.FC = () => {
           move: {
             random: true,
             speed: 1,
-            direction: "top",
-            out_mode: "out",
+            direction: 'top',
+            out_mode: 'out',
           },
         },
         interactivity: {
           events: {
             onhover: {
               enable: true,
-              mode: "bubble",
+              mode: 'bubble',
             },
             onclick: {
               enable: true,
-              mode: "repulse",
+              mode: 'repulse',
             },
           },
           modes: {

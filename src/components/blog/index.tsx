@@ -1,19 +1,20 @@
-import React from "react"
-import { graphql, useStaticQuery, Link } from "gatsby"
-import Img from "gatsby-image"
-import { useTheme } from "styled-components"
+import React from 'react'
+import {graphql, useStaticQuery, Link} from 'gatsby'
+import Img, {FluidObject} from 'gatsby-image'
+import {useTheme} from 'styled-components'
 
-import { Container, Divider, Grid, Header, Segment } from "semantic-ui-react"
+import {Container, Divider, Grid, Header, Segment} from 'semantic-ui-react'
 
-import MainTitle from "components/generic/MainTitle"
+import MainTitle from 'components/generic/MainTitle'
 
-import { darkMode } from "utils/darkMode"
+import {darkMode} from 'utils/darkMode'
+import type {Query} from 'generated/graphql-types'
 
 const BlogPage: React.FC = () => {
-  const { colors, mode } = useTheme()
-  const { allContentfulBlogPost } = useStaticQuery(graphql`
+  const {colors, mode} = useTheme()
+  const {allContentfulBlogPost} = useStaticQuery<Query>(graphql`
     query getAllBlogs {
-      allContentfulBlogPost(sort: { fields: publishedDate, order: DESC }) {
+      allContentfulBlogPost(sort: {fields: publishedDate, order: DESC}) {
         edges {
           node {
             title
@@ -35,16 +36,11 @@ const BlogPage: React.FC = () => {
   return (
     <>
       <Container>
-        <Segment
-          size="massive"
-          color={darkMode(mode) ? "black" : "grey"}
-          inverted
-        >
+        <Segment size="massive" color={darkMode(mode) ? 'black' : 'grey'} inverted>
           <MainTitle border="80px" text="Recently blogs" />
-
-          <Grid doubling stretched style={{ paddingBottom: "2rem" }}>
+          <Grid doubling stretched style={{paddingBottom: '2rem'}}>
             <Grid.Row centered>
-              {allContentfulBlogPost.edges.map((post: any) => (
+              {allContentfulBlogPost.edges.map(post => (
                 <Grid.Column
                   key={post.node.slug}
                   mobile={16}
@@ -56,10 +52,10 @@ const BlogPage: React.FC = () => {
                 >
                   <Segment
                     inverted
-                    color={darkMode(mode) ? "black" : "grey"}
+                    color={darkMode(mode) ? 'black' : 'grey'}
                     style={{
                       boxShadow: ` 0px 0px 7px 0px ${
-                        darkMode(mode) ? colors.red : "rgba(0,0,0,0.5)"
+                        darkMode(mode) ? colors.red : 'rgba(0,0,0,0.5)'
                       }`,
                     }}
                   >
@@ -68,10 +64,12 @@ const BlogPage: React.FC = () => {
                     </Header>
                     <Divider />
                     <p>{post.node.publishedDate}</p>
-                    <Img
-                      fluid={post.node.image.fluid}
-                      alt={post.node.image.title}
-                    />
+                    {post.node.image?.fluid && (
+                      <Img
+                        fluid={post.node.image.fluid as FluidObject}
+                        alt={post.node.image.title as string}
+                      />
+                    )}
                   </Segment>
                 </Grid.Column>
               ))}

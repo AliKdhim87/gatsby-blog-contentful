@@ -1,11 +1,12 @@
-const path = require("path")
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const path = require('path')
 
-module.exports.createPages = async ({ graphql, actions }) => {
-  const { createPage } = actions
+module.exports.createPages = async ({graphql, actions}) => {
+  const {createPage} = actions
 
-  const blogTemplate = path.resolve("./src/templates/blog.tsx")
+  const blogTemplate = path.resolve('./src/templates/blog.tsx')
 
-  const { data, errors } = await graphql(`
+  const {data, errors} = await graphql(`
     query {
       allContentfulBlogPost {
         edges {
@@ -19,7 +20,7 @@ module.exports.createPages = async ({ graphql, actions }) => {
 
   if (errors) throw errors
 
-  data.allContentfulBlogPost.edges.forEach(({ node }) => {
+  data.allContentfulBlogPost.edges.forEach(({node}) => {
     createPage({
       component: blogTemplate,
       path: `/blog/${node.slug}`,
@@ -30,21 +31,19 @@ module.exports.createPages = async ({ graphql, actions }) => {
   })
 }
 
-exports.onCreateWebpackConfig = ({ stage, actions }) => {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+exports.onCreateWebpackConfig = ({stage, actions}) => {
   actions.setWebpackConfig({
     resolve: {
       alias: {
-        "../../theme.config$": path.join(
-          __dirname,
-          "src/semantic-ui/theme.config"
-        ),
+        '../../theme.config$': path.join(__dirname, 'src/semantic-ui/theme.config'),
       },
-      modules: [path.resolve(__dirname, "src"), "node_modules"],
+      modules: [path.resolve(__dirname, 'src'), 'node_modules'],
     },
     // this line of code because of sendGrid email package
     // https://github.com/gatsbyjs/gatsby/issues/564
     node: {
-      fs: "empty",
+      fs: 'empty',
     },
   })
 }

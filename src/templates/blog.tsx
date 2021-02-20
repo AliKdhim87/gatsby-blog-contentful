@@ -1,20 +1,21 @@
-import React from "react"
-import { graphql } from "gatsby"
-import Img from "gatsby-image"
-import ReactMarkdown from "react-markdown/with-html"
-import { useTheme } from "styled-components"
+import React from 'react'
+import {graphql} from 'gatsby'
+import Img, {FluidObject} from 'gatsby-image'
+import ReactMarkdown from 'react-markdown/with-html'
+import {useTheme} from 'styled-components'
 
-import { Container, Divider, Header, Segment } from "semantic-ui-react"
+import {Container, Divider, Header, Segment} from 'semantic-ui-react'
 
-import SEO from "components/global/SEO"
-import MainTitle from "components/generic/MainTitle"
-import CodeBlock from "components/generic/CodeBlock"
+import SEO from 'components/global/SEO'
+import MainTitle from 'components/generic/MainTitle'
+import CodeBlock from 'components/generic/CodeBlock'
 
-import { darkMode } from "utils/darkMode"
+import {darkMode} from 'utils/darkMode'
+import {QueryContentfulBlogPostArgs} from 'generated/graphql-types'
 
 export const query = graphql`
   query getPostPerPage($slug: String!) {
-    contentfulBlogPost(slug: { eq: $slug }) {
+    contentfulBlogPost(slug: {eq: $slug}) {
       title
       publishedDate(formatString: "MMMM Do, YYYY")
       slug
@@ -35,30 +36,26 @@ export const query = graphql`
 `
 
 interface Props {
-  data: any
-}
-
-const Blog: React.FC<Props> = ({
   data: {
-    contentfulBlogPost: { title, publishedDate, image, bodyContent },
-  },
-}) => {
-  const { mode } = useTheme()
+    contentfulBlogPost: QueryContentfulBlogPostArgs
+  }
+}
+const Blog: React.FC<Props> = ({data}: Props) => {
+  const {mode} = useTheme()
+  const {title, publishedDate, image, bodyContent} = data.contentfulBlogPost
   return (
     <>
       <SEO
-        title={title}
-        description={bodyContent.childMarkdownRemark.excerpt}
+        title={title as string}
+        description={bodyContent?.childMarkdownRemark?.excerpt as string}
       />
       <Container text>
-        <Segment
-          basic
-          padded
-          color={darkMode(mode) ? "black" : "grey"}
-          inverted
-        >
-          <MainTitle text={title} border="80px" />
-          <Img fluid={image.fluid} alt={image.title} />
+        <Segment basic padded color={darkMode(mode) ? 'black' : 'grey'} inverted>
+          <MainTitle text={title as string} border="80px" />
+          <Img
+            fluid={data.contentfulBlogPost.image?.fluid as FluidObject}
+            alt={image?.title as string}
+          />
           <Segment size="large" basic textAlign="center">
             <Header as="p" size="tiny" inverted>
               {publishedDate}
@@ -66,8 +63,8 @@ const Blog: React.FC<Props> = ({
           </Segment>
           <Divider />
           <ReactMarkdown
-            source={bodyContent.bodyContent}
-            renderers={{ code: CodeBlock }}
+            source={bodyContent?.bodyContent as string}
+            renderers={{code: CodeBlock}}
             allowDangerousHtml
           />
         </Segment>
