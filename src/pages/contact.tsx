@@ -1,7 +1,7 @@
-import React from "react"
+import React from 'react'
 
-import SEO from "components/global/SEO"
-import ContactComponent from "components/contact/index"
+import SEO from 'components/global/SEO'
+import ContactComponent from 'components/contact/index'
 
 const Contact: React.FC = () => {
   return (

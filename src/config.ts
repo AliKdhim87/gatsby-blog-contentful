@@ -1,10 +1,10 @@
 const messages = {
   errors: {
-    generalError: "Sorry, something went wrong.",
+    generalError: 'Sorry, something went wrong.',
   },
   success: {
-    sendEmail: "The email has been sending successfully",
+    sendEmail: 'The email has been sending successfully',
   },
 }
 
-export default { ...messages }
+export default {...messages}

@@ -1,7 +1,5 @@
-import "styled-components"
-import { theme } from "theme"
-
-declare module "styled-components" {
+import 'styled-components'
+declare module 'styled-components' {
   export interface DefaultTheme {
     setMode: React.Dispatch<React.SetStateAction<string>>
     justifyContent?: string

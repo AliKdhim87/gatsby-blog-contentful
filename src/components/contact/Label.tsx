@@ -1,15 +1,15 @@
-import React from "react"
-import { useTheme } from "styled-components"
+import React from 'react'
+import {useTheme} from 'styled-components'
 
-import { darkMode } from "utils/darkMode"
+import {darkMode} from 'utils/darkMode'
 
 interface Props {
   text: string
   htmlForm: string
 }
 
-const Label: React.FC<Props> = ({ text, htmlForm }: Props) => {
-  const { mode, colors } = useTheme()
+const Label: React.FC<Props> = ({text, htmlForm}: Props) => {
+  const {mode, colors} = useTheme()
   return (
     <label
       style={{

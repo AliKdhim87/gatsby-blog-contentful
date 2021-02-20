@@ -1,27 +1,27 @@
-import React from "react"
-import { graphql, useStaticQuery } from "gatsby"
-import Img from "gatsby-image"
-import { useTheme } from "styled-components"
+import React from 'react'
+import {graphql, useStaticQuery} from 'gatsby'
+import Img from 'gatsby-image'
+import {useTheme} from 'styled-components'
 
-import { Container, Grid, Header, List, Segment } from "semantic-ui-react"
+import {Container, Grid, Header, List, Segment} from 'semantic-ui-react'
 
-import MainTitle from "components/generic/MainTitle"
+import MainTitle from 'components/generic/MainTitle'
 
-import { darkMode } from "utils/darkMode"
+import {darkMode} from 'utils/darkMode'
 
 const AboutMeComponent: React.FC = () => {
-  const { mode } = useTheme()
+  const {mode} = useTheme()
   const {
     contentfulAsset,
     site: {
-      siteMetadata: { author },
+      siteMetadata: {author},
     },
     contentfulSkills: {
-      skillsItem: { skills1, skills2, skills3, aboutMe },
+      skillsItem: {skills1, skills2, skills3, aboutMe},
     },
   } = useStaticQuery(graphql`
     query {
-      contentfulAsset(title: { eq: "my-image-about" }) {
+      contentfulAsset(title: {eq: "my-image-about"}) {
         title
         fluid {
           ...GatsbyContentfulFluid
@@ -45,26 +45,21 @@ const AboutMeComponent: React.FC = () => {
 
   return (
     <Container>
-      <Segment padded inverted color={darkMode(mode) ? "black" : "grey"}>
+      <Segment padded inverted color={darkMode(mode) ? 'black' : 'grey'}>
         <MainTitle text="About me" border="60px" />
         <Grid>
           <Grid.Column computer={6} mobile={16}>
             <Img
               fluid={contentfulAsset.fluid}
               alt={contentfulAsset.title}
-              style={{ height: "500px" }}
+              style={{height: '500px'}}
             />
           </Grid.Column>
           <Grid.Column computer={10} mobile={16}>
             <Header as="h2" size="huge" textAlign="center" inverted>
-              I'm {author}
+              I am {author}
             </Header>
-            <Header
-              as="p"
-              size="small"
-              inverted
-              style={{ padding: "1rem 3rem", lineHeight: 1.75 }}
-            >
+            <Header as="p" size="small" inverted style={{padding: '1rem 3rem', lineHeight: 1.75}}>
               {aboutMe}
             </Header>
           </Grid.Column>

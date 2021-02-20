@@ -1,8 +1,9 @@
-import React from "react"
-import BackgroundImage, { IFluidObject } from "gatsby-background-image"
-import styled from "styled-components"
+import React from 'react'
+import BackgroundImage, {IFluidObject} from 'gatsby-background-image'
+import styled from 'styled-components'
 interface Props {
   fluid: IFluidObject | IFluidObject[]
+  children: React.ReactNode
 }
 
 const StyledBackgroundSection = styled(BackgroundImage)`
@@ -14,7 +15,7 @@ const StyledBackgroundSection = styled(BackgroundImage)`
   min-height: calc(100vh - 68.26px - 50px);
 `
 
-const Background: React.FC<Props> = ({ children, fluid }) => {
+const Background: React.FC<Props> = ({children, fluid}: Props) => {
   if (!fluid) {
     return <>Picture not found</>
   }

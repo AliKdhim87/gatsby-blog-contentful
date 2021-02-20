@@ -1,22 +1,17 @@
-import React from "react"
-import { Helmet } from "react-helmet"
-import { graphql, useStaticQuery } from "gatsby"
-import { useLocation } from "@reach/router"
+import React from 'react'
+import {Helmet} from 'react-helmet'
+import {graphql, useStaticQuery} from 'gatsby'
+import {useLocation} from '@reach/router'
 interface Props {
   title: string
   lang?: string
   description?: string
-  meta?: { name: string; content: string; property?: undefined }[]
+  meta?: {name: string; content: string; property?: undefined}[]
 }
 
-const Head: React.FC<Props> = ({
-  title,
-  lang = "en",
-  description,
-  meta = [],
-}: Props) => {
-  const { pathname } = useLocation()
-  const { site } = useStaticQuery(graphql`
+const Head: React.FC<Props> = ({title, lang = 'en', description, meta = []}: Props) => {
+  const {pathname} = useLocation()
+  const {site} = useStaticQuery(graphql`
     query {
       site {
         siteMetadata {
@@ -101,20 +96,20 @@ const Head: React.FC<Props> = ({
       ].concat(meta)}
       link={[
         {
-          rel: "canonical",
+          rel: 'canonical',
           href: currentUrl,
         },
       ]}
     >
       <script type="application/ld+json">
         {JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "Person",
-          email: "mailto:alikadhim87nl@gmail.com",
+          '@context': 'https://schema.org',
+          '@type': 'Person',
+          email: 'mailto:alikadhim87nl@gmail.com',
           image: metaImage,
-          jobTitle: "Full-stack web developer",
+          jobTitle: 'Full-stack web developer',
           name: site.siteMetadata.author,
-          telephone: "+31642544830",
+          telephone: '+31642544830',
           url: site.siteMetadata.siteUrl,
         })}
       </script>

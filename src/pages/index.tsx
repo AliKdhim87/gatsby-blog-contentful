@@ -1,7 +1,7 @@
-import React from "react"
+import React from 'react'
 
-import SEO from "components/global/SEO"
-import Home from "components/home/index"
+import SEO from 'components/global/SEO'
+import Home from 'components/home/index'
 
 const IndexPage: React.FC = () => {
   return (

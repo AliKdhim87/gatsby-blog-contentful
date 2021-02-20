@@ -1,1 +1,1 @@
-import "semantic-ui-less/semantic.less"
+require('semantic-ui-less/semantic.less')

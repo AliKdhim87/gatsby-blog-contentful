@@ -1,15 +1,23 @@
-require("dotenv").config({
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+require('dotenv').config({
   path: `.env.${process.env.NODE_ENV}`,
 })
 
 module.exports = {
+  flags: {
+    DEV_SSR: true,
+    FAST_DEV: true,
+    FAST_REFRESH: true,
+  },
   /* Your site config here */
   siteMetadata: {
-    title: "Ali Dev",
-    author: "Ali Amouri Kadhim",
-    description: ` I am a full-stack web developer. I can provide clean code and pixel perfect design. I also make website more & more interactive with web animations.`,
-    siteUrl: "https://ali-dev.com/",
-    defaultImage: "/images/pinterest_profile.png",
+    title: 'Ali Dev',
+    author: 'Ali Amouri Kadhim',
+    description: ` I am a full-stack web developer. I can provide
+    clean code and pixel perfect design. I also make website more
+     & more interactive with web animations.`,
+    siteUrl: 'https://ali-dev.com/',
+    defaultImage: '/images/pinterest_profile.png',
   },
   plugins: [
     {
@@ -43,6 +51,12 @@ module.exports = {
       resolve: `gatsby-plugin-layout`,
       options: {
         component: `${__dirname}/src/components/global/layout.tsx`,
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-generate-typings',
+      options: {
+        dest: './src/generated/graphql-types.d.ts',
       },
     },
     {
@@ -84,10 +98,10 @@ module.exports = {
            }
          }
        }`,
-        resolveSiteUrl: ({ site }) => {
+        resolveSiteUrl: ({site}) => {
           return site.siteMetadata.siteUrl
         },
-        serialize: ({ site, allSitePage }) =>
+        serialize: ({site, allSitePage}) =>
           allSitePage.nodes.map(node => {
             return {
               url: `${site.siteMetadata.siteUrl}${node.path}`,
@@ -98,13 +112,13 @@ module.exports = {
       },
     },
     {
-      resolve: "gatsby-plugin-robots-txt",
+      resolve: 'gatsby-plugin-robots-txt',
       options: {
-        policy: [{ userAgent: "*", allow: "/" }],
+        policy: [{userAgent: '*', allow: '/'}],
       },
     },
     {
-      resolve: "gatsby-plugin-react-svg",
+      resolve: 'gatsby-plugin-react-svg',
       options: {
         rule: {
           include: /svg-icons/,
