@@ -7,12 +7,13 @@ const getWidth = () =>
 
 export function useCurrentWidth(): number {
   // save current window width in the state object
-  let [width, setWidth] = useState<number>(getWidth())
+  const [width, setWidth] = useState(getWidth())
 
   // in this case useEffect will execute only once because
   // it does not have any dependencies.
   useEffect(() => {
     // timeoutId for debounce mechanism
+
     let timeoutId: NodeJS.Timeout
     const resizeListener = () => {
       // prevent execution of previous setTimeout

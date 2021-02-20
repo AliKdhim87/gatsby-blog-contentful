@@ -1,0 +1,18 @@
+import micromatch from 'micromatch'
+import prettier from 'prettier'
+
+const prettierSupportedExtensions = prettier
+  .getSupportInfo()
+  .languages.map(({extensions}) => extensions)
+  .flat()
+const addQuotes = a => `"${a}"`
+
+module.exports = allStagedFiles => {
+  const prettierFiles = micromatch(
+    allStagedFiles,
+    prettierSupportedExtensions.map(extension => `**/*${extension}`),
+  )
+  return prettierFiles.length > 0
+    ? [`prettier --write ${prettierFiles.map(addQuotes).join(' ')}`]
+    : []
+}
