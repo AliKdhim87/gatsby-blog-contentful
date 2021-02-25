@@ -1,5 +1,5 @@
-import React, {useState} from 'react'
-import styled, {createGlobalStyle, ThemeProvider} from 'styled-components'
+import React from 'react'
+import styled, {createGlobalStyle, ThemeProvider, useTheme} from 'styled-components'
 // import storage from "local-storage-fallback"
 
 import {Container} from 'semantic-ui-react'
@@ -7,9 +7,6 @@ import {Container} from 'semantic-ui-react'
 import Footer from './footer'
 import Header from './header'
 import ParticlesBackground from './ParticlesBackground'
-
-import {darkMode} from 'utils/darkMode'
-
 interface Props {
   children: React.ReactNode
 }
@@ -20,11 +17,18 @@ html{
 }
   main {
     flex:1;
-    color: ${({theme}) => theme.colors.white};
+    color: ${({theme}) => theme.textColor};
     position: relative;
   }
+  pre {
+    border: 1px solid ${({theme}) => theme.mainBgDark}
+  }
+  pre > code {
+    background: #1e1e1e
+  }
   code {
-    background-color: rgb(30, 30, 30);
+    background-color: ${({theme}) =>
+      theme.isDark ? theme.palette.darkBlack : 'rgb(250, 248, 245)'};
     border-radius: 3px;
     position: relative;
     display: inline-block;
@@ -32,24 +36,25 @@ html{
     letter-spacing: -0.5px;
     padding: 2px 6px;
     margin: 1px 0px;
-    color: ${({theme}) => (darkMode(theme.mode) ? theme.colors.orange : theme.colors.grey)};
+    color: ${({theme}) => theme.secondary};
   }
   p {
     line-height: 2;
-    color: ${({theme}) => (darkMode(theme.mode) ? theme.colors.grey : theme.colors.black)};
+    color:  ${({theme}) => theme.textColor};
      font-size: 1.1rem;
   }
   h1, h2, h3, h4, li {
-    color: ${({theme}) => (darkMode(theme.mode) ? theme.colors.grey : theme.colors.black)}; 
+    color:  ${({theme}) => theme.textColor};
   }
   img {
     width:100%;
   }
-  .inverted {
-    color:${({theme}) =>
-      darkMode(theme.mode) ? theme.colors.white : theme.colors.black} !important
-  }import ParticlesBackground from './ParticlesBackground';
-
+  .ui.segment{
+    background: ${({theme}) => theme.mainBg} !important;
+}
+.ui.header{
+  color: ${({theme}) => theme.textColor}
+}
 `
 
 const Wrapper = styled.div`
@@ -59,28 +64,10 @@ const Wrapper = styled.div`
 `
 
 const Layout: React.FC<Props> = ({children}: Props) => {
-  const [mode, setMode] = useState('dark')
+  const theme = useTheme()
 
   return (
-    <ThemeProvider
-      theme={{
-        setMode,
-        justifyContent: '',
-        mode,
-        colors: {
-          background: '#F3F4F5',
-          blue: '#0E6EB8',
-          red: '#FF546D',
-          grey: '#f8f9fa',
-          black: '#000',
-          white: '#FCFCFC',
-          orange: '#FFAA50',
-        },
-        breakpoint: {
-          mobile: '767px ',
-        },
-      }}
-    >
+    <ThemeProvider theme={theme}>
       <GlobalStyle />
       <Wrapper>
         <ParticlesBackground />

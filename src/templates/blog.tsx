@@ -10,7 +10,6 @@ import SEO from 'components/global/SEO'
 import MainTitle from 'components/generic/MainTitle'
 import CodeBlock from 'components/generic/CodeBlock'
 
-import {darkMode} from 'utils/darkMode'
 import {QueryContentfulBlogPostArgs} from 'generated/graphql-types'
 
 export const query = graphql`
@@ -41,7 +40,7 @@ interface Props {
   }
 }
 const Blog: React.FC<Props> = ({data}: Props) => {
-  const {mode} = useTheme()
+  const {isDark} = useTheme()
   const {title, publishedDate, image, bodyContent} = data.contentfulBlogPost
   return (
     <>
@@ -50,7 +49,7 @@ const Blog: React.FC<Props> = ({data}: Props) => {
         description={bodyContent?.childMarkdownRemark?.excerpt as string}
       />
       <Container text>
-        <Segment basic padded color={darkMode(mode) ? 'black' : 'grey'} inverted>
+        <Segment basic padded inverted={isDark}>
           <MainTitle text={title as string} border="80px" />
           <Img
             fluid={data.contentfulBlogPost.image?.fluid as FluidObject}

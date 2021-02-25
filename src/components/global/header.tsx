@@ -2,22 +2,20 @@ import React, {useState, useEffect} from 'react'
 import {useLocation} from '@reach/router'
 import {Link} from 'gatsby'
 import styled, {useTheme} from 'styled-components'
+import {useStyledDarkMode} from 'gatsby-styled-components-dark-mode'
 
 import {Icon, Sidebar, Visibility, Container, Segment, Grid, Header} from 'semantic-ui-react'
 
-import {Logo, LogoLight} from 'svg-icons'
-
-import {darkMode} from 'utils/darkMode'
+import {MainLogo} from 'svg-icons'
 
 const NavLink = styled(Link)`
-  color: ${({theme}) => (darkMode(theme.mode) ? theme.colors.grey : theme.colors.black)};
+  color: ${({theme}) => theme.textColor};
   padding: 2px;
   position: relative;
   transition: 250ms ease-in;
   font-size: 18px;
   &:hover {
-    color: ${({theme}) =>
-      darkMode(theme.mode) ? theme.colors.orange : theme.colors.red} !important;
+    color: ${({theme}) => theme.secondary} !important;
   }
   &::after {
     content: '';
@@ -26,7 +24,7 @@ const NavLink = styled(Link)`
     right: 0;
     bottom: -4px;
     height: 4px;
-    background: ${({theme}) => (darkMode(theme.mode) ? theme.colors.orange : theme.colors.red)};
+    background: ${({theme}) => theme.secondary};
     transition: transform 250ms ease-in;
     transform: scaleX(0);
     transform-origin: left;
@@ -37,7 +35,7 @@ const NavLink = styled(Link)`
   }
   &.active {
     position: relative;
-    color: ${({theme}) => (darkMode(theme.mode) ? theme.colors.orange : theme.colors.red)};
+    color: ${({theme}) => theme.secondary};
   }
   @media (max-width: ${({theme}) => theme.breakpoint.mobile}) {
     margin-bottom: 2.5rem;
@@ -55,7 +53,8 @@ const NavLinksContainer = styled.div`
 `
 
 const HeaderComponent: React.FC = () => {
-  const {mode} = useTheme()
+  const {isDark, textColor, secondary} = useTheme()
+  const {toggleDark} = useStyledDarkMode()
   const {pathname} = useLocation()
   const [mobileMode, setMobileMode] = useState<boolean>(false)
   const [width, setWidth] = useState<number>(0)
@@ -98,14 +97,14 @@ const HeaderComponent: React.FC = () => {
       >
         About
       </NavLink>
-      {/* <Icon
-        style={{ display: "inline-block" }}
+      <Icon
+        style={{display: 'inline-block'}}
         link
-        name={darkMode(mode) ? "moon" : "sun"}
+        name={isDark ? 'moon' : 'sun'}
         size="large"
-        color={darkMode(mode) ? "grey" : "red"}
-        onClick={() => setMode(darkMode(mode) ? "light" : "dark")}
-      /> */}
+        color={isDark ? 'grey' : 'red'}
+        onClick={() => toggleDark(!isDark)}
+      />
     </>
   )
 
@@ -116,16 +115,15 @@ const HeaderComponent: React.FC = () => {
       as="header"
       style={{marginBottom: '1rem'}}
     >
-      <Segment inverted color={darkMode(mode) ? 'black' : 'grey'} size="small" as="nav">
+      <Segment inverted={isDark} size="small" as="nav" attached={isDark}>
         <Container>
           <Grid>
             <Grid.Row>
               <Grid.Column computer={4} mobile={8} tablet={6} as={Link} to="/">
-                {darkMode(mode) ? (
-                  <Logo aria-label="Ali dev logo" />
-                ) : (
-                  <LogoLight aria-label="Ali dev logo" />
-                )}
+                <MainLogo aria-label="Ali dev logo" />{' '}
+                <Header as="span" size="large" style={{color: secondary}}>
+                  ALI DEV
+                </Header>
               </Grid.Column>
               <Grid.Column floated="right" only="computer tablet" width={10} verticalAlign="middle">
                 <NavLinksContainer>{navLinks}</NavLinksContainer>
@@ -141,6 +139,7 @@ const HeaderComponent: React.FC = () => {
                     link
                     name={mobileMode ? 'close' : 'bars'}
                     inverted
+                    style={{color: textColor}}
                     size="small"
                     aria-label="menu button"
                   />
@@ -152,9 +151,8 @@ const HeaderComponent: React.FC = () => {
       </Segment>
       <Sidebar
         as={Segment}
-        color={darkMode(mode) ? 'black' : 'grey'}
+        inverted={isDark}
         animation="push"
-        inverted
         onHide={() => setMobileMode(false)}
         visible={mobileMode}
         width="thin"
