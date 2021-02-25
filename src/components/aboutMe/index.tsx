@@ -7,10 +7,8 @@ import {Container, Grid, Header, List, Segment} from 'semantic-ui-react'
 
 import MainTitle from 'components/generic/MainTitle'
 
-import {darkMode} from 'utils/darkMode'
-
 const AboutMeComponent: React.FC = () => {
-  const {mode} = useTheme()
+  const {isDark} = useTheme()
   const {
     contentfulAsset,
     site: {
@@ -45,7 +43,7 @@ const AboutMeComponent: React.FC = () => {
 
   return (
     <Container>
-      <Segment padded inverted color={darkMode(mode) ? 'black' : 'grey'}>
+      <Segment inverted={isDark}>
         <MainTitle text="About me" border="60px" />
         <Grid>
           <Grid.Column computer={6} mobile={16}>
@@ -56,10 +54,15 @@ const AboutMeComponent: React.FC = () => {
             />
           </Grid.Column>
           <Grid.Column computer={10} mobile={16}>
-            <Header as="h2" size="huge" textAlign="center" inverted>
+            <Header as="h2" size="large" textAlign="center" inverted={isDark}>
               I am {author}
             </Header>
-            <Header as="p" size="small" inverted style={{padding: '1rem 3rem', lineHeight: 1.75}}>
+            <Header
+              as="p"
+              size="small"
+              inverted={isDark}
+              style={{padding: '1rem 3rem', lineHeight: 1.75}}
+            >
               {aboutMe}
             </Header>
           </Grid.Column>

@@ -2,20 +2,15 @@ import React from 'react'
 import Particles from 'react-particles-js'
 import {useTheme} from 'styled-components'
 
-import {darkMode} from 'utils/darkMode'
-
 const ParticlesBackground: React.FC = () => {
-  const {mode, colors} = useTheme()
+  const {mainBgDark, textColor} = useTheme()
   return (
     <Particles
-      style={{position: 'absolute', width: '100%', height: '100%'}}
+      style={{position: 'absolute', width: '100%', height: '100%', background: mainBgDark}}
       params={{
-        background: {
-          color: darkMode(mode) ? colors.black : colors.white,
-        },
         particles: {
           color: {
-            value: darkMode(mode) ? colors.white : colors.black,
+            value: textColor,
           },
           number: {
             value: 160,

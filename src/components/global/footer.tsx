@@ -2,11 +2,10 @@ import React from 'react'
 import {graphql, useStaticQuery} from 'gatsby'
 import {useTheme} from 'styled-components'
 
-import {Header, Segment} from 'semantic-ui-react'
-import {darkMode} from 'utils/darkMode'
+import {Segment, Header} from 'semantic-ui-react'
 
 const Footer: React.FC = () => {
-  const {mode} = useTheme()
+  const {isDark} = useTheme()
   const {
     site: {
       siteMetadata: {author},
@@ -26,11 +25,11 @@ const Footer: React.FC = () => {
       as="footer"
       size="large"
       textAlign="center"
-      inverted
-      color={darkMode(mode) ? 'black' : 'grey'}
       style={{marginTop: '1rem'}}
+      inverted={isDark}
+      attached={isDark}
     >
-      <Header as="p" textAlign="center" size="tiny" inverted>
+      <Header as="p" textAlign="center" size="tiny" inverted={isDark}>
         Created by {author} | ©{new Date().getFullYear()}
       </Header>
     </Segment>

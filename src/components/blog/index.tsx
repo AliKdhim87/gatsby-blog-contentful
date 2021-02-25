@@ -3,15 +3,14 @@ import {graphql, useStaticQuery, Link} from 'gatsby'
 import Img, {FluidObject} from 'gatsby-image'
 import {useTheme} from 'styled-components'
 
-import {Container, Divider, Grid, Header, Segment} from 'semantic-ui-react'
+import {Container, Divider, Grid, Segment, Header} from 'semantic-ui-react'
 
 import MainTitle from 'components/generic/MainTitle'
 
-import {darkMode} from 'utils/darkMode'
 import type {Query} from 'generated/graphql-types'
 
 const BlogPage: React.FC = () => {
-  const {colors, mode} = useTheme()
+  const {isDark, secondary} = useTheme()
   const {allContentfulBlogPost} = useStaticQuery<Query>(graphql`
     query getAllBlogs {
       allContentfulBlogPost(sort: {fields: publishedDate, order: DESC}) {
@@ -36,7 +35,7 @@ const BlogPage: React.FC = () => {
   return (
     <>
       <Container>
-        <Segment size="massive" color={darkMode(mode) ? 'black' : 'grey'} inverted>
+        <Segment size="massive" inverted={isDark}>
           <MainTitle border="80px" text="Recently blogs" />
           <Grid doubling stretched style={{paddingBottom: '2rem'}}>
             <Grid.Row centered>
@@ -51,15 +50,12 @@ const BlogPage: React.FC = () => {
                   to={post.node.slug}
                 >
                   <Segment
-                    inverted
-                    color={darkMode(mode) ? 'black' : 'grey'}
+                    inverted={isDark}
                     style={{
-                      boxShadow: ` 0px 0px 7px 0px ${
-                        darkMode(mode) ? colors.red : 'rgba(0,0,0,0.5)'
-                      }`,
+                      boxShadow: `${secondary} 0px 0px 7px 0px`,
                     }}
                   >
-                    <Header as="h2" size="medium" inverted>
+                    <Header as="h2" size="medium" inverted={isDark}>
                       {post.node.title}
                     </Header>
                     <Divider />

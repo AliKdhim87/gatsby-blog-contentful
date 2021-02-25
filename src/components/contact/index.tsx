@@ -15,10 +15,9 @@ dotenv.config({
 import {Button, Grid, Form, Message, Segment, Icon, Container} from 'semantic-ui-react'
 
 import MainTitle from 'components/generic/MainTitle'
-import Label from './Label'
-
-import {darkMode} from 'utils/darkMode'
 import config from 'config'
+
+import Label from './Label'
 
 const contactFormSchema = yup.object().shape({
   email: yup.string().required().email(),
@@ -33,7 +32,7 @@ interface ContactFormTypes {
 }
 
 const Contact: React.FC = () => {
-  const {mode} = useTheme()
+  const {isDark} = useTheme()
   const {register, handleSubmit, errors, reset} = useForm({
     resolver: yupResolver(contactFormSchema),
   })
@@ -75,7 +74,7 @@ const Contact: React.FC = () => {
       <Grid centered style={{margin: '2.5rem 0'}}>
         <Grid.Row>
           <Grid.Column computer={12} tablet={12} mobile={16}>
-            <Segment color={darkMode(mode) ? 'black' : 'grey'} inverted padded>
+            <Segment inverted={isDark} padded>
               <Form
                 onSubmit={handleSubmit(onEmailFormSubmit)}
                 error={!!errors}

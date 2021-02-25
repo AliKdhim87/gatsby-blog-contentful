@@ -4756,7 +4756,6 @@ export type SitePageFieldsEnum =
   | 'pluginCreator___pluginOptions___anonymize'
   | 'pluginCreator___pluginOptions___head'
   | 'pluginCreator___pluginOptions___respectDNT'
-  | 'pluginCreator___pluginOptions___exclude'
   | 'pluginCreator___pluginOptions___pageTransitionDelay'
   | 'pluginCreator___pluginOptions___displayName'
   | 'pluginCreator___pluginOptions___fileName'
@@ -4768,8 +4767,16 @@ export type SitePageFieldsEnum =
   | 'pluginCreator___pluginOptions___stripMetadata'
   | 'pluginCreator___pluginOptions___defaultQuality'
   | 'pluginCreator___pluginOptions___failOnError'
-  | 'pluginCreator___pluginOptions___stages'
-  | 'pluginCreator___pluginOptions___extensions'
+  | 'pluginCreator___pluginOptions___light___textColor'
+  | 'pluginCreator___pluginOptions___light___mainBg'
+  | 'pluginCreator___pluginOptions___light___secondary'
+  | 'pluginCreator___pluginOptions___light___primary'
+  | 'pluginCreator___pluginOptions___light___mainBgDark'
+  | 'pluginCreator___pluginOptions___dark___textColor'
+  | 'pluginCreator___pluginOptions___dark___mainBg'
+  | 'pluginCreator___pluginOptions___dark___secondary'
+  | 'pluginCreator___pluginOptions___dark___primary'
+  | 'pluginCreator___pluginOptions___dark___mainBgDark'
   | 'pluginCreator___pluginOptions___name'
   | 'pluginCreator___pluginOptions___short_name'
   | 'pluginCreator___pluginOptions___start_url'
@@ -4998,7 +5005,6 @@ export type SitePluginFieldsEnum =
   | 'pluginOptions___anonymize'
   | 'pluginOptions___head'
   | 'pluginOptions___respectDNT'
-  | 'pluginOptions___exclude'
   | 'pluginOptions___pageTransitionDelay'
   | 'pluginOptions___displayName'
   | 'pluginOptions___fileName'
@@ -5010,8 +5016,34 @@ export type SitePluginFieldsEnum =
   | 'pluginOptions___stripMetadata'
   | 'pluginOptions___defaultQuality'
   | 'pluginOptions___failOnError'
-  | 'pluginOptions___stages'
-  | 'pluginOptions___extensions'
+  | 'pluginOptions___light___breakpoint___mobile'
+  | 'pluginOptions___light___palette___background'
+  | 'pluginOptions___light___palette___blue'
+  | 'pluginOptions___light___palette___red'
+  | 'pluginOptions___light___palette___grey'
+  | 'pluginOptions___light___palette___black'
+  | 'pluginOptions___light___palette___white'
+  | 'pluginOptions___light___palette___orange'
+  | 'pluginOptions___light___palette___darkBlack'
+  | 'pluginOptions___light___textColor'
+  | 'pluginOptions___light___mainBg'
+  | 'pluginOptions___light___secondary'
+  | 'pluginOptions___light___primary'
+  | 'pluginOptions___light___mainBgDark'
+  | 'pluginOptions___dark___breakpoint___mobile'
+  | 'pluginOptions___dark___palette___background'
+  | 'pluginOptions___dark___palette___blue'
+  | 'pluginOptions___dark___palette___red'
+  | 'pluginOptions___dark___palette___grey'
+  | 'pluginOptions___dark___palette___black'
+  | 'pluginOptions___dark___palette___white'
+  | 'pluginOptions___dark___palette___orange'
+  | 'pluginOptions___dark___palette___darkBlack'
+  | 'pluginOptions___dark___textColor'
+  | 'pluginOptions___dark___mainBg'
+  | 'pluginOptions___dark___secondary'
+  | 'pluginOptions___dark___primary'
+  | 'pluginOptions___dark___mainBgDark'
   | 'pluginOptions___name'
   | 'pluginOptions___short_name'
   | 'pluginOptions___start_url'
@@ -5172,7 +5204,6 @@ export type SitePluginPluginOptions = {
   anonymize?: Maybe<Scalars['Boolean']>
   head?: Maybe<Scalars['Boolean']>
   respectDNT?: Maybe<Scalars['Boolean']>
-  exclude?: Maybe<Array<Maybe<Scalars['String']>>>
   pageTransitionDelay?: Maybe<Scalars['Int']>
   displayName?: Maybe<Scalars['Boolean']>
   fileName?: Maybe<Scalars['Boolean']>
@@ -5184,8 +5215,8 @@ export type SitePluginPluginOptions = {
   stripMetadata?: Maybe<Scalars['Boolean']>
   defaultQuality?: Maybe<Scalars['Int']>
   failOnError?: Maybe<Scalars['Boolean']>
-  stages?: Maybe<Array<Maybe<Scalars['String']>>>
-  extensions?: Maybe<Array<Maybe<Scalars['String']>>>
+  light?: Maybe<SitePluginPluginOptionsLight>
+  dark?: Maybe<SitePluginPluginOptionsDark>
   name?: Maybe<Scalars['String']>
   short_name?: Maybe<Scalars['String']>
   start_url?: Maybe<Scalars['String']>
@@ -5221,12 +5252,64 @@ export type SitePluginPluginOptions = {
   pathCheck?: Maybe<Scalars['Boolean']>
 }
 
+export type SitePluginPluginOptionsDark = {
+  __typename?: 'SitePluginPluginOptionsDark'
+  breakpoint?: Maybe<SitePluginPluginOptionsDarkBreakpoint>
+  palette?: Maybe<SitePluginPluginOptionsDarkPalette>
+  textColor?: Maybe<Scalars['String']>
+  mainBg?: Maybe<Scalars['String']>
+  secondary?: Maybe<Scalars['String']>
+  primary?: Maybe<Scalars['String']>
+  mainBgDark?: Maybe<Scalars['String']>
+}
+
+export type SitePluginPluginOptionsDarkBreakpoint = {
+  __typename?: 'SitePluginPluginOptionsDarkBreakpoint'
+  mobile?: Maybe<Scalars['String']>
+}
+
+export type SitePluginPluginOptionsDarkBreakpointFilterInput = {
+  mobile?: Maybe<StringQueryOperatorInput>
+}
+
+export type SitePluginPluginOptionsDarkFilterInput = {
+  breakpoint?: Maybe<SitePluginPluginOptionsDarkBreakpointFilterInput>
+  palette?: Maybe<SitePluginPluginOptionsDarkPaletteFilterInput>
+  textColor?: Maybe<StringQueryOperatorInput>
+  mainBg?: Maybe<StringQueryOperatorInput>
+  secondary?: Maybe<StringQueryOperatorInput>
+  primary?: Maybe<StringQueryOperatorInput>
+  mainBgDark?: Maybe<StringQueryOperatorInput>
+}
+
+export type SitePluginPluginOptionsDarkPalette = {
+  __typename?: 'SitePluginPluginOptionsDarkPalette'
+  background?: Maybe<Scalars['String']>
+  blue?: Maybe<Scalars['String']>
+  red?: Maybe<Scalars['String']>
+  grey?: Maybe<Scalars['String']>
+  black?: Maybe<Scalars['String']>
+  white?: Maybe<Scalars['String']>
+  orange?: Maybe<Scalars['String']>
+  darkBlack?: Maybe<Scalars['String']>
+}
+
+export type SitePluginPluginOptionsDarkPaletteFilterInput = {
+  background?: Maybe<StringQueryOperatorInput>
+  blue?: Maybe<StringQueryOperatorInput>
+  red?: Maybe<StringQueryOperatorInput>
+  grey?: Maybe<StringQueryOperatorInput>
+  black?: Maybe<StringQueryOperatorInput>
+  white?: Maybe<StringQueryOperatorInput>
+  orange?: Maybe<StringQueryOperatorInput>
+  darkBlack?: Maybe<StringQueryOperatorInput>
+}
+
 export type SitePluginPluginOptionsFilterInput = {
   trackingId?: Maybe<StringQueryOperatorInput>
   anonymize?: Maybe<BooleanQueryOperatorInput>
   head?: Maybe<BooleanQueryOperatorInput>
   respectDNT?: Maybe<BooleanQueryOperatorInput>
-  exclude?: Maybe<StringQueryOperatorInput>
   pageTransitionDelay?: Maybe<IntQueryOperatorInput>
   displayName?: Maybe<BooleanQueryOperatorInput>
   fileName?: Maybe<BooleanQueryOperatorInput>
@@ -5238,8 +5321,8 @@ export type SitePluginPluginOptionsFilterInput = {
   stripMetadata?: Maybe<BooleanQueryOperatorInput>
   defaultQuality?: Maybe<IntQueryOperatorInput>
   failOnError?: Maybe<BooleanQueryOperatorInput>
-  stages?: Maybe<StringQueryOperatorInput>
-  extensions?: Maybe<StringQueryOperatorInput>
+  light?: Maybe<SitePluginPluginOptionsLightFilterInput>
+  dark?: Maybe<SitePluginPluginOptionsDarkFilterInput>
   name?: Maybe<StringQueryOperatorInput>
   short_name?: Maybe<StringQueryOperatorInput>
   start_url?: Maybe<StringQueryOperatorInput>
@@ -5273,6 +5356,59 @@ export type SitePluginPluginOptionsFilterInput = {
   createLinkInHead?: Maybe<BooleanQueryOperatorInput>
   policy?: Maybe<SitePluginPluginOptionsPolicyFilterListInput>
   pathCheck?: Maybe<BooleanQueryOperatorInput>
+}
+
+export type SitePluginPluginOptionsLight = {
+  __typename?: 'SitePluginPluginOptionsLight'
+  breakpoint?: Maybe<SitePluginPluginOptionsLightBreakpoint>
+  palette?: Maybe<SitePluginPluginOptionsLightPalette>
+  textColor?: Maybe<Scalars['String']>
+  mainBg?: Maybe<Scalars['String']>
+  secondary?: Maybe<Scalars['String']>
+  primary?: Maybe<Scalars['String']>
+  mainBgDark?: Maybe<Scalars['String']>
+}
+
+export type SitePluginPluginOptionsLightBreakpoint = {
+  __typename?: 'SitePluginPluginOptionsLightBreakpoint'
+  mobile?: Maybe<Scalars['String']>
+}
+
+export type SitePluginPluginOptionsLightBreakpointFilterInput = {
+  mobile?: Maybe<StringQueryOperatorInput>
+}
+
+export type SitePluginPluginOptionsLightFilterInput = {
+  breakpoint?: Maybe<SitePluginPluginOptionsLightBreakpointFilterInput>
+  palette?: Maybe<SitePluginPluginOptionsLightPaletteFilterInput>
+  textColor?: Maybe<StringQueryOperatorInput>
+  mainBg?: Maybe<StringQueryOperatorInput>
+  secondary?: Maybe<StringQueryOperatorInput>
+  primary?: Maybe<StringQueryOperatorInput>
+  mainBgDark?: Maybe<StringQueryOperatorInput>
+}
+
+export type SitePluginPluginOptionsLightPalette = {
+  __typename?: 'SitePluginPluginOptionsLightPalette'
+  background?: Maybe<Scalars['String']>
+  blue?: Maybe<Scalars['String']>
+  red?: Maybe<Scalars['String']>
+  grey?: Maybe<Scalars['String']>
+  black?: Maybe<Scalars['String']>
+  white?: Maybe<Scalars['String']>
+  orange?: Maybe<Scalars['String']>
+  darkBlack?: Maybe<Scalars['String']>
+}
+
+export type SitePluginPluginOptionsLightPaletteFilterInput = {
+  background?: Maybe<StringQueryOperatorInput>
+  blue?: Maybe<StringQueryOperatorInput>
+  red?: Maybe<StringQueryOperatorInput>
+  grey?: Maybe<StringQueryOperatorInput>
+  black?: Maybe<StringQueryOperatorInput>
+  white?: Maybe<StringQueryOperatorInput>
+  orange?: Maybe<StringQueryOperatorInput>
+  darkBlack?: Maybe<StringQueryOperatorInput>
 }
 
 export type SitePluginPluginOptionsPolicy = {

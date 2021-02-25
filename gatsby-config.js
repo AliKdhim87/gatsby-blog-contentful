@@ -1,4 +1,5 @@
-// eslint-disable-next-line @typescript-eslint/no-var-requires
+/* eslint-disable @typescript-eslint/no-var-requires */
+require('ts-node').register({files: true})
 require('dotenv').config({
   path: `.env.${process.env.NODE_ENV}`,
 })
@@ -35,6 +36,13 @@ module.exports = {
     `gatsby-transformer-sharp`,
     `gatsby-plugin-less`,
     `gatsby-plugin-react-helmet`,
+    {
+      resolve: `gatsby-styled-components-dark-mode`,
+      options: {
+        light: require(`${__dirname}/src/theme.ts`).lightTheme,
+        dark: require(`${__dirname}/src/theme.ts`).darkTheme,
+      },
+    },
     {
       resolve: `gatsby-plugin-manifest`,
       options: {

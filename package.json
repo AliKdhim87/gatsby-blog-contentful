@@ -38,6 +38,7 @@
     "gatsby-plugin-typescript": "^2.5.0",
     "gatsby-source-contentful": "^3.0.6",
     "gatsby-source-filesystem": "^2.3.37",
+    "gatsby-styled-components-dark-mode": "^2.0.2",
     "gatsby-transformer-remark": "^2.16.0",
     "gatsby-transformer-sharp": "^2.5.21",
     "i18next": "^19.8.3",
@@ -59,10 +60,12 @@
     "yup": "^0.32.8"
   },
   "devDependencies": {
+    "@types/node": "^14.14.31",
     "@types/react-helmet": "^6.1.0",
     "@types/react-syntax-highlighter": "^13.5.0",
     "@types/react-typist": "^2.0.1",
-    "@types/styled-components": "^5.1.5",
+    "@types/semantic-ui": "^2.2.7",
+    "@types/styled-components": "^5.1.7",
     "@typescript-eslint/eslint-plugin": "^4.15.1",
     "@typescript-eslint/parser": "^4.15.1",
     "cross-env": "^7.0.2",
@@ -78,7 +81,8 @@
     "node-sass": "^4.14.1",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.2.1",
-    "typescript": "^4.1.5"
+    "typescript": "^4.1.5",
+    "typings": "^2.1.1"
   },
   "repository": {
     "type": "git",
