@@ -1,5 +1,4 @@
 import React from 'react'
-import Typist from 'react-typist'
 import {graphql, useStaticQuery} from 'gatsby'
 import Img from 'gatsby-image'
 import {useTheme} from 'styled-components'
@@ -14,8 +13,8 @@ const Home: React.FC = () => {
     query {
       contentfulAsset(title: {eq: "Home photo"}) {
         title
-        fixed(width: 200) {
-          ...GatsbyContentfulFixed
+        fluid(maxWidth: 700) {
+          ...GatsbyContentfulFluid
         }
       }
       site {
@@ -31,24 +30,22 @@ const Home: React.FC = () => {
     <>
       <HomeContainer>
         <Container text textAlign="center">
-          <Img
-            fixed={contentfulAsset.fixed}
-            style={{borderRadius: '50%', display: 'block', margin: 'auto'}}
-          />
-          <Header as="h1" size="large" style={{height: '50px'}}>
-            <Typist key={secondary}>
-              <Header as="span" style={{color: secondary}}>
-                Hi, I am{' '}
-              </Header>
-              <Header as="span" inverted={isDark}>
-                {site.siteMetadata.author}
-              </Header>
-            </Typist>
+          <div style={{width: '200px', height: '200px', margin: 'auto'}}>
+            <Img fluid={contentfulAsset.fluid} imgStyle={{borderRadius: '50%'}} />
+          </div>
+          <Header as="h1" size="large">
+            <Header as="span" style={{color: secondary}}>
+              Hi, I am{' '}
+            </Header>
+            <Header as="span" inverted={isDark}>
+              {site.siteMetadata.author}
+            </Header>
           </Header>
           <Header as="h3" size="tiny" inverted={isDark}>
             {site.siteMetadata.description}
           </Header>
-          <>
+
+          <div>
             <a
               href="https://www.linkedin.com/in/ali-amouri-kadhim-082b75189/"
               target="_blank"
@@ -65,7 +62,7 @@ const Home: React.FC = () => {
             >
               <Icon name="github square" aria-label="github" />
             </a>
-          </>
+          </div>
         </Container>
       </HomeContainer>
     </>

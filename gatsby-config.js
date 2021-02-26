@@ -36,6 +36,8 @@ module.exports = {
     `gatsby-transformer-sharp`,
     `gatsby-plugin-less`,
     `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-preact`,
+    `gatsby-plugin-lodash`,
     {
       resolve: `gatsby-styled-components-dark-mode`,
       options: {
