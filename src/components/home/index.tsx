@@ -2,6 +2,7 @@ import React from 'react'
 import {graphql, useStaticQuery} from 'gatsby'
 import Img from 'gatsby-image'
 import {useTheme} from 'styled-components'
+import {Animated} from 'react-animated-css'
 
 import {Container, Header, Icon} from 'semantic-ui-react'
 
@@ -14,7 +15,7 @@ const Home: React.FC = () => {
       contentfulAsset(title: {eq: "Home photo"}) {
         title
         fluid(maxWidth: 700) {
-          ...GatsbyContentfulFluid
+          ...GatsbyContentfulFluid_withWebp_noBase64
         }
       }
       site {
@@ -30,38 +31,77 @@ const Home: React.FC = () => {
     <>
       <HomeContainer>
         <Container text textAlign="center">
-          <div style={{width: '200px', height: '200px', margin: 'auto'}}>
+          <Animated
+            animationIn="bounceInDown"
+            animationOut="rollIn"
+            animationInDuration={1000}
+            animationOutDuration={1000}
+            isVisible
+            style={{width: '200px', height: '200px', margin: 'auto'}}
+          >
             <Img fluid={contentfulAsset.fluid} imgStyle={{borderRadius: '50%'}} />
-          </div>
+          </Animated>
           <Header as="h1" size="large">
-            <Header as="span" style={{color: secondary}}>
-              Hi, I am{' '}
-            </Header>
-            <Header as="span" inverted={isDark}>
-              {site.siteMetadata.author}
-            </Header>
+            <Animated
+              isVisible
+              animationIn="slideInRight"
+              animationOut="slideOutLeft"
+              animationInDuration={1000}
+              animationOutDuration={1000}
+            >
+              <Header as="span" style={{color: secondary}}>
+                Hi, I am{' '}
+              </Header>
+            </Animated>
+            <Animated
+              isVisible
+              animationIn="slideInLeft"
+              animationOut="slideOutRight"
+              animationInDuration={1000}
+              animationOutDuration={1000}
+            >
+              <Header as="span" inverted={isDark}>
+                {site.siteMetadata.author}
+              </Header>
+            </Animated>
           </Header>
           <Header as="h3" size="tiny" inverted={isDark}>
             {site.siteMetadata.description}
           </Header>
 
-          <div>
-            <a
-              href="https://www.linkedin.com/in/ali-amouri-kadhim-082b75189/"
-              target="_blank"
-              rel="noreferrer"
-              style={{color: secondary, fontSize: '3.5rem'}}
+          <div style={{display: 'flex', justifyContent: 'center'}}>
+            <Animated
+              isVisible
+              animationIn="slideInLeft"
+              animationOut="tada"
+              animationInDuration={1000}
+              animationOutDuration={1000}
             >
-              <Icon name="linkedin square" aria-label="linkedin" />
-            </a>
-            <a
-              href="https://github.com/AliKdhim87"
-              target="_blank"
-              rel="noreferrer"
-              style={{color: secondary, fontSize: '3.5rem'}}
+              <a
+                href="https://www.linkedin.com/in/ali-amouri-kadhim-082b75189/"
+                target="_blank"
+                rel="noreferrer"
+                style={{color: secondary, fontSize: '3.5rem'}}
+              >
+                <Icon name="linkedin square" aria-label="linkedin" />
+              </a>
+            </Animated>
+            <Animated
+              isVisible
+              animationIn="slideInRight"
+              animationOut="tada"
+              animationInDuration={1000}
+              animationOutDuration={1000}
             >
-              <Icon name="github square" aria-label="github" />
-            </a>
+              <a
+                href="https://github.com/AliKdhim87"
+                target="_blank"
+                rel="noreferrer"
+                style={{color: secondary, fontSize: '3.5rem'}}
+              >
+                <Icon name="github square" aria-label="github" />
+              </a>
+            </Animated>
           </div>
         </Container>
       </HomeContainer>

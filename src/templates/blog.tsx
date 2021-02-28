@@ -20,8 +20,8 @@ export const query = graphql`
       slug
       image {
         title
-        fluid(maxWidth: 700) {
-          ...GatsbyContentfulFluid
+        fluid(maxWidth: 600) {
+          ...GatsbyContentfulFluid_withWebp_noBase64
         }
       }
       bodyContent {
@@ -42,6 +42,7 @@ interface Props {
 const Blog: React.FC<Props> = ({data}: Props) => {
   const {isDark} = useTheme()
   const {title, publishedDate, image, bodyContent} = data.contentfulBlogPost
+
   return (
     <>
       <SEO
@@ -65,6 +66,7 @@ const Blog: React.FC<Props> = ({data}: Props) => {
             source={bodyContent?.bodyContent as string}
             renderers={{code: CodeBlock}}
             allowDangerousHtml
+            linkTarget={url => url}
           />
         </Segment>
       </Container>

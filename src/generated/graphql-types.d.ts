@@ -4752,6 +4752,12 @@ export type SitePageFieldsEnum =
   | 'pluginCreator___resolve'
   | 'pluginCreator___name'
   | 'pluginCreator___version'
+  | 'pluginCreator___pluginOptions___plugins'
+  | 'pluginCreator___pluginOptions___plugins___resolve'
+  | 'pluginCreator___pluginOptions___plugins___id'
+  | 'pluginCreator___pluginOptions___plugins___name'
+  | 'pluginCreator___pluginOptions___plugins___version'
+  | 'pluginCreator___pluginOptions___plugins___pluginFilepath'
   | 'pluginCreator___pluginOptions___trackingId'
   | 'pluginCreator___pluginOptions___anonymize'
   | 'pluginCreator___pluginOptions___head'
@@ -4767,6 +4773,7 @@ export type SitePageFieldsEnum =
   | 'pluginCreator___pluginOptions___stripMetadata'
   | 'pluginCreator___pluginOptions___defaultQuality'
   | 'pluginCreator___pluginOptions___failOnError'
+  | 'pluginCreator___pluginOptions___maxWidth'
   | 'pluginCreator___pluginOptions___light___textColor'
   | 'pluginCreator___pluginOptions___light___mainBg'
   | 'pluginCreator___pluginOptions___light___secondary'
@@ -4777,12 +4784,13 @@ export type SitePageFieldsEnum =
   | 'pluginCreator___pluginOptions___dark___secondary'
   | 'pluginCreator___pluginOptions___dark___primary'
   | 'pluginCreator___pluginOptions___dark___mainBgDark'
+  | 'pluginCreator___pluginOptions___fonts'
+  | 'pluginCreator___pluginOptions___display'
   | 'pluginCreator___pluginOptions___name'
   | 'pluginCreator___pluginOptions___short_name'
   | 'pluginCreator___pluginOptions___start_url'
   | 'pluginCreator___pluginOptions___background_color'
   | 'pluginCreator___pluginOptions___theme_color'
-  | 'pluginCreator___pluginOptions___display'
   | 'pluginCreator___pluginOptions___icon'
   | 'pluginCreator___pluginOptions___legacy'
   | 'pluginCreator___pluginOptions___theme_color_in_head'
@@ -5001,6 +5009,13 @@ export type SitePluginFieldsEnum =
   | 'resolve'
   | 'name'
   | 'version'
+  | 'pluginOptions___plugins'
+  | 'pluginOptions___plugins___resolve'
+  | 'pluginOptions___plugins___id'
+  | 'pluginOptions___plugins___name'
+  | 'pluginOptions___plugins___version'
+  | 'pluginOptions___plugins___pluginOptions___maxWidth'
+  | 'pluginOptions___plugins___pluginFilepath'
   | 'pluginOptions___trackingId'
   | 'pluginOptions___anonymize'
   | 'pluginOptions___head'
@@ -5016,6 +5031,7 @@ export type SitePluginFieldsEnum =
   | 'pluginOptions___stripMetadata'
   | 'pluginOptions___defaultQuality'
   | 'pluginOptions___failOnError'
+  | 'pluginOptions___maxWidth'
   | 'pluginOptions___light___breakpoint___mobile'
   | 'pluginOptions___light___palette___background'
   | 'pluginOptions___light___palette___blue'
@@ -5044,12 +5060,13 @@ export type SitePluginFieldsEnum =
   | 'pluginOptions___dark___secondary'
   | 'pluginOptions___dark___primary'
   | 'pluginOptions___dark___mainBgDark'
+  | 'pluginOptions___fonts'
+  | 'pluginOptions___display'
   | 'pluginOptions___name'
   | 'pluginOptions___short_name'
   | 'pluginOptions___start_url'
   | 'pluginOptions___background_color'
   | 'pluginOptions___theme_color'
-  | 'pluginOptions___display'
   | 'pluginOptions___icon'
   | 'pluginOptions___legacy'
   | 'pluginOptions___theme_color_in_head'
@@ -5200,6 +5217,7 @@ export type SitePluginPackageJsonPeerDependenciesFilterListInput = {
 
 export type SitePluginPluginOptions = {
   __typename?: 'SitePluginPluginOptions'
+  plugins?: Maybe<Array<Maybe<SitePluginPluginOptionsPlugins>>>
   trackingId?: Maybe<Scalars['String']>
   anonymize?: Maybe<Scalars['Boolean']>
   head?: Maybe<Scalars['Boolean']>
@@ -5215,14 +5233,16 @@ export type SitePluginPluginOptions = {
   stripMetadata?: Maybe<Scalars['Boolean']>
   defaultQuality?: Maybe<Scalars['Int']>
   failOnError?: Maybe<Scalars['Boolean']>
+  maxWidth?: Maybe<Scalars['Int']>
   light?: Maybe<SitePluginPluginOptionsLight>
   dark?: Maybe<SitePluginPluginOptionsDark>
+  fonts?: Maybe<Array<Maybe<Scalars['String']>>>
+  display?: Maybe<Scalars['String']>
   name?: Maybe<Scalars['String']>
   short_name?: Maybe<Scalars['String']>
   start_url?: Maybe<Scalars['String']>
   background_color?: Maybe<Scalars['String']>
   theme_color?: Maybe<Scalars['String']>
-  display?: Maybe<Scalars['String']>
   icon?: Maybe<Scalars['String']>
   legacy?: Maybe<Scalars['Boolean']>
   theme_color_in_head?: Maybe<Scalars['Boolean']>
@@ -5306,6 +5326,7 @@ export type SitePluginPluginOptionsDarkPaletteFilterInput = {
 }
 
 export type SitePluginPluginOptionsFilterInput = {
+  plugins?: Maybe<SitePluginPluginOptionsPluginsFilterListInput>
   trackingId?: Maybe<StringQueryOperatorInput>
   anonymize?: Maybe<BooleanQueryOperatorInput>
   head?: Maybe<BooleanQueryOperatorInput>
@@ -5321,14 +5342,16 @@ export type SitePluginPluginOptionsFilterInput = {
   stripMetadata?: Maybe<BooleanQueryOperatorInput>
   defaultQuality?: Maybe<IntQueryOperatorInput>
   failOnError?: Maybe<BooleanQueryOperatorInput>
+  maxWidth?: Maybe<IntQueryOperatorInput>
   light?: Maybe<SitePluginPluginOptionsLightFilterInput>
   dark?: Maybe<SitePluginPluginOptionsDarkFilterInput>
+  fonts?: Maybe<StringQueryOperatorInput>
+  display?: Maybe<StringQueryOperatorInput>
   name?: Maybe<StringQueryOperatorInput>
   short_name?: Maybe<StringQueryOperatorInput>
   start_url?: Maybe<StringQueryOperatorInput>
   background_color?: Maybe<StringQueryOperatorInput>
   theme_color?: Maybe<StringQueryOperatorInput>
-  display?: Maybe<StringQueryOperatorInput>
   icon?: Maybe<StringQueryOperatorInput>
   legacy?: Maybe<BooleanQueryOperatorInput>
   theme_color_in_head?: Maybe<BooleanQueryOperatorInput>
@@ -5409,6 +5432,38 @@ export type SitePluginPluginOptionsLightPaletteFilterInput = {
   white?: Maybe<StringQueryOperatorInput>
   orange?: Maybe<StringQueryOperatorInput>
   darkBlack?: Maybe<StringQueryOperatorInput>
+}
+
+export type SitePluginPluginOptionsPlugins = {
+  __typename?: 'SitePluginPluginOptionsPlugins'
+  resolve?: Maybe<Scalars['String']>
+  id?: Maybe<Scalars['String']>
+  name?: Maybe<Scalars['String']>
+  version?: Maybe<Scalars['String']>
+  pluginOptions?: Maybe<SitePluginPluginOptionsPluginsPluginOptions>
+  pluginFilepath?: Maybe<Scalars['String']>
+}
+
+export type SitePluginPluginOptionsPluginsFilterInput = {
+  resolve?: Maybe<StringQueryOperatorInput>
+  id?: Maybe<StringQueryOperatorInput>
+  name?: Maybe<StringQueryOperatorInput>
+  version?: Maybe<StringQueryOperatorInput>
+  pluginOptions?: Maybe<SitePluginPluginOptionsPluginsPluginOptionsFilterInput>
+  pluginFilepath?: Maybe<StringQueryOperatorInput>
+}
+
+export type SitePluginPluginOptionsPluginsFilterListInput = {
+  elemMatch?: Maybe<SitePluginPluginOptionsPluginsFilterInput>
+}
+
+export type SitePluginPluginOptionsPluginsPluginOptions = {
+  __typename?: 'SitePluginPluginOptionsPluginsPluginOptions'
+  maxWidth?: Maybe<Scalars['Int']>
+}
+
+export type SitePluginPluginOptionsPluginsPluginOptionsFilterInput = {
+  maxWidth?: Maybe<IntQueryOperatorInput>
 }
 
 export type SitePluginPluginOptionsPolicy = {

@@ -21,8 +21,8 @@ const AboutMeComponent: React.FC = () => {
     query {
       contentfulAsset(title: {eq: "my-image-about"}) {
         title
-        fluid {
-          ...GatsbyContentfulFluid
+        fluid(maxWidth: 700) {
+          ...GatsbyContentfulFluid_withWebp_noBase64
         }
       }
       contentfulSkills {

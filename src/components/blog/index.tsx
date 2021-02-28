@@ -22,8 +22,8 @@ const BlogPage: React.FC = () => {
             contentful_id
             image {
               title
-              fluid(maxHeight: 300) {
-                ...GatsbyContentfulFluid
+              fluid(maxWidth: 300) {
+                ...GatsbyContentfulFluid_withWebp_noBase64
               }
             }
           }
