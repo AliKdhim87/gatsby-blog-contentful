@@ -29,12 +29,24 @@ module.exports = {
         head: true,
       },
     },
-    `gatsby-plugin-preload-fonts`,
     `gatsby-plugin-scss-typescript`,
     `gatsby-plugin-styled-components`,
+    `gatsby-plugin-less`,
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
-    `gatsby-plugin-less`,
+    {
+      resolve: `gatsby-transformer-remark`,
+      options: {
+        plugins: [
+          {
+            resolve: `gatsby-remark-images-contentful`,
+            options: {
+              maxWidth: 590,
+            },
+          },
+        ],
+      },
+    },
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-preact`,
     `gatsby-plugin-lodash`,
@@ -43,6 +55,13 @@ module.exports = {
       options: {
         light: require(`${__dirname}/src/theme.ts`).lightTheme,
         dark: require(`${__dirname}/src/theme.ts`).darkTheme,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-google-fonts`,
+      options: {
+        fonts: [`Lato`],
+        display: 'swap',
       },
     },
     {
@@ -91,7 +110,6 @@ module.exports = {
         accessToken: process.env.GATSBY_CONTENTFUL_ACCESS_TOKEN,
       },
     },
-    `gatsby-transformer-remark`,
     {
       resolve: `gatsby-plugin-sitemap`,
       options: {
@@ -127,6 +145,7 @@ module.exports = {
         policy: [{userAgent: '*', allow: '/'}],
       },
     },
+    `gatsby-plugin-offline`,
     {
       resolve: 'gatsby-plugin-react-svg',
       options: {

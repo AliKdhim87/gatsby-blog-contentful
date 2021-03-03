@@ -3,7 +3,7 @@ import {graphql, useStaticQuery} from 'gatsby'
 import Img from 'gatsby-image'
 import {useTheme} from 'styled-components'
 
-import {Container, Grid, Header, List, Segment} from 'semantic-ui-react'
+import {Grid, Header, List, Segment} from 'semantic-ui-react'
 
 import MainTitle from 'components/generic/MainTitle'
 
@@ -21,8 +21,8 @@ const AboutMeComponent: React.FC = () => {
     query {
       contentfulAsset(title: {eq: "my-image-about"}) {
         title
-        fluid {
-          ...GatsbyContentfulFluid
+        fluid(maxWidth: 700) {
+          ...GatsbyContentfulFluid_withWebp
         }
       }
       contentfulSkills {
@@ -42,47 +42,45 @@ const AboutMeComponent: React.FC = () => {
   `)
 
   return (
-    <Container>
-      <Segment inverted={isDark}>
-        <MainTitle text="About me" border="60px" />
-        <Grid>
-          <Grid.Column computer={6} mobile={16}>
-            <Img
-              fluid={contentfulAsset.fluid}
-              alt={contentfulAsset.title}
-              style={{height: '500px'}}
-            />
+    <Segment inverted={isDark}>
+      <MainTitle text="About me" border="60px" />
+      <Grid>
+        <Grid.Column computer={6} mobile={16}>
+          <Img
+            fluid={contentfulAsset.fluid}
+            alt={contentfulAsset.title}
+            style={{height: '500px'}}
+          />
+        </Grid.Column>
+        <Grid.Column computer={10} mobile={16}>
+          <Header as="h2" size="large" textAlign="center" inverted={isDark}>
+            I am {author}
+          </Header>
+          <Header
+            as="p"
+            size="small"
+            inverted={isDark}
+            style={{padding: '1rem 3rem', lineHeight: 1.75}}
+          >
+            {aboutMe}
+          </Header>
+        </Grid.Column>
+      </Grid>
+      <MainTitle text="Skills" border="40px" />
+      <Grid container centered celled inverted>
+        <Grid.Row>
+          <Grid.Column computer={5} tablet={16} mobile={16}>
+            <List bulleted divided items={skills1} size="huge" relaxed />
           </Grid.Column>
-          <Grid.Column computer={10} mobile={16}>
-            <Header as="h2" size="large" textAlign="center" inverted={isDark}>
-              I am {author}
-            </Header>
-            <Header
-              as="p"
-              size="small"
-              inverted={isDark}
-              style={{padding: '1rem 3rem', lineHeight: 1.75}}
-            >
-              {aboutMe}
-            </Header>
+          <Grid.Column computer={5} tablet={16} mobile={16}>
+            <List bulleted divided items={skills2} size="huge" relaxed />
           </Grid.Column>
-        </Grid>
-        <MainTitle text="Skills" border="40px" />
-        <Grid container centered celled inverted>
-          <Grid.Row>
-            <Grid.Column computer={5} tablet={16} mobile={16}>
-              <List bulleted divided items={skills1} size="huge" relaxed />
-            </Grid.Column>
-            <Grid.Column computer={5} tablet={16} mobile={16}>
-              <List bulleted divided items={skills2} size="huge" relaxed />
-            </Grid.Column>
-            <Grid.Column computer={5} tablet={16} mobile={16}>
-              <List bulleted divided items={skills3} size="huge" relaxed />
-            </Grid.Column>
-          </Grid.Row>
-        </Grid>
-      </Segment>
-    </Container>
+          <Grid.Column computer={5} tablet={16} mobile={16}>
+            <List bulleted divided items={skills3} size="huge" relaxed />
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
+    </Segment>
   )
 }
 

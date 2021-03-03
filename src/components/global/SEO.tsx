@@ -99,6 +99,10 @@ const Head: React.FC<Props> = ({title, lang = 'en', description, meta = []}: Pro
           rel: 'canonical',
           href: currentUrl,
         },
+        {
+          rel: 'stylesheet',
+          href: 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css',
+        },
       ]}
     >
       <script type="application/ld+json">
