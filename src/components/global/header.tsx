@@ -115,7 +115,7 @@ const HeaderComponent: React.FC = () => {
       as="header"
       style={{marginBottom: '1rem'}}
     >
-      <Segment inverted={isDark} size="small" as="nav" attached={isDark}>
+      <Segment inverted={isDark} size="small" as="nav">
         <Container>
           <Grid>
             <Grid.Row>

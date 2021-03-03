@@ -1,6 +1,6 @@
 import React from 'react'
 import styled, {createGlobalStyle, ThemeProvider, useTheme} from 'styled-components'
-// import storage from "local-storage-fallback"
+import 'semantic-ui-less/semantic.less'
 
 import {Container} from 'semantic-ui-react'
 
@@ -61,6 +61,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  background: ${({theme}) => theme.mainBgDark};
 `
 
 const Layout: React.FC<Props> = ({children}: Props) => {

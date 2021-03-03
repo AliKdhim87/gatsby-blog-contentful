@@ -4,9 +4,15 @@ import {useTheme} from 'styled-components'
 
 const ParticlesBackground: React.FC = () => {
   const {mainBgDark, textColor} = useTheme()
+
   return (
     <Particles
-      style={{position: 'absolute', width: '100%', height: '100%', background: mainBgDark}}
+      style={{
+        position: 'absolute',
+        width: '100%',
+        height: '100%',
+        background: mainBgDark,
+      }}
       params={{
         particles: {
           color: {

@@ -27,7 +27,6 @@ const Footer: React.FC = () => {
       textAlign="center"
       style={{marginTop: '1rem'}}
       inverted={isDark}
-      attached={isDark}
     >
       <Header as="p" textAlign="center" size="tiny" inverted={isDark}>
         Created by {author} | ©{new Date().getFullYear()}
