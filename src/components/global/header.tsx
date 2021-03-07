@@ -1,12 +1,12 @@
 import React, {useState, useEffect} from 'react'
-import {useLocation} from '@reach/router'
-import {Link} from 'gatsby'
+import {Link, useStaticQuery, graphql} from 'gatsby'
 import styled, {useTheme} from 'styled-components'
 import {useStyledDarkMode} from 'gatsby-styled-components-dark-mode'
 
 import {Icon, Sidebar, Visibility, Container, Segment, Grid, Header} from 'semantic-ui-react'
 
 import {MainLogo} from 'svg-icons'
+import {activeLink} from 'utils/activeLink'
 
 const NavLink = styled(Link)`
   color: ${({theme}) => theme.textColor};
@@ -37,7 +37,7 @@ const NavLink = styled(Link)`
     position: relative;
     color: ${({theme}) => theme.secondary};
   }
-  @media (max-width: ${({theme}) => theme.breakpoint.mobile}) {
+  @media (max-width: ${({theme}) => theme.breakpoint?.mobile}) {
     margin-bottom: 2.5rem;
   }
 `
@@ -45,21 +45,64 @@ const NavLinksContainer = styled.div`
   display: flex;
   justify-content: space-evenly;
   margin: 0;
-  @media (max-width: ${({theme}) => theme.breakpoint.mobile}) {
+  @media (max-width: ${({theme}) => theme.breakpoint?.mobile}) {
     margin-top: 3rem;
     flex-direction: column;
     align-items: center;
   }
 `
 
+export const links = [
+  {name: 'Home', slug: '/'},
+  {name: 'Blog', slug: '/blog/'},
+  {name: 'Contact', slug: '/contact/'},
+  {name: 'About', slug: '/about/'},
+]
+
 const HeaderComponent: React.FC = () => {
   const {isDark, textColor, secondary} = useTheme()
   const {toggleDark} = useStyledDarkMode()
-  const {pathname} = useLocation()
-  const [mobileMode, setMobileMode] = useState<boolean>(false)
-  const [width, setWidth] = useState<number>(0)
+  const {site} = useStaticQuery(graphql`
+    query {
+      site {
+        siteMetadata {
+          title
+        }
+      }
+    }
+  `)
 
-  const activeLink = (path: string) => path === pathname
+  return (
+    <PureHeader
+      isDark={isDark as boolean}
+      links={links}
+      textColor={textColor}
+      secondary={secondary}
+      onToggleThemeMode={() => toggleDark(!isDark)}
+      brandName={site.siteMetadata.title}
+    />
+  )
+}
+
+interface Props {
+  isDark: boolean
+  secondary: string
+  textColor: string
+  onToggleThemeMode?: () => void
+  links: {name: string; slug: string}[]
+  brandName: string
+}
+
+export const PureHeader: React.FC<Props> = ({
+  isDark,
+  secondary,
+  textColor,
+  onToggleThemeMode,
+  links,
+  brandName,
+}: Props) => {
+  const [width, setWidth] = useState<number>(0)
+  const [mobileMode, setMobileMode] = useState<boolean>(false)
 
   useEffect(() => {
     if (width >= 768) {
@@ -69,41 +112,23 @@ const HeaderComponent: React.FC = () => {
 
   const navLinks = (
     <>
-      <NavLink
-        to="/"
-        onClick={mobileMode ? () => setMobileMode(false) : undefined}
-        className={activeLink('/') ? 'active' : ''}
-      >
-        Home
-      </NavLink>
-      <NavLink
-        to="/blog/"
-        onClick={mobileMode ? () => setMobileMode(false) : undefined}
-        className={activeLink('/blog/') ? 'active' : ''}
-      >
-        Blog
-      </NavLink>
-      <NavLink
-        to="/contact/"
-        onClick={mobileMode ? () => setMobileMode(false) : undefined}
-        className={activeLink('/contact/') ? 'active' : ''}
-      >
-        Contact
-      </NavLink>
-      <NavLink
-        to="/about/"
-        onClick={mobileMode ? () => setMobileMode(false) : undefined}
-        className={activeLink('/about/') ? 'active' : ''}
-      >
-        About
-      </NavLink>
+      {links.map(link => (
+        <NavLink
+          key={link.name}
+          to={link.slug}
+          onClick={mobileMode ? () => setMobileMode(false) : undefined}
+          className={activeLink(link.slug) ? 'active' : ''}
+        >
+          {link.name}
+        </NavLink>
+      ))}
       <Icon
         style={{display: 'inline-block'}}
         link
         name={isDark ? 'moon' : 'sun'}
         size="large"
         color={isDark ? 'grey' : 'red'}
-        onClick={() => toggleDark(!isDark)}
+        onClick={onToggleThemeMode}
       />
     </>
   )
@@ -122,7 +147,7 @@ const HeaderComponent: React.FC = () => {
               <Grid.Column computer={4} mobile={8} tablet={6} as={Link} to="/">
                 <MainLogo aria-label="Ali dev logo" />{' '}
                 <Header as="span" size="large" style={{color: secondary}}>
-                  ALI DEV
+                  {brandName}
                 </Header>
               </Grid.Column>
               <Grid.Column floated="right" only="computer tablet" width={10} verticalAlign="middle">
@@ -163,5 +188,4 @@ const HeaderComponent: React.FC = () => {
     </Visibility>
   )
 }
-
 export default HeaderComponent

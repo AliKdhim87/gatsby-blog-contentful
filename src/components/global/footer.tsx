@@ -4,8 +4,14 @@ import {useTheme} from 'styled-components'
 
 import {Segment, Header} from 'semantic-ui-react'
 
+interface Props {
+  author: string
+  isDark: boolean
+}
+
 const Footer: React.FC = () => {
   const {isDark} = useTheme()
+
   const {
     site: {
       siteMetadata: {author},
@@ -20,6 +26,12 @@ const Footer: React.FC = () => {
     }
   `)
 
+  return <PureFooter author={author} isDark={isDark as boolean} />
+}
+
+export default Footer
+
+export const PureFooter: React.FC<Props> = ({author, isDark}: Props) => {
   return (
     <Segment
       as="footer"
@@ -34,5 +46,3 @@ const Footer: React.FC = () => {
     </Segment>
   )
 }
-
-export default Footer

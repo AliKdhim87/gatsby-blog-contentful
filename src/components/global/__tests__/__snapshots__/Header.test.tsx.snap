@@ -1,0 +1,279 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header renders correctly and select the dark mode 1`] = `
+Array [
+  <nav
+    className="ui small inverted segment"
+  >
+    <div
+      className="ui container"
+    >
+      <div
+        className="ui grid"
+      >
+        <div
+          className="row"
+        >
+          <a
+            className="four wide computer eight wide mobile six wide tablet column"
+            href="/"
+          >
+            <test-file-stub
+              aria-label="Ali dev logo"
+            />
+             
+            <span
+              className="ui large header"
+              style={
+                Object {
+                  "color": "#FFAA50",
+                }
+              }
+            >
+              ALI DEV
+            </span>
+          </a>
+          <div
+            className="computer only tablet only right floated middle aligned ten wide column"
+          >
+            <div
+              className="sc-gsTCUz jUYWqf"
+            >
+              <a
+                className="sc-bdfBwQ hjchiG active"
+                href="/"
+              >
+                Home
+              </a>
+              <a
+                className="sc-bdfBwQ hjchiG"
+                href="/blog/"
+              >
+                Blog
+              </a>
+              <a
+                className="sc-bdfBwQ hjchiG"
+                href="/contact/"
+              >
+                Contact
+              </a>
+              <a
+                className="sc-bdfBwQ hjchiG"
+                href="/about/"
+              >
+                About
+              </a>
+              <i
+                aria-hidden="true"
+                className="grey moon large link icon"
+                onClick={[Function]}
+                style={
+                  Object {
+                    "display": "inline-block",
+                  }
+                }
+              />
+            </div>
+          </div>
+          <div
+            className="mobile only middle aligned eight wide column"
+            onClick={[Function]}
+          >
+            <div
+              className="ui tiny right aligned header"
+            >
+              <i
+                aria-label="menu button"
+                className="bars small inverted link icon"
+                onClick={[Function]}
+                style={
+                  Object {
+                    "color": "#f8f9fa",
+                  }
+                }
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>,
+  <div
+    className="sc-gsTCUz jUYWqf"
+  >
+    <a
+      className="sc-bdfBwQ hjchiG active"
+      href="/"
+    >
+      Home
+    </a>
+    <a
+      className="sc-bdfBwQ hjchiG"
+      href="/blog/"
+    >
+      Blog
+    </a>
+    <a
+      className="sc-bdfBwQ hjchiG"
+      href="/contact/"
+    >
+      Contact
+    </a>
+    <a
+      className="sc-bdfBwQ hjchiG"
+      href="/about/"
+    >
+      About
+    </a>
+    <i
+      aria-hidden="true"
+      className="grey moon large link icon"
+      onClick={[Function]}
+      style={
+        Object {
+          "display": "inline-block",
+        }
+      }
+    />
+  </div>,
+]
+`;
+
+exports[`Header renders correctly and select the light mode 1`] = `
+Array [
+  <nav
+    className="ui small segment"
+  >
+    <div
+      className="ui container"
+    >
+      <div
+        className="ui grid"
+      >
+        <div
+          className="row"
+        >
+          <a
+            className="four wide computer eight wide mobile six wide tablet column"
+            href="/"
+          >
+            <test-file-stub
+              aria-label="Ali dev logo"
+            />
+             
+            <span
+              className="ui large header"
+              style={
+                Object {
+                  "color": "#FF546D",
+                }
+              }
+            >
+              ALI DEV
+            </span>
+          </a>
+          <div
+            className="computer only tablet only right floated middle aligned ten wide column"
+          >
+            <div
+              className="sc-gsTCUz jUYWqf"
+            >
+              <a
+                className="sc-bdfBwQ hjchiG active"
+                href="/"
+              >
+                Home
+              </a>
+              <a
+                className="sc-bdfBwQ hjchiG"
+                href="/blog/"
+              >
+                Blog
+              </a>
+              <a
+                className="sc-bdfBwQ hjchiG"
+                href="/contact/"
+              >
+                Contact
+              </a>
+              <a
+                className="sc-bdfBwQ hjchiG"
+                href="/about/"
+              >
+                About
+              </a>
+              <i
+                aria-hidden="true"
+                className="red sun large link icon"
+                onClick={[Function]}
+                style={
+                  Object {
+                    "display": "inline-block",
+                  }
+                }
+              />
+            </div>
+          </div>
+          <div
+            className="mobile only middle aligned eight wide column"
+            onClick={[Function]}
+          >
+            <div
+              className="ui tiny right aligned header"
+            >
+              <i
+                aria-label="menu button"
+                className="bars small inverted link icon"
+                onClick={[Function]}
+                style={
+                  Object {
+                    "color": "#1B1C1D",
+                  }
+                }
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>,
+  <div
+    className="sc-gsTCUz jUYWqf"
+  >
+    <a
+      className="sc-bdfBwQ hjchiG active"
+      href="/"
+    >
+      Home
+    </a>
+    <a
+      className="sc-bdfBwQ hjchiG"
+      href="/blog/"
+    >
+      Blog
+    </a>
+    <a
+      className="sc-bdfBwQ hjchiG"
+      href="/contact/"
+    >
+      Contact
+    </a>
+    <a
+      className="sc-bdfBwQ hjchiG"
+      href="/about/"
+    >
+      About
+    </a>
+    <i
+      aria-hidden="true"
+      className="red sun large link icon"
+      onClick={[Function]}
+      style={
+        Object {
+          "display": "inline-block",
+        }
+      }
+    />
+  </div>,
+]
+`;
