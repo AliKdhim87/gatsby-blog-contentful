@@ -2,7 +2,7 @@
 
 exports[`Footer renders correctly and select the dark 1`] = `
 <footer
-  className="ui large inverted center aligned segment"
+  className="ui large inverted attached center aligned segment"
   style={
     Object {
       "marginTop": "1rem",
@@ -10,7 +10,12 @@ exports[`Footer renders correctly and select the dark 1`] = `
   }
 >
   <p
-    className="ui tiny inverted center aligned header"
+    className="ui tiny center aligned header"
+    style={
+      Object {
+        "color": "#f8f9fa",
+      }
+    }
   >
     Created by 
     Ali Amouri Kadhim
@@ -22,7 +27,7 @@ exports[`Footer renders correctly and select the dark 1`] = `
 
 exports[`Footer renders correctly and select the light 1`] = `
 <footer
-  className="ui large center aligned segment"
+  className="ui large inverted attached center aligned segment"
   style={
     Object {
       "marginTop": "1rem",
@@ -31,6 +36,11 @@ exports[`Footer renders correctly and select the light 1`] = `
 >
   <p
     className="ui tiny center aligned header"
+    style={
+      Object {
+        "color": "#1B1C1D",
+      }
+    }
   >
     Created by 
     Ali Amouri Kadhim

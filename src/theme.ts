@@ -9,6 +9,8 @@ export enum ColorPalette {
   white = '#FCFCFC',
   orange = '#FFAA50',
   darkBlack = '#000',
+  borderColorLight = '#d4d4d5',
+  borderColorDark = '#555',
 }
 
 const baseTheme = {
@@ -34,6 +36,7 @@ export const lightTheme: DefaultTheme = {
   secondary: ColorPalette.red,
   primary: ColorPalette.red,
   mainBgDark: ColorPalette.grey,
+  borderColor: ColorPalette.borderColorLight,
 }
 export const darkTheme: DefaultTheme = {
   ...baseTheme,
@@ -42,4 +45,5 @@ export const darkTheme: DefaultTheme = {
   secondary: ColorPalette.orange,
   primary: ColorPalette.orange,
   mainBgDark: ColorPalette.darkBlack,
+  borderColor: ColorPalette.borderColorDark,
 }

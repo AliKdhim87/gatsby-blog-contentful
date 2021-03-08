@@ -3,7 +3,7 @@
 exports[`Header renders correctly and select the dark mode 1`] = `
 Array [
   <nav
-    className="ui small inverted segment"
+    className="ui small inverted attached segment"
   >
     <div
       className="ui container"
@@ -142,7 +142,7 @@ Array [
 exports[`Header renders correctly and select the light mode 1`] = `
 Array [
   <nav
-    className="ui small segment"
+    className="ui small inverted attached segment"
   >
     <div
       className="ui container"

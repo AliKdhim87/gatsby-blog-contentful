@@ -4,6 +4,7 @@ declare module 'styled-components' {
     baseColor?: string
     isDark?: boolean
     textColor: string
+    borderColor?: string
     secondary: string
     primary: string
     mainBg: string

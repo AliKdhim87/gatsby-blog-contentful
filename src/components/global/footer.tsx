@@ -6,12 +6,11 @@ import {Segment, Header} from 'semantic-ui-react'
 
 interface Props {
   author: string
-  isDark: boolean
+  color: string
 }
 
 const Footer: React.FC = () => {
-  const {isDark} = useTheme()
-
+  const {textColor} = useTheme()
   const {
     site: {
       siteMetadata: {author},
@@ -26,21 +25,22 @@ const Footer: React.FC = () => {
     }
   `)
 
-  return <PureFooter author={author} isDark={isDark as boolean} />
+  return <PureFooter color={textColor} author={author} />
 }
 
 export default Footer
 
-export const PureFooter: React.FC<Props> = ({author, isDark}: Props) => {
+export const PureFooter: React.FC<Props> = ({author, color}: Props) => {
   return (
     <Segment
       as="footer"
       size="large"
       textAlign="center"
       style={{marginTop: '1rem'}}
-      inverted={isDark}
+      inverted
+      attached
     >
-      <Header as="p" textAlign="center" size="tiny" inverted={isDark}>
+      <Header as="p" textAlign="center" size="tiny" style={{color}}>
         Created by {author} | ©{new Date().getFullYear()}
       </Header>
     </Segment>

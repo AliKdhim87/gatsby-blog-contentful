@@ -74,7 +74,7 @@ const HeaderComponent: React.FC = () => {
 
   return (
     <PureHeader
-      isDark={isDark as boolean}
+      isDark={isDark}
       links={links}
       textColor={textColor}
       secondary={secondary}
@@ -85,7 +85,7 @@ const HeaderComponent: React.FC = () => {
 }
 
 interface Props {
-  isDark: boolean
+  isDark: boolean | undefined
   secondary: string
   textColor: string
   onToggleThemeMode?: () => void
@@ -140,7 +140,7 @@ export const PureHeader: React.FC<Props> = ({
       as="header"
       style={{marginBottom: '1rem'}}
     >
-      <Segment inverted={isDark} size="small" as="nav">
+      <Segment inverted size="small" as="nav" attached>
         <Container>
           <Grid>
             <Grid.Row>
@@ -176,7 +176,7 @@ export const PureHeader: React.FC<Props> = ({
       </Segment>
       <Sidebar
         as={Segment}
-        inverted={isDark}
+        inverted
         animation="push"
         onHide={() => setMobileMode(false)}
         visible={mobileMode}
