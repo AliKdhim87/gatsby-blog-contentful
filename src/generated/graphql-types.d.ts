@@ -3963,8 +3963,6 @@ export type QueryAllDirectoryArgs = {
 export type QuerySiteArgs = {
   buildTime?: Maybe<DateQueryOperatorInput>
   siteMetadata?: Maybe<SiteSiteMetadataFilterInput>
-  port?: Maybe<IntQueryOperatorInput>
-  host?: Maybe<StringQueryOperatorInput>
   flags?: Maybe<SiteFlagsFilterInput>
   polyfill?: Maybe<BooleanQueryOperatorInput>
   pathPrefix?: Maybe<StringQueryOperatorInput>
@@ -4225,8 +4223,6 @@ export type Site = Node & {
   __typename?: 'Site'
   buildTime?: Maybe<Scalars['Date']>
   siteMetadata?: Maybe<SiteSiteMetadata>
-  port?: Maybe<Scalars['Int']>
-  host?: Maybe<Scalars['String']>
   flags?: Maybe<SiteFlags>
   polyfill?: Maybe<Scalars['Boolean']>
   pathPrefix?: Maybe<Scalars['String']>
@@ -4432,8 +4428,6 @@ export type SiteFieldsEnum =
   | 'siteMetadata___author'
   | 'siteMetadata___siteUrl'
   | 'siteMetadata___defaultImage'
-  | 'port'
-  | 'host'
   | 'flags___DEV_SSR'
   | 'flags___FAST_DEV'
   | 'flags___FAST_REFRESH'
@@ -4529,8 +4523,6 @@ export type SiteFieldsEnum =
 export type SiteFilterInput = {
   buildTime?: Maybe<DateQueryOperatorInput>
   siteMetadata?: Maybe<SiteSiteMetadataFilterInput>
-  port?: Maybe<IntQueryOperatorInput>
-  host?: Maybe<StringQueryOperatorInput>
   flags?: Maybe<SiteFlagsFilterInput>
   polyfill?: Maybe<BooleanQueryOperatorInput>
   pathPrefix?: Maybe<StringQueryOperatorInput>
@@ -4779,11 +4771,13 @@ export type SitePageFieldsEnum =
   | 'pluginCreator___pluginOptions___light___secondary'
   | 'pluginCreator___pluginOptions___light___primary'
   | 'pluginCreator___pluginOptions___light___mainBgDark'
+  | 'pluginCreator___pluginOptions___light___borderColor'
   | 'pluginCreator___pluginOptions___dark___textColor'
   | 'pluginCreator___pluginOptions___dark___mainBg'
   | 'pluginCreator___pluginOptions___dark___secondary'
   | 'pluginCreator___pluginOptions___dark___primary'
   | 'pluginCreator___pluginOptions___dark___mainBgDark'
+  | 'pluginCreator___pluginOptions___dark___borderColor'
   | 'pluginCreator___pluginOptions___fonts'
   | 'pluginCreator___pluginOptions___display'
   | 'pluginCreator___pluginOptions___name'
@@ -5046,6 +5040,7 @@ export type SitePluginFieldsEnum =
   | 'pluginOptions___light___secondary'
   | 'pluginOptions___light___primary'
   | 'pluginOptions___light___mainBgDark'
+  | 'pluginOptions___light___borderColor'
   | 'pluginOptions___dark___breakpoint___mobile'
   | 'pluginOptions___dark___palette___background'
   | 'pluginOptions___dark___palette___blue'
@@ -5060,6 +5055,7 @@ export type SitePluginFieldsEnum =
   | 'pluginOptions___dark___secondary'
   | 'pluginOptions___dark___primary'
   | 'pluginOptions___dark___mainBgDark'
+  | 'pluginOptions___dark___borderColor'
   | 'pluginOptions___fonts'
   | 'pluginOptions___display'
   | 'pluginOptions___name'
@@ -5281,6 +5277,7 @@ export type SitePluginPluginOptionsDark = {
   secondary?: Maybe<Scalars['String']>
   primary?: Maybe<Scalars['String']>
   mainBgDark?: Maybe<Scalars['String']>
+  borderColor?: Maybe<Scalars['String']>
 }
 
 export type SitePluginPluginOptionsDarkBreakpoint = {
@@ -5300,6 +5297,7 @@ export type SitePluginPluginOptionsDarkFilterInput = {
   secondary?: Maybe<StringQueryOperatorInput>
   primary?: Maybe<StringQueryOperatorInput>
   mainBgDark?: Maybe<StringQueryOperatorInput>
+  borderColor?: Maybe<StringQueryOperatorInput>
 }
 
 export type SitePluginPluginOptionsDarkPalette = {
@@ -5390,6 +5388,7 @@ export type SitePluginPluginOptionsLight = {
   secondary?: Maybe<Scalars['String']>
   primary?: Maybe<Scalars['String']>
   mainBgDark?: Maybe<Scalars['String']>
+  borderColor?: Maybe<Scalars['String']>
 }
 
 export type SitePluginPluginOptionsLightBreakpoint = {
@@ -5409,6 +5408,7 @@ export type SitePluginPluginOptionsLightFilterInput = {
   secondary?: Maybe<StringQueryOperatorInput>
   primary?: Maybe<StringQueryOperatorInput>
   mainBgDark?: Maybe<StringQueryOperatorInput>
+  borderColor?: Maybe<StringQueryOperatorInput>
 }
 
 export type SitePluginPluginOptionsLightPalette = {

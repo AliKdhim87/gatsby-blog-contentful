@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Footer renders correctly and select the dark 1`] = `
+<footer
+  className="ui large inverted attached center aligned segment"
+  style={
+    Object {
+      "marginTop": "1rem",
+    }
+  }
+>
+  <p
+    className="ui tiny center aligned header"
+    style={
+      Object {
+        "color": "#f8f9fa",
+      }
+    }
+  >
+    Created by 
+    Ali Amouri Kadhim
+     | ©
+    2021
+  </p>
+</footer>
+`;
+
+exports[`Footer renders correctly and select the light 1`] = `
+<footer
+  className="ui large inverted attached center aligned segment"
+  style={
+    Object {
+      "marginTop": "1rem",
+    }
+  }
+>
+  <p
+    className="ui tiny center aligned header"
+    style={
+      Object {
+        "color": "#1B1C1D",
+      }
+    }
+  >
+    Created by 
+    Ali Amouri Kadhim
+     | ©
+    2021
+  </p>
+</footer>
+`;

@@ -55,6 +55,9 @@ html{
 .ui.header{
   color: ${({theme}) => theme.textColor}
 }
+.ui.attached.segment{
+  border: 1px solid ${({theme}) => theme.borderColor} !important;
+}
 `
 
 const Wrapper = styled.div`

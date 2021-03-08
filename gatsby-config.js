@@ -12,7 +12,7 @@ module.exports = {
   },
   /* Your site config here */
   siteMetadata: {
-    title: 'Ali Dev',
+    title: 'ALI DEV',
     author: 'Ali Amouri Kadhim',
     description: ` I am a full-stack web developer. I can provide
     clean code and pixel perfect design. I also make website more
