@@ -40,10 +40,5 @@ exports.onCreateWebpackConfig = ({stage, actions}) => {
       },
       modules: [path.resolve(__dirname, 'src'), 'node_modules'],
     },
-    // this line of code because of sendGrid email package
-    // https://github.com/gatsbyjs/gatsby/issues/564
-    node: {
-      fs: 'empty',
-    },
   })
 }

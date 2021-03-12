@@ -5,14 +5,9 @@ import * as yup from 'yup'
 import {SemanticToastContainer, toast} from 'react-semantic-toasts'
 import 'react-semantic-toasts/styles/react-semantic-alert.css'
 import emailjs from 'emailjs-com'
-import dotenv from 'dotenv'
-import {useTheme} from 'styled-components'
+import styled, {useTheme} from 'styled-components'
 
-dotenv.config({
-  path: `.env.${process.env.NODE_ENV}`,
-})
-
-import {Button, Grid, Form, Message, Segment, Icon, Container} from 'semantic-ui-react'
+import {Button, Grid, Form, Message, Segment, Icon} from 'semantic-ui-react'
 
 import MainTitle from 'components/generic/MainTitle'
 import config from 'config'
@@ -30,6 +25,13 @@ interface ContactFormTypes {
   subject: string
   message: string
 }
+
+const StyledGrid = styled(Grid)`
+  margin: 2.5rem 0 !important;
+  @media (max-width: ${({theme}) => theme.breakpoint?.mobile}) {
+    margin: 0 !important;
+  }
+`
 
 const Contact: React.FC = () => {
   const {isDark} = useTheme()
@@ -68,12 +70,12 @@ const Contact: React.FC = () => {
   }
 
   return (
-    <Container text>
+    <>
       <SemanticToastContainer position="top-center" />
 
-      <Grid centered style={{margin: '2.5rem 0'}}>
+      <StyledGrid centered>
         <Grid.Row>
-          <Grid.Column computer={12} tablet={12} mobile={16}>
+          <Grid.Column computer={10} tablet={12} mobile={16}>
             <Segment inverted={isDark} padded>
               <Form
                 onSubmit={handleSubmit(onEmailFormSubmit)}
@@ -84,7 +86,7 @@ const Contact: React.FC = () => {
               >
                 <MainTitle text="Get in touch" border="15%" />
                 <Form.Field>
-                  <Label text="Email" htmlForm="Email" />
+                  <Label text="Email" htmlForm="email" />
                   <input
                     name="email"
                     ref={register}
@@ -95,7 +97,7 @@ const Contact: React.FC = () => {
                 </Form.Field>
 
                 <Form.Field>
-                  <Label text="Subject" htmlForm="Subject" />
+                  <Label text="Subject" htmlForm="subject" />
                   <input
                     name="subject"
                     placeholder="Write your subject here..."
@@ -105,7 +107,7 @@ const Contact: React.FC = () => {
                   {Boolean(errors.subject) && <Message error>{errors.subject?.message}</Message>}
                 </Form.Field>
                 <Form.Field>
-                  <Label text="Message" htmlForm="Message" />
+                  <Label text="Message" htmlForm="message" />
                   <textarea
                     name="message"
                     placeholder="Write your message here..."
@@ -130,8 +132,8 @@ const Contact: React.FC = () => {
             </Segment>
           </Grid.Column>
         </Grid.Row>
-      </Grid>
-    </Container>
+      </StyledGrid>
+    </>
   )
 }
 

@@ -103,6 +103,15 @@ const Head: React.FC<Props> = ({title, lang = 'en', description, meta = []}: Pro
           rel: 'stylesheet',
           href: 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css',
         },
+        {
+          rel: 'preconnect',
+          href: 'https://fonts.gstatic.com',
+        },
+        {
+          rel: 'stylesheet',
+          href:
+            'https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap',
+        },
       ]}
     >
       <script type="application/ld+json">

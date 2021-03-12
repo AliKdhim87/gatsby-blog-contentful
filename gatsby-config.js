@@ -8,7 +8,6 @@ module.exports = {
   flags: {
     DEV_SSR: true,
     FAST_DEV: true,
-    FAST_REFRESH: true,
   },
   /* Your site config here */
   siteMetadata: {
@@ -29,7 +28,6 @@ module.exports = {
         head: true,
       },
     },
-    `gatsby-plugin-scss-typescript`,
     `gatsby-plugin-styled-components`,
     `gatsby-plugin-less`,
     `gatsby-plugin-sharp`,
@@ -44,6 +42,36 @@ module.exports = {
               maxWidth: 590,
             },
           },
+          {
+            resolve: `gatsby-transformer-remark`,
+            options: {
+              plugins: [
+                `gatsby-remark-autolink-headers`,
+                {
+                  resolve: `gatsby-remark-prismjs`,
+                  options: {
+                    classPrefix: 'language-',
+                    inlineCodeMarker: null,
+                    aliases: {
+                      sh: 'shell',
+                      es6: 'javascript',
+                      env: 'bash',
+                      mdx: 'md',
+                    },
+                    showLineNumbers: true,
+                    numberLines: true,
+                    noInlineHighlight: false,
+                    prompt: {
+                      user: 'root',
+                      host: 'localhost',
+                      global: false,
+                    },
+                    escapeEntities: {},
+                  },
+                },
+              ],
+            },
+          },
         ],
       },
     },
@@ -55,13 +83,6 @@ module.exports = {
       options: {
         light: require(`${__dirname}/src/theme.ts`).lightTheme,
         dark: require(`${__dirname}/src/theme.ts`).darkTheme,
-      },
-    },
-    {
-      resolve: `gatsby-plugin-google-fonts`,
-      options: {
-        fonts: [`Lato`],
-        display: 'swap',
       },
     },
     {
@@ -80,12 +101,6 @@ module.exports = {
       resolve: `gatsby-plugin-layout`,
       options: {
         component: `${__dirname}/src/components/global/layout.tsx`,
-      },
-    },
-    {
-      resolve: 'gatsby-plugin-generate-typings',
-      options: {
-        dest: './src/generated/graphql-types.d.ts',
       },
     },
     {
