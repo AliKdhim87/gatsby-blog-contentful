@@ -10,7 +10,7 @@ const ParticlesBackground: React.FC = () => {
       style={{
         position: 'absolute',
         width: '100%',
-        height: '100%',
+        minHeight: '100%',
         background: mainBgDark,
       }}
       params={{

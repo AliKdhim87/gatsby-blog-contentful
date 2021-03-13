@@ -65,7 +65,7 @@ const Home: React.FC = () => {
               </Header>
             </Animated>
           </Header>
-          <Header as="h3" size="tiny" inverted={isDark}>
+          <Header as="span" size="tiny" inverted={isDark}>
             {site.siteMetadata.description}
           </Header>
 

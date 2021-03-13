@@ -15,46 +15,35 @@ const GlobalStyle = createGlobalStyle`
 html{
   overflow-x: hidden;
 }
+
   main {
     flex:1;
     color: ${({theme}) => theme.textColor};
     position: relative;
   }
-  pre {
-    border: 1px solid ${({theme}) => theme.mainBgDark}
-  }
-  pre > code {
-    background: #1e1e1e
-  }
-  code {
-    background-color: ${({theme}) =>
-      theme.isDark ? theme.palette.darkBlack : 'rgb(250, 248, 245)'};
-    border-radius: 3px;
-    position: relative;
-    display: inline-block;
-    font-size: 0.9em;
-    letter-spacing: -0.5px;
-    padding: 2px 6px;
-    margin: 1px 0px;
-    color: ${({theme}) => theme.secondary};
-  }
+
   p {
     line-height: 2;
     color:  ${({theme}) => theme.textColor};
      font-size: 1.1rem;
   }
-  h1, h2, h3, h4, li {
+
+  h1, h2, h3, h4, li, p{
     color:  ${({theme}) => theme.textColor};
   }
+
   img {
     width:100%;
   }
+
   .ui.segment{
     background: ${({theme}) => theme.mainBg} !important;
 }
+
 .ui.header{
   color: ${({theme}) => theme.textColor}
 }
+
 .ui.attached.segment{
   border: 1px solid ${({theme}) => theme.borderColor} !important;
 }
