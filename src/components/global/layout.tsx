@@ -70,7 +70,7 @@ const Layout: React.FC<Props> = ({children}: Props) => {
           <Sidebar
             as={Segment}
             inverted
-            animation="scale down"
+            animation="overlay"
             onHide={() => setMobileMode(false)}
             visible={mobileMode}
             width="thin"
