@@ -1,12 +1,14 @@
-import React from 'react'
+import React, {useState} from 'react'
 import styled, {createGlobalStyle, ThemeProvider, useTheme} from 'styled-components'
 import 'semantic-ui-less/semantic.less'
 
-import {Container} from 'semantic-ui-react'
+import {Container, Sidebar, Segment} from 'semantic-ui-react'
 
+import NavLinks from './NavLinks'
 import Footer from './footer'
 import Header from './header'
 import ParticlesBackground from './ParticlesBackground'
+import {LayoutContext} from './LayoutContext'
 interface Props {
   children: React.ReactNode
 }
@@ -57,17 +59,35 @@ const Wrapper = styled.div`
 `
 
 const Layout: React.FC<Props> = ({children}: Props) => {
+  const [mobileMode, setMobileMode] = useState<boolean>(false)
   const theme = useTheme()
 
   return (
     <ThemeProvider theme={theme}>
-      <GlobalStyle />
-      <Wrapper>
-        <ParticlesBackground />
-        <Header />
-        <Container as="main">{children}</Container>
-        <Footer />
-      </Wrapper>
+      <LayoutContext.Provider value={{setMobileMode, mobileMode}}>
+        <GlobalStyle />
+        <Sidebar.Pushable as={Segment} attached>
+          <Sidebar
+            as={Segment}
+            inverted
+            animation="scale down"
+            onHide={() => setMobileMode(false)}
+            visible={mobileMode}
+            width="thin"
+            padded
+          >
+            <NavLinks />
+          </Sidebar>
+          <Sidebar.Pusher>
+            <Wrapper>
+              <ParticlesBackground />
+              <Header />
+              <Container as="main">{children}</Container>
+              <Footer />
+            </Wrapper>
+          </Sidebar.Pusher>
+        </Sidebar.Pushable>
+      </LayoutContext.Provider>
     </ThemeProvider>
   )
 }
