@@ -78,7 +78,7 @@ const Layout: React.FC<Props> = ({children}: Props) => {
           >
             <NavLinks />
           </Sidebar>
-          <Sidebar.Pusher>
+          <Sidebar.Pusher dimmed={mobileMode}>
             <Wrapper>
               <ParticlesBackground />
               <Header />
