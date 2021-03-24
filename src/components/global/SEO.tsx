@@ -7,9 +7,16 @@ interface Props {
   lang?: string
   description?: string
   meta?: {name: string; content: string; property?: undefined}[]
+  metaTagImage?: string
 }
 
-const Head: React.FC<Props> = ({title, lang = 'en', description, meta = []}: Props) => {
+const Head: React.FC<Props> = ({
+  title,
+  lang = 'en',
+  description,
+  meta = [],
+  metaTagImage,
+}: Props) => {
   const {pathname} = useLocation()
   const {site} = useStaticQuery(graphql`
     query {
@@ -25,7 +32,9 @@ const Head: React.FC<Props> = ({title, lang = 'en', description, meta = []}: Pro
     }
   `)
 
-  const metaImage = `${site.siteMetadata.siteUrl}${site.siteMetadata.defaultImage}`
+  const metaImage = `${site.siteMetadata.siteUrl}${
+    metaTagImage ? metaTagImage : site.siteMetadata.defaultImage
+  }`
   const metaDescription = description || site.siteMetadata.description
   const currentUrl = `${site.siteMetadata.siteUrl}${pathname}`
   const metaAuthor = site.siteMetadata.author
