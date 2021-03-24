@@ -7,7 +7,6 @@ import {Container, Sidebar, Segment} from 'semantic-ui-react'
 import NavLinks from './NavLinks'
 import Footer from './footer'
 import Header from './header'
-import ParticlesBackground from './ParticlesBackground'
 import {LayoutContext} from './LayoutContext'
 interface Props {
   children: React.ReactNode
@@ -80,7 +79,6 @@ const Layout: React.FC<Props> = ({children}: Props) => {
           </Sidebar>
           <Sidebar.Pusher dimmed={mobileMode}>
             <Wrapper>
-              <ParticlesBackground />
               <Header />
               <Container as="main">{children}</Container>
               <Footer />

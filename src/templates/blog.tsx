@@ -44,8 +44,8 @@ const Markdown = styled.div`
     margin: 0;
     padding: 0;
     overflow: initial;
-    float: left; /* 1 */
-    min-width: 100%; /* 2 */
+    float: left;
+    min-width: 100%;
   }
 
   & > .gatsby-highlight pre[class*='language-'].line-numbers {
@@ -76,6 +76,14 @@ const Markdown = styled.div`
   & > * a.anchor {
     fill: ${({theme}) => theme.secondary};
   }
+  & > blockquote {
+    border-left: 10px solid #ccc;
+    margin: 1.5em 10px;
+    padding: 0.5em 10px;
+  }
+  & > blockquote p {
+    display: inline;
+  }
 `
 
 const Blog: React.FC<Props> = ({data}: Props) => {
@@ -87,6 +95,7 @@ const Blog: React.FC<Props> = ({data}: Props) => {
       <SEO
         title={title as string}
         description={bodyContent?.childMarkdownRemark?.excerpt as string}
+        metaTagImage={image?.fluid?.src as string}
       />
       <Container text>
         <Segment padded inverted={isDark}>
