@@ -33,10 +33,10 @@ const BlogPage: React.FC = () => {
   `)
 
   return (
-    <Segment size="massive" inverted={isDark}>
+    <Segment size="massive" inverted={isDark} basic>
       <MainTitle border="80px" text="Recently blogs" />
       <Grid doubling stretched style={{paddingBottom: '2rem'}}>
-        <Grid.Row centered>
+        <Grid.Row>
           {allContentfulBlogPost.edges.map(post => (
             <Grid.Column
               key={post.node.slug}

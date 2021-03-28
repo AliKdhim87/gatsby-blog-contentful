@@ -53,7 +53,8 @@ const Markdown = styled.div`
   }
 
   & > .gatsby-highlight {
-    background-color: #000;
+    background-color: ${({theme}) =>
+      theme.isDark ? theme.palette.darkBlack : theme.palette.black};
     border-radius: 0.3em;
     margin: 0.5em 0;
     padding: 1em;
@@ -65,7 +66,10 @@ const Markdown = styled.div`
     padding-left: 2.8em;
     overflow: initial;
   }
-
+  & * code,
+  a {
+    word-break: break-word;
+  }
   & > * a {
     color: ${({theme}) => theme.secondary} !important;
     &:hover {
@@ -98,7 +102,7 @@ const Blog: React.FC<Props> = ({data}: Props) => {
         metaTagImage={image?.fluid?.src as string}
       />
       <Container text>
-        <Segment padded inverted={isDark}>
+        <Segment inverted={isDark} basic>
           <MainTitle text={title as string} border="80px" />
           <Img
             fluid={data.contentfulBlogPost.image?.fluid as FluidObject}

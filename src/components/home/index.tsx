@@ -31,16 +31,7 @@ const Home: React.FC = () => {
     <>
       <HomeContainer>
         <Container text textAlign="center">
-          <Animated
-            animationIn="bounceInDown"
-            animationOut="rollIn"
-            animationInDuration={1000}
-            animationOutDuration={1000}
-            isVisible
-            style={{width: '200px', height: '200px', margin: 'auto'}}
-          >
-            <Img fluid={contentfulAsset.fluid} imgStyle={{borderRadius: '50%'}} />
-          </Animated>
+          <Img fluid={contentfulAsset.fluid} style={{width: '200px', margin: 'auto'}} />
           <Header as="h1" size="large">
             <Animated
               isVisible
