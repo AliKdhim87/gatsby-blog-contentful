@@ -103,16 +103,13 @@ const Blog: React.FC<Props> = ({data}: Props) => {
     <>
       <SEO
         title={title as string}
-        description={bodyContent?.childMarkdownRemark?.excerpt as string}
-        metaTagImage={image?.fluid?.src as string}
+        description={bodyContent?.childMarkdownRemark?.excerpt}
+        metaTagImage={image?.localFile?.childImageSharp?.fluid?.src}
       />
       <Container text>
         <Segment inverted={isDark} basic>
-          <MainTitle text={title as string} border="80px" />
-          <Img
-            fluid={data.contentfulBlogPost.image?.fluid as FluidObject}
-            alt={image?.title as string}
-          />
+          <MainTitle text={title} border="80px" />
+          <Img fluid={data.contentfulBlogPost.image?.fluid as FluidObject} alt={image?.title} />
           <Segment size="large" basic textAlign="center">
             <Header as="p" size="tiny">
               {publishedDate}
