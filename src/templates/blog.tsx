@@ -8,8 +8,6 @@ import {Container, Divider, Header, Segment} from 'semantic-ui-react'
 import SEO from 'components/global/SEO'
 import MainTitle from 'components/generic/MainTitle'
 
-import {QueryContentfulBlogPostArgs} from 'generated/graphql-types'
-
 export const query = graphql`
   query getPostPerPage($slug: String!) {
     contentfulBlogPost(slug: {eq: $slug}) {
@@ -17,6 +15,13 @@ export const query = graphql`
       publishedDate(formatString: "MMMM Do, YYYY")
       slug
       image {
+        localFile {
+          childImageSharp {
+            fluid {
+              src
+            }
+          }
+        }
         title
         fluid(maxWidth: 600) {
           ...GatsbyContentfulFluid_withWebp
@@ -34,7 +39,7 @@ export const query = graphql`
 `
 interface Props {
   data: {
-    contentfulBlogPost: QueryContentfulBlogPostArgs
+    contentfulBlogPost: GatsbyTypes.ContentfulBlogPost
   }
 }
 
@@ -98,16 +103,13 @@ const Blog: React.FC<Props> = ({data}: Props) => {
     <>
       <SEO
         title={title as string}
-        description={bodyContent?.childMarkdownRemark?.excerpt as string}
-        metaTagImage={image?.fluid?.src as string}
+        description={bodyContent?.childMarkdownRemark?.excerpt}
+        metaTagImage={image?.localFile?.childImageSharp?.fluid?.src}
       />
       <Container text>
         <Segment inverted={isDark} basic>
-          <MainTitle text={title as string} border="80px" />
-          <Img
-            fluid={data.contentfulBlogPost.image?.fluid as FluidObject}
-            alt={image?.title as string}
-          />
+          <MainTitle text={title} border="80px" />
+          <Img fluid={data.contentfulBlogPost.image?.fluid as FluidObject} alt={image?.title} />
           <Segment size="large" basic textAlign="center">
             <Header as="p" size="tiny">
               {publishedDate}

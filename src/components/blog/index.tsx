@@ -7,11 +7,9 @@ import {Divider, Grid, Segment, Header} from 'semantic-ui-react'
 
 import MainTitle from 'components/generic/MainTitle'
 
-import type {Query} from 'generated/graphql-types'
-
 const BlogPage: React.FC = () => {
   const {isDark, secondary} = useTheme()
-  const {allContentfulBlogPost} = useStaticQuery<Query>(graphql`
+  const {allContentfulBlogPost} = useStaticQuery<GatsbyTypes.getAllBlogsQuery>(graphql`
     query getAllBlogs {
       allContentfulBlogPost(sort: {fields: publishedDate, order: DESC}) {
         edges {

@@ -123,6 +123,7 @@ module.exports = {
       options: {
         spaceId: process.env.GATSBY_CONTENTFUL_SPACE_ID,
         accessToken: process.env.GATSBY_CONTENTFUL_ACCESS_TOKEN,
+        downloadLocal: true,
       },
     },
     {
@@ -167,6 +168,12 @@ module.exports = {
         rule: {
           include: /svg-icons/,
         },
+      },
+    },
+    {
+      resolve: `gatsby-plugin-typegen`,
+      options: {
+        outputPath: `__generated__/gatsby-types.d.ts`,
       },
     },
   ],
