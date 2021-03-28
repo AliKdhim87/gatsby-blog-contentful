@@ -54,7 +54,6 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background: ${({theme}) => theme.mainBgDark};
 `
 
 const Layout: React.FC<Props> = ({children}: Props) => {
