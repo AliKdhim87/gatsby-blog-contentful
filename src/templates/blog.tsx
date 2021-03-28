@@ -8,8 +8,6 @@ import {Container, Divider, Header, Segment} from 'semantic-ui-react'
 import SEO from 'components/global/SEO'
 import MainTitle from 'components/generic/MainTitle'
 
-import {QueryContentfulBlogPostArgs} from 'generated/graphql-types'
-
 export const query = graphql`
   query getPostPerPage($slug: String!) {
     contentfulBlogPost(slug: {eq: $slug}) {
@@ -17,6 +15,13 @@ export const query = graphql`
       publishedDate(formatString: "MMMM Do, YYYY")
       slug
       image {
+        localFile {
+          childImageSharp {
+            fluid {
+              src
+            }
+          }
+        }
         title
         fluid(maxWidth: 600) {
           ...GatsbyContentfulFluid_withWebp
@@ -34,7 +39,7 @@ export const query = graphql`
 `
 interface Props {
   data: {
-    contentfulBlogPost: QueryContentfulBlogPostArgs
+    contentfulBlogPost: GatsbyTypes.ContentfulBlogPost
   }
 }
 
