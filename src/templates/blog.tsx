@@ -7,6 +7,7 @@ import {Container, Divider, Header, Segment} from 'semantic-ui-react'
 
 import SEO from 'components/global/SEO'
 import MainTitle from 'components/generic/MainTitle'
+import Comment from 'components/comments/ Comment'
 
 export const query = graphql`
   query getPostPerPage($slug: String!) {
@@ -98,6 +99,25 @@ const Markdown = styled.div`
 const Blog: React.FC<Props> = ({data}: Props) => {
   const {isDark} = useTheme()
   const {title, publishedDate, image, bodyContent} = data.contentfulBlogPost
+  const commentBox = React.createRef<HTMLDivElement>()
+
+  React.useEffect(() => {
+    const color = isDark ? 'dark' : 'light'
+    const script = document.createElement('script')
+    script.async = true
+    script.src = 'https://utteranc.es/client.js'
+    script.setAttribute('repo', 'AliKdhim87/ali-dev-comments')
+    script.setAttribute('issue-term', 'pathname')
+    script.setAttribute('id', 'utterances')
+    script.setAttribute('theme', `github-${color}`)
+    script.setAttribute('crossorigin', 'anonymous')
+    const node = commentBox.current
+
+    if (commentBox && node) {
+      while (node.firstChild) node.removeChild(node.lastChild as HTMLDivElement)
+      node.appendChild(script)
+    } else console.log(`Error adding utterances comments.`)
+  }, [isDark])
 
   return (
     <>
@@ -120,6 +140,7 @@ const Blog: React.FC<Props> = ({data}: Props) => {
             dangerouslySetInnerHTML={{__html: bodyContent?.childMarkdownRemark?.html as string}}
           />
         </Segment>
+        <Comment commentBox={commentBox} />
       </Container>
     </>
   )
