@@ -271,15 +271,15 @@ declare namespace GatsbyTypes {
     readonly internalComponentName: Scalars['String']
     readonly componentChunkName: Scalars['String']
     readonly matchPath: Maybe<Scalars['String']>
-    readonly isCreatedByStatefulCreatePages: Maybe<Scalars['Boolean']>
-    readonly pluginCreator: Maybe<SitePlugin>
-    readonly pluginCreatorId: Maybe<Scalars['String']>
-    readonly componentPath: Maybe<Scalars['String']>
     readonly id: Scalars['ID']
     readonly parent: Maybe<Node>
     readonly children: ReadonlyArray<Node>
     readonly internal: Internal
+    readonly isCreatedByStatefulCreatePages: Maybe<Scalars['Boolean']>
     readonly context: Maybe<SitePageContext>
+    readonly pluginCreator: Maybe<SitePlugin>
+    readonly pluginCreatorId: Maybe<Scalars['String']>
+    readonly componentPath: Maybe<Scalars['String']>
   }
 
   type SitePageContext = {
@@ -1328,15 +1328,15 @@ declare namespace GatsbyTypes {
     internalComponentName: Maybe<StringQueryOperatorInput>
     componentChunkName: Maybe<StringQueryOperatorInput>
     matchPath: Maybe<StringQueryOperatorInput>
+    id: Maybe<StringQueryOperatorInput>
+    parent: Maybe<NodeFilterInput>
+    children: Maybe<NodeFilterListInput>
+    internal: Maybe<InternalFilterInput>
     isCreatedByStatefulCreatePages: Maybe<BooleanQueryOperatorInput>
     context: Maybe<SitePageContextFilterInput>
     pluginCreator: Maybe<SitePluginFilterInput>
     pluginCreatorId: Maybe<StringQueryOperatorInput>
     componentPath: Maybe<StringQueryOperatorInput>
-    id: Maybe<StringQueryOperatorInput>
-    parent: Maybe<NodeFilterInput>
-    children: Maybe<NodeFilterListInput>
-    internal: Maybe<InternalFilterInput>
   }
 
   type Query_allSitePageArgs = {
@@ -2749,6 +2749,92 @@ declare namespace GatsbyTypes {
     | 'internalComponentName'
     | 'componentChunkName'
     | 'matchPath'
+    | 'id'
+    | 'parent.id'
+    | 'parent.parent.id'
+    | 'parent.parent.parent.id'
+    | 'parent.parent.parent.children'
+    | 'parent.parent.children'
+    | 'parent.parent.children.id'
+    | 'parent.parent.children.children'
+    | 'parent.parent.internal.content'
+    | 'parent.parent.internal.contentDigest'
+    | 'parent.parent.internal.description'
+    | 'parent.parent.internal.fieldOwners'
+    | 'parent.parent.internal.ignoreType'
+    | 'parent.parent.internal.mediaType'
+    | 'parent.parent.internal.owner'
+    | 'parent.parent.internal.type'
+    | 'parent.children'
+    | 'parent.children.id'
+    | 'parent.children.parent.id'
+    | 'parent.children.parent.children'
+    | 'parent.children.children'
+    | 'parent.children.children.id'
+    | 'parent.children.children.children'
+    | 'parent.children.internal.content'
+    | 'parent.children.internal.contentDigest'
+    | 'parent.children.internal.description'
+    | 'parent.children.internal.fieldOwners'
+    | 'parent.children.internal.ignoreType'
+    | 'parent.children.internal.mediaType'
+    | 'parent.children.internal.owner'
+    | 'parent.children.internal.type'
+    | 'parent.internal.content'
+    | 'parent.internal.contentDigest'
+    | 'parent.internal.description'
+    | 'parent.internal.fieldOwners'
+    | 'parent.internal.ignoreType'
+    | 'parent.internal.mediaType'
+    | 'parent.internal.owner'
+    | 'parent.internal.type'
+    | 'children'
+    | 'children.id'
+    | 'children.parent.id'
+    | 'children.parent.parent.id'
+    | 'children.parent.parent.children'
+    | 'children.parent.children'
+    | 'children.parent.children.id'
+    | 'children.parent.children.children'
+    | 'children.parent.internal.content'
+    | 'children.parent.internal.contentDigest'
+    | 'children.parent.internal.description'
+    | 'children.parent.internal.fieldOwners'
+    | 'children.parent.internal.ignoreType'
+    | 'children.parent.internal.mediaType'
+    | 'children.parent.internal.owner'
+    | 'children.parent.internal.type'
+    | 'children.children'
+    | 'children.children.id'
+    | 'children.children.parent.id'
+    | 'children.children.parent.children'
+    | 'children.children.children'
+    | 'children.children.children.id'
+    | 'children.children.children.children'
+    | 'children.children.internal.content'
+    | 'children.children.internal.contentDigest'
+    | 'children.children.internal.description'
+    | 'children.children.internal.fieldOwners'
+    | 'children.children.internal.ignoreType'
+    | 'children.children.internal.mediaType'
+    | 'children.children.internal.owner'
+    | 'children.children.internal.type'
+    | 'children.internal.content'
+    | 'children.internal.contentDigest'
+    | 'children.internal.description'
+    | 'children.internal.fieldOwners'
+    | 'children.internal.ignoreType'
+    | 'children.internal.mediaType'
+    | 'children.internal.owner'
+    | 'children.internal.type'
+    | 'internal.content'
+    | 'internal.contentDigest'
+    | 'internal.description'
+    | 'internal.fieldOwners'
+    | 'internal.ignoreType'
+    | 'internal.mediaType'
+    | 'internal.owner'
+    | 'internal.type'
     | 'isCreatedByStatefulCreatePages'
     | 'context.slug'
     | 'pluginCreator.id'
@@ -2898,92 +2984,6 @@ declare namespace GatsbyTypes {
     | 'pluginCreator.packageJson.keywords'
     | 'pluginCreatorId'
     | 'componentPath'
-    | 'id'
-    | 'parent.id'
-    | 'parent.parent.id'
-    | 'parent.parent.parent.id'
-    | 'parent.parent.parent.children'
-    | 'parent.parent.children'
-    | 'parent.parent.children.id'
-    | 'parent.parent.children.children'
-    | 'parent.parent.internal.content'
-    | 'parent.parent.internal.contentDigest'
-    | 'parent.parent.internal.description'
-    | 'parent.parent.internal.fieldOwners'
-    | 'parent.parent.internal.ignoreType'
-    | 'parent.parent.internal.mediaType'
-    | 'parent.parent.internal.owner'
-    | 'parent.parent.internal.type'
-    | 'parent.children'
-    | 'parent.children.id'
-    | 'parent.children.parent.id'
-    | 'parent.children.parent.children'
-    | 'parent.children.children'
-    | 'parent.children.children.id'
-    | 'parent.children.children.children'
-    | 'parent.children.internal.content'
-    | 'parent.children.internal.contentDigest'
-    | 'parent.children.internal.description'
-    | 'parent.children.internal.fieldOwners'
-    | 'parent.children.internal.ignoreType'
-    | 'parent.children.internal.mediaType'
-    | 'parent.children.internal.owner'
-    | 'parent.children.internal.type'
-    | 'parent.internal.content'
-    | 'parent.internal.contentDigest'
-    | 'parent.internal.description'
-    | 'parent.internal.fieldOwners'
-    | 'parent.internal.ignoreType'
-    | 'parent.internal.mediaType'
-    | 'parent.internal.owner'
-    | 'parent.internal.type'
-    | 'children'
-    | 'children.id'
-    | 'children.parent.id'
-    | 'children.parent.parent.id'
-    | 'children.parent.parent.children'
-    | 'children.parent.children'
-    | 'children.parent.children.id'
-    | 'children.parent.children.children'
-    | 'children.parent.internal.content'
-    | 'children.parent.internal.contentDigest'
-    | 'children.parent.internal.description'
-    | 'children.parent.internal.fieldOwners'
-    | 'children.parent.internal.ignoreType'
-    | 'children.parent.internal.mediaType'
-    | 'children.parent.internal.owner'
-    | 'children.parent.internal.type'
-    | 'children.children'
-    | 'children.children.id'
-    | 'children.children.parent.id'
-    | 'children.children.parent.children'
-    | 'children.children.children'
-    | 'children.children.children.id'
-    | 'children.children.children.children'
-    | 'children.children.internal.content'
-    | 'children.children.internal.contentDigest'
-    | 'children.children.internal.description'
-    | 'children.children.internal.fieldOwners'
-    | 'children.children.internal.ignoreType'
-    | 'children.children.internal.mediaType'
-    | 'children.children.internal.owner'
-    | 'children.children.internal.type'
-    | 'children.internal.content'
-    | 'children.internal.contentDigest'
-    | 'children.internal.description'
-    | 'children.internal.fieldOwners'
-    | 'children.internal.ignoreType'
-    | 'children.internal.mediaType'
-    | 'children.internal.owner'
-    | 'children.internal.type'
-    | 'internal.content'
-    | 'internal.contentDigest'
-    | 'internal.description'
-    | 'internal.fieldOwners'
-    | 'internal.ignoreType'
-    | 'internal.mediaType'
-    | 'internal.owner'
-    | 'internal.type'
 
   type SitePageGroupConnection = {
     readonly totalCount: Scalars['Int']
@@ -3000,15 +3000,15 @@ declare namespace GatsbyTypes {
     readonly internalComponentName: Maybe<StringQueryOperatorInput>
     readonly componentChunkName: Maybe<StringQueryOperatorInput>
     readonly matchPath: Maybe<StringQueryOperatorInput>
+    readonly id: Maybe<StringQueryOperatorInput>
+    readonly parent: Maybe<NodeFilterInput>
+    readonly children: Maybe<NodeFilterListInput>
+    readonly internal: Maybe<InternalFilterInput>
     readonly isCreatedByStatefulCreatePages: Maybe<BooleanQueryOperatorInput>
     readonly context: Maybe<SitePageContextFilterInput>
     readonly pluginCreator: Maybe<SitePluginFilterInput>
     readonly pluginCreatorId: Maybe<StringQueryOperatorInput>
     readonly componentPath: Maybe<StringQueryOperatorInput>
-    readonly id: Maybe<StringQueryOperatorInput>
-    readonly parent: Maybe<NodeFilterInput>
-    readonly children: Maybe<NodeFilterListInput>
-    readonly internal: Maybe<InternalFilterInput>
   }
 
   type SitePageSortInput = {
@@ -5756,11 +5756,6 @@ declare namespace GatsbyTypes {
     readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>
   }
 
-  type GatsbyContentfulFluid_withWebpFragment = Pick<
-    ContentfulFluid,
-    'base64' | 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'
-  >
-
   type getPostPerPageQueryVariables = Exact<{
     slug: Scalars['String']
   }>
@@ -5810,23 +5805,7 @@ declare namespace GatsbyTypes {
   type Unnamed_2_QueryVariables = Exact<{[key: string]: never}>
 
   type Unnamed_2_Query = {
-    readonly site: Maybe<{readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'title'>>}>
-  }
-
-  type Unnamed_3_QueryVariables = Exact<{[key: string]: never}>
-
-  type Unnamed_3_Query = {
     readonly site: Maybe<{readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'author'>>}>
-  }
-
-  type Unnamed_4_QueryVariables = Exact<{[key: string]: never}>
-
-  type Unnamed_4_Query = {
-    readonly site: Maybe<{
-      readonly siteMetadata: Maybe<
-        Pick<SiteSiteMetadata, 'title' | 'author' | 'description' | 'siteUrl' | 'defaultImage'>
-      >
-    }>
   }
 
   type getAllBlogsQueryVariables = Exact<{[key: string]: never}>
@@ -5848,9 +5827,15 @@ declare namespace GatsbyTypes {
     }
   }
 
-  type Unnamed_5_QueryVariables = Exact<{[key: string]: never}>
+  type Unnamed_3_QueryVariables = Exact<{[key: string]: never}>
 
-  type Unnamed_5_Query = {
+  type Unnamed_3_Query = {
+    readonly site: Maybe<{readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'title'>>}>
+  }
+
+  type Unnamed_4_QueryVariables = Exact<{[key: string]: never}>
+
+  type Unnamed_4_Query = {
     readonly contentfulAsset: Maybe<
       Pick<ContentfulAsset, 'title'> & {
         readonly fluid: Maybe<GatsbyContentfulFluid_withWebpFragment>
@@ -5860,6 +5845,66 @@ declare namespace GatsbyTypes {
       readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'author' | 'description'>>
     }>
   }
+
+  type Unnamed_5_QueryVariables = Exact<{[key: string]: never}>
+
+  type Unnamed_5_Query = {
+    readonly site: Maybe<{
+      readonly siteMetadata: Maybe<
+        Pick<SiteSiteMetadata, 'title' | 'author' | 'description' | 'siteUrl' | 'defaultImage'>
+      >
+    }>
+  }
+
+  type GatsbyContentfulFixedFragment = Pick<
+    ContentfulFixed,
+    'base64' | 'width' | 'height' | 'src' | 'srcSet'
+  >
+
+  type GatsbyContentfulFixed_tracedSVGFragment = Pick<
+    ContentfulFixed,
+    'tracedSVG' | 'width' | 'height' | 'src' | 'srcSet'
+  >
+
+  type GatsbyContentfulFixed_noBase64Fragment = Pick<
+    ContentfulFixed,
+    'width' | 'height' | 'src' | 'srcSet'
+  >
+
+  type GatsbyContentfulFixed_withWebpFragment = Pick<
+    ContentfulFixed,
+    'base64' | 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'
+  >
+
+  type GatsbyContentfulFixed_withWebp_noBase64Fragment = Pick<
+    ContentfulFixed,
+    'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'
+  >
+
+  type GatsbyContentfulFluidFragment = Pick<
+    ContentfulFluid,
+    'base64' | 'aspectRatio' | 'src' | 'srcSet' | 'sizes'
+  >
+
+  type GatsbyContentfulFluid_tracedSVGFragment = Pick<
+    ContentfulFluid,
+    'tracedSVG' | 'aspectRatio' | 'src' | 'srcSet' | 'sizes'
+  >
+
+  type GatsbyContentfulFluid_noBase64Fragment = Pick<
+    ContentfulFluid,
+    'aspectRatio' | 'src' | 'srcSet' | 'sizes'
+  >
+
+  type GatsbyContentfulFluid_withWebpFragment = Pick<
+    ContentfulFluid,
+    'base64' | 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'
+  >
+
+  type GatsbyContentfulFluid_withWebp_noBase64Fragment = Pick<
+    ContentfulFluid,
+    'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'
+  >
 
   type GatsbyImageSharpFixedFragment = Pick<
     ImageSharpFixed,
@@ -5923,51 +5968,6 @@ declare namespace GatsbyTypes {
 
   type GatsbyImageSharpFluid_withWebp_noBase64Fragment = Pick<
     ImageSharpFluid,
-    'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'
-  >
-
-  type GatsbyContentfulFixedFragment = Pick<
-    ContentfulFixed,
-    'base64' | 'width' | 'height' | 'src' | 'srcSet'
-  >
-
-  type GatsbyContentfulFixed_tracedSVGFragment = Pick<
-    ContentfulFixed,
-    'tracedSVG' | 'width' | 'height' | 'src' | 'srcSet'
-  >
-
-  type GatsbyContentfulFixed_noBase64Fragment = Pick<
-    ContentfulFixed,
-    'width' | 'height' | 'src' | 'srcSet'
-  >
-
-  type GatsbyContentfulFixed_withWebpFragment = Pick<
-    ContentfulFixed,
-    'base64' | 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'
-  >
-
-  type GatsbyContentfulFixed_withWebp_noBase64Fragment = Pick<
-    ContentfulFixed,
-    'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'
-  >
-
-  type GatsbyContentfulFluidFragment = Pick<
-    ContentfulFluid,
-    'base64' | 'aspectRatio' | 'src' | 'srcSet' | 'sizes'
-  >
-
-  type GatsbyContentfulFluid_tracedSVGFragment = Pick<
-    ContentfulFluid,
-    'tracedSVG' | 'aspectRatio' | 'src' | 'srcSet' | 'sizes'
-  >
-
-  type GatsbyContentfulFluid_noBase64Fragment = Pick<
-    ContentfulFluid,
-    'aspectRatio' | 'src' | 'srcSet' | 'sizes'
-  >
-
-  type GatsbyContentfulFluid_withWebp_noBase64Fragment = Pick<
-    ContentfulFluid,
     'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'
   >
 }

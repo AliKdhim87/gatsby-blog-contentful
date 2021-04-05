@@ -7,6 +7,7 @@ import {Container, Divider, Header, Segment} from 'semantic-ui-react'
 
 import SEO from 'components/global/SEO'
 import MainTitle from 'components/generic/MainTitle'
+import GraphComments from 'components/comments/GraphComments'
 
 export const query = graphql`
   query getPostPerPage($slug: String!) {
@@ -120,6 +121,7 @@ const Blog: React.FC<Props> = ({data}: Props) => {
             dangerouslySetInnerHTML={{__html: bodyContent?.childMarkdownRemark?.html as string}}
           />
         </Segment>
+        <GraphComments />
       </Container>
     </>
   )
