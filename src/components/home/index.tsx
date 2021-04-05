@@ -4,9 +4,10 @@ import Img from 'gatsby-image'
 import {useTheme} from 'styled-components'
 import {Animated} from 'react-animated-css'
 
-import {Container, Header, Icon} from 'semantic-ui-react'
+import {Container, Header} from 'semantic-ui-react'
 
 import {HomeContainer} from './HomeContainer'
+import SocialMediaIcon from './SocialMediaIcon'
 
 const Home: React.FC = () => {
   const {secondary, isDark} = useTheme()
@@ -59,40 +60,19 @@ const Home: React.FC = () => {
           <Header as="span" size="tiny" inverted={isDark}>
             {site.siteMetadata.description}
           </Header>
-
           <div style={{display: 'flex', justifyContent: 'center'}}>
-            <Animated
-              isVisible
-              animationIn="slideInLeft"
-              animationOut="tada"
-              animationInDuration={1000}
-              animationOutDuration={1000}
-            >
-              <a
-                href="https://www.linkedin.com/in/ali-amouri-kadhim-082b75189/"
-                target="_blank"
-                rel="noreferrer"
-                style={{color: secondary, fontSize: '3.5rem'}}
-              >
-                <Icon name="linkedin square" aria-label="linkedin" />
-              </a>
-            </Animated>
-            <Animated
-              isVisible
-              animationIn="slideInRight"
-              animationOut="tada"
-              animationInDuration={1000}
-              animationOutDuration={1000}
-            >
-              <a
-                href="https://github.com/AliKdhim87"
-                target="_blank"
-                rel="noreferrer"
-                style={{color: secondary, fontSize: '3.5rem'}}
-              >
-                <Icon name="github square" aria-label="github" />
-              </a>
-            </Animated>
+            <SocialMediaIcon
+              href="https://www.linkedin.com/in/ali-amouri-kadhim-082b75189/"
+              secondary
+              name="linkedin square"
+              aria-label="linkedin"
+            />
+            <SocialMediaIcon
+              href="https://github.com/AliKdhim87"
+              secondary
+              name="github square"
+              aria-label="github"
+            />
           </div>
         </Container>
       </HomeContainer>
