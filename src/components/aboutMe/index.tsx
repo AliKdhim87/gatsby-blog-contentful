@@ -1,6 +1,7 @@
 import React from 'react'
 import {graphql, useStaticQuery} from 'gatsby'
-import Img from 'gatsby-image'
+import {GatsbyImage, getImage} from 'gatsby-plugin-image'
+
 import {useTheme} from 'styled-components'
 
 import {Grid, Header, List, Segment} from 'semantic-ui-react'
@@ -21,9 +22,7 @@ const AboutMeComponent: React.FC = () => {
     query {
       contentfulAsset(title: {eq: "my-image-about"}) {
         title
-        fluid(maxWidth: 700) {
-          ...GatsbyContentfulFluid_withWebp
-        }
+        gatsbyImageData(width: 700, layout: FULL_WIDTH)
       }
       contentfulSkills {
         skillsItem {
@@ -40,13 +39,13 @@ const AboutMeComponent: React.FC = () => {
       }
     }
   `)
-
+  const image = getImage(contentfulAsset)
   return (
     <Segment inverted={isDark} basic>
       <MainTitle text="About me" border="60px" />
       <Grid>
         <Grid.Column computer={6} mobile={16}>
-          <Img fluid={contentfulAsset.fluid} alt={contentfulAsset.title} />
+          {image && <GatsbyImage loading="lazy" image={image} alt={contentfulAsset.title} />}
         </Grid.Column>
         <Grid.Column computer={10} mobile={16}>
           <Header as="h2" size="large" textAlign="center" inverted={isDark}>

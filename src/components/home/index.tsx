@@ -1,6 +1,6 @@
 import React from 'react'
 import {graphql, useStaticQuery} from 'gatsby'
-import Img from 'gatsby-image'
+import {GatsbyImage, getImage} from 'gatsby-plugin-image'
 import {useTheme} from 'styled-components'
 import {Animated} from 'react-animated-css'
 
@@ -15,9 +15,7 @@ const Home: React.FC = () => {
     query {
       contentfulAsset(title: {eq: "Home photo"}) {
         title
-        fluid(maxWidth: 700) {
-          ...GatsbyContentfulFluid_withWebp
-        }
+        gatsbyImageData(width: 200, layout: CONSTRAINED)
       }
       site {
         siteMetadata {
@@ -27,12 +25,12 @@ const Home: React.FC = () => {
       }
     }
   `)
-
+  const image = getImage(contentfulAsset)
   return (
     <>
       <HomeContainer>
         <Container text textAlign="center">
-          <Img fluid={contentfulAsset.fluid} style={{width: '200px', margin: 'auto'}} />
+          {image && <GatsbyImage loading="lazy" image={image} alt={contentfulAsset.title} />}
           <Header as="h1" size="large">
             <Animated
               isVisible
