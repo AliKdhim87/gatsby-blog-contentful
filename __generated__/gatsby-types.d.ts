@@ -6203,37 +6203,6 @@ declare namespace GatsbyTypes {
     readonly allSitePage: {readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>>}
   }
 
-  type Unnamed_1_QueryVariables = Exact<{[key: string]: never}>
-
-  type Unnamed_1_Query = {
-    readonly site: Maybe<{readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'author'>>}>
-  }
-
-  type Unnamed_2_QueryVariables = Exact<{[key: string]: never}>
-
-  type Unnamed_2_Query = {
-    readonly site: Maybe<{readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'title'>>}>
-  }
-
-  type Unnamed_3_QueryVariables = Exact<{[key: string]: never}>
-
-  type Unnamed_3_Query = {
-    readonly site: Maybe<{
-      readonly siteMetadata: Maybe<
-        Pick<SiteSiteMetadata, 'title' | 'author' | 'description' | 'siteUrl' | 'defaultImage'>
-      >
-    }>
-  }
-
-  type Unnamed_4_QueryVariables = Exact<{[key: string]: never}>
-
-  type Unnamed_4_Query = {
-    readonly contentfulAsset: Maybe<Pick<ContentfulAsset, 'title' | 'gatsbyImageData'>>
-    readonly site: Maybe<{
-      readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'author' | 'description'>>
-    }>
-  }
-
   type getAllBlogsQueryVariables = Exact<{[key: string]: never}>
 
   type getAllBlogsQuery = {
@@ -6247,9 +6216,9 @@ declare namespace GatsbyTypes {
     }
   }
 
-  type Unnamed_5_QueryVariables = Exact<{[key: string]: never}>
+  type Unnamed_1_QueryVariables = Exact<{[key: string]: never}>
 
-  type Unnamed_5_Query = {
+  type Unnamed_1_Query = {
     readonly contentfulAsset: Maybe<Pick<ContentfulAsset, 'title' | 'gatsbyImageData'>>
     readonly contentfulSkills: Maybe<{
       readonly skillsItem: Maybe<
@@ -6257,6 +6226,37 @@ declare namespace GatsbyTypes {
       >
     }>
     readonly site: Maybe<{readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'author'>>}>
+  }
+
+  type Unnamed_2_QueryVariables = Exact<{[key: string]: never}>
+
+  type Unnamed_2_Query = {
+    readonly site: Maybe<{readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'author'>>}>
+  }
+
+  type Unnamed_3_QueryVariables = Exact<{[key: string]: never}>
+
+  type Unnamed_3_Query = {
+    readonly site: Maybe<{readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'title'>>}>
+  }
+
+  type Unnamed_4_QueryVariables = Exact<{[key: string]: never}>
+
+  type Unnamed_4_Query = {
+    readonly site: Maybe<{
+      readonly siteMetadata: Maybe<
+        Pick<SiteSiteMetadata, 'title' | 'author' | 'description' | 'siteUrl' | 'defaultImage'>
+      >
+    }>
+  }
+
+  type Unnamed_5_QueryVariables = Exact<{[key: string]: never}>
+
+  type Unnamed_5_Query = {
+    readonly contentfulAsset: Maybe<Pick<ContentfulAsset, 'title' | 'gatsbyImageData'>>
+    readonly site: Maybe<{
+      readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'author' | 'description'>>
+    }>
   }
 
   type GatsbyImageSharpFixedFragment = Pick<

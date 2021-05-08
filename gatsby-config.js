@@ -162,7 +162,6 @@ module.exports = {
         policy: [{userAgent: '*', allow: '/'}],
       },
     },
-    `gatsby-plugin-offline`,
     {
       resolve: 'gatsby-plugin-react-svg',
       options: {

@@ -34,20 +34,14 @@ const BlogPage: React.FC = () => {
       <Grid doubling stretched style={{paddingBottom: '2rem'}}>
         <Grid.Row>
           {allContentfulBlogPost.edges.map(({node}) => (
-            <Grid.Column
-              key={node.slug}
-              mobile={16}
-              computer={5}
-              tablet={8}
-              textAlign="center"
-              as={Link}
-              to={node.slug}
-            >
+            <Grid.Column key={node.slug} mobile={16} computer={5} tablet={8} textAlign="center">
               <Segment
                 inverted={isDark}
                 style={{
                   boxShadow: `${secondary} 0px 0px 7px 0px`,
                 }}
+                as={Link}
+                to={node.slug}
               >
                 <Header as="h2" size="medium" inverted={isDark}>
                   {node.title}
