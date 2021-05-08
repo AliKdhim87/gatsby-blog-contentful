@@ -1,6 +1,6 @@
 import React from 'react'
 import {graphql, useStaticQuery, Link} from 'gatsby'
-import Img, {FluidObject} from 'gatsby-image'
+import {GatsbyImage, getImage, IGatsbyImageData} from 'gatsby-plugin-image'
 import {useTheme} from 'styled-components'
 
 import {Divider, Grid, Segment, Header} from 'semantic-ui-react'
@@ -20,9 +20,7 @@ const BlogPage: React.FC = () => {
             contentful_id
             image {
               title
-              fluid(maxWidth: 300) {
-                ...GatsbyContentfulFluid_withWebp
-              }
+              gatsbyImageData(width: 300, layout: FULL_WIDTH)
             }
           }
         }
@@ -35,15 +33,15 @@ const BlogPage: React.FC = () => {
       <MainTitle border="80px" text="Recently blogs" />
       <Grid doubling stretched style={{paddingBottom: '2rem'}}>
         <Grid.Row>
-          {allContentfulBlogPost.edges.map(post => (
+          {allContentfulBlogPost.edges.map(({node}) => (
             <Grid.Column
-              key={post.node.slug}
+              key={node.slug}
               mobile={16}
               computer={5}
               tablet={8}
               textAlign="center"
               as={Link}
-              to={post.node.slug}
+              to={node.slug}
             >
               <Segment
                 inverted={isDark}
@@ -52,16 +50,16 @@ const BlogPage: React.FC = () => {
                 }}
               >
                 <Header as="h2" size="medium" inverted={isDark}>
-                  {post.node.title}
+                  {node.title}
                 </Header>
                 <Divider />
-                <p>{post.node.publishedDate}</p>
-                {post.node.image?.fluid && (
-                  <Img
-                    fluid={post.node.image.fluid as FluidObject}
-                    alt={post.node.image.title as string}
-                  />
-                )}
+                <p>{node.publishedDate}</p>
+
+                <GatsbyImage
+                  loading="lazy"
+                  image={getImage(node.image?.gatsbyImageData as any) as IGatsbyImageData}
+                  alt={node.image?.title as string}
+                />
               </Segment>
             </Grid.Column>
           ))}
