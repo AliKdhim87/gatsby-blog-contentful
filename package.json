@@ -12,7 +12,13 @@
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "test": "jest",
-    "typecheck": "tsc"
+    "typecheck": "tsc",
+    "lint": "npm-run-all 'lint:*'",
+    "lint-fix": "npm-run-all 'lint-fix:*'",
+    "lint:prettier": "prettier --check '**/*.{js,jsx,ts,tsx,json,css,scss,md}'",
+    "lint-fix:prettier": "yarn lint:prettier --write",
+    "lint:eslint": "eslint '**/*.{js,jsx,ts,tsx,json}'",
+    "lint-fix:eslint": "yarn lint:eslint --fix"
   },
   "dependencies": {
     "@hookform/resolvers": "^1.2.0",
