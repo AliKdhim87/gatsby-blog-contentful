@@ -6,10 +6,12 @@ import {useTheme} from 'styled-components'
 import {Divider, Grid, Segment, Header} from 'semantic-ui-react'
 
 import MainTitle from 'components/generic/MainTitle'
+import {AllBlogs} from 'types'
 
 const BlogPage: React.FC = () => {
   const {isDark, secondary} = useTheme()
-  const {allContentfulBlogPost} = useStaticQuery<GatsbyTypes.getAllBlogsQuery>(graphql`
+
+  const {allContentfulBlogPost} = useStaticQuery<AllBlogs>(graphql`
     query getAllBlogs {
       allContentfulBlogPost(sort: {fields: publishedDate, order: DESC}) {
         edges {
@@ -35,26 +37,27 @@ const BlogPage: React.FC = () => {
         <Grid.Row>
           {allContentfulBlogPost.edges.map(({node}) => (
             <Grid.Column key={node.slug} mobile={16} computer={5} tablet={8} textAlign="center">
-              <Segment
-                inverted={isDark}
-                style={{
-                  boxShadow: `${secondary} 0px 0px 7px 0px`,
-                }}
-                as={Link}
-                to={node.slug}
-              >
-                <Header as="h2" size="medium" inverted={isDark}>
-                  {node.title}
-                </Header>
-                <Divider />
-                <p>{node.publishedDate}</p>
-
-                <GatsbyImage
-                  loading="lazy"
-                  image={getImage(node.image?.gatsbyImageData as any) as IGatsbyImageData}
-                  alt={node.image?.title as string}
-                />
-              </Segment>
+              <Link to={node.slug}>
+                <Segment
+                  inverted={isDark}
+                  style={{
+                    boxShadow: `${secondary} 0px 0px 7px 0px`,
+                  }}
+                >
+                  <Header as="h2" size="medium" inverted={isDark}>
+                    {node.title}
+                  </Header>
+                  <Divider />
+                  <p>{node.publishedDate}</p>
+                  {node.image && (
+                    <GatsbyImage
+                      loading="lazy"
+                      image={getImage(node.image.gatsbyImageData) as IGatsbyImageData}
+                      alt={node.image?.title}
+                    />
+                  )}
+                </Segment>
+              </Link>
             </Grid.Column>
           ))}
         </Grid.Row>
