@@ -33,7 +33,6 @@
     "gatsby-plugin-sharp": "^3.4.2",
     "gatsby-plugin-sitemap": "^3.0.0",
     "gatsby-plugin-styled-components": "^4.0.0",
-    "gatsby-plugin-typegen": "^2.2.4",
     "gatsby-plugin-typescript": "^2.5.0",
     "gatsby-remark-autolink-headers": "^3.0.0",
     "gatsby-remark-images-contentful": "^3.0.0",
