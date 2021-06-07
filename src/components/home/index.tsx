@@ -1,12 +1,22 @@
 import React from 'react'
 import {graphql, useStaticQuery} from 'gatsby'
 import {GatsbyImage, getImage} from 'gatsby-plugin-image'
-import {useTheme} from 'styled-components'
+import styled, {useTheme} from 'styled-components'
 
 import {Container, Header} from 'semantic-ui-react'
 
 import {HomeContainer} from './HomeContainer'
-import SocialMediaIcon from './SocialMediaIcon'
+import SVGWrapper from 'components/generic/SVGWarper'
+import {GithubIcon, LinkedinIcon} from 'svg-icons'
+
+const SocialMediaContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  & a {
+    color: inherit;
+  }
+`
 
 const Home: React.FC = () => {
   const {secondary, isDark} = useTheme()
@@ -43,20 +53,23 @@ const Home: React.FC = () => {
         <Header as="span" size="tiny" inverted={isDark}>
           {site.siteMetadata.description}
         </Header>
-        <div style={{display: 'flex', justifyContent: 'center'}}>
-          <SocialMediaIcon
-            href="https://www.linkedin.com/in/ali-amouri-kadhim-082b75189/"
-            secondary
-            name="linkedin square"
-            aria-label="linkedin"
-          />
-          <SocialMediaIcon
-            href="https://github.com/AliKdhim87"
-            secondary
-            name="github square"
-            aria-label="github"
-          />
-        </div>
+
+        <SocialMediaContainer>
+          <SVGWrapper size="52px" marginRight="25px">
+            <a
+              href="https://www.linkedin.com/in/ali-amouri-kadhim-082b75189/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <LinkedinIcon aria-label="linkedin page" />
+            </a>
+          </SVGWrapper>
+          <SVGWrapper size="52px">
+            <a href="https://github.com/AliKdhim87" target="_blank" rel="noreferrer">
+              <GithubIcon aria-label="github page" />
+            </a>
+          </SVGWrapper>
+        </SocialMediaContainer>
       </Container>
     </HomeContainer>
   )
